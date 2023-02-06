@@ -25,3 +25,12 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+
+export EDITOR="/usr/bin/nano"
+
+export GOPATH="$HOME/.local/go"
+
+PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
+PATH="$HOME/.cargo/bin:$PATH"
+PATH="$HOME/go/bin:$PATH"
+PATH="$(go env GOPATH)/bin:$PATH"
