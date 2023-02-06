@@ -28,7 +28,7 @@ fi
 
 export EDITOR="/usr/bin/nano"
 
-export GOPATH="$HOME/.local/go"
+export GOPATH="$HOME/.local/share/go"
 
 PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
