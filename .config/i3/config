@@ -50,11 +50,11 @@ workspace_layout default
 new_window pixel 1
 
 # thin borders
-# hide_edge_borders both
+hide_edge_borders both
 
 # Set inner/outer gaps
-gaps inner 6
-gaps outer 3
+gaps inner 0
+gaps outer 0
 
 # show window title bars (not officially supported with i3gaps)
 #default_border normal
