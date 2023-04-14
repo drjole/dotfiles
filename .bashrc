@@ -91,6 +91,16 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 source /usr/share/bash-completion/completions/git
 __git_complete dotfies __git_main
 
+# Rust/Cargo
 . "$HOME/.cargo/env"
 
+# Aliases
+alias cat=bat
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}
+alias ls=exa
+
+# Starship prompt
 eval "$(starship init bash)"
