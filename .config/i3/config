@@ -417,7 +417,7 @@ exec --no-startup-id sleep 2 && alacritty
 exec --no-startup-id sleep 5 && firefox
 exec --no-startup-id sleep 2 && neovide
 exec --no-startup-id sleep 2 && obsidian
-exec --no-startup-id sleep 10 && spotify-launcher
+exec --no-startup-id sleep 5 && spotify-launcher
 
 ###############
 # system tray #
