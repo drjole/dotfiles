@@ -289,9 +289,9 @@ bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:"
 set $ws2 "2:"
-set $ws3 "3"
+set $ws3 "3:"
 set $ws4 "4"
-set $ws5 "5:󰠮"
+set $ws5 "5:󱞁"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -310,6 +310,7 @@ set $ws10 ""
 # bind program to workspace and focus to them on startup:
 assign [class="Alacritty"] $ws1
 assign [class="(?i)firefox"] $ws2
+assign [class="neovide"] $ws3
 assign [class="obsidian"] $ws5
 assign [class="Spotify"] $ws10
 
@@ -413,8 +414,9 @@ exec --no-startup-id dunst
 
 # Autostart apps as you like
 exec --no-startup-id sleep 2 && alacritty 
-exec --no-startup-id sleep 10 && firefox
-exec --no-startup-id sleep 7 && obsidian
+exec --no-startup-id sleep 5 && firefox
+exec --no-startup-id sleep 2 && neovide
+exec --no-startup-id sleep 2 && obsidian
 exec --no-startup-id sleep 10 && spotify-launcher
 
 ###############
