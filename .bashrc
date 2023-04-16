@@ -88,7 +88,7 @@ _open_files_for_editing() {
 # https://wiki.archlinux.org/title/Dotfiles#Tracking_dotfiles_directly_with_Git
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 source /usr/share/bash-completion/completions/git
-__git_complete dotfies __git_main
+__git_complete dotfiles __git_main
 
 # Rust/Cargo
 . "$HOME/.cargo/env"
