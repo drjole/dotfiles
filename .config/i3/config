@@ -360,7 +360,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # if enabled you should comment welcome app.
 # https://github.com/jceb/dex
 #exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
-exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id sleep 5 && dex --autostart --environment i3
 
 # start welcome app
 #exec --no-startup-id sh /usr/share/endeavouros/scripts/welcome --startdelay=3
@@ -413,11 +413,17 @@ exec --no-startup-id dunst
 #exec_always --no-startup-id autotiling
 
 # Autostart apps as you like
-exec --no-startup-id sleep 2 && alacritty 
-exec --no-startup-id sleep 5 && firefox
-exec --no-startup-id sleep 2 && neovide
-exec --no-startup-id sleep 2 && obsidian
-exec --no-startup-id sleep 5 && spotify-launcher
+exec --no-startup-id gnome-keyring
+exec --no-startup-id alacritty 
+exec --no-startup-id firefox
+exec --no-startup-id neovide
+exec --no-startup-id obsidian
+exec --no-startup-id spotify-launcher
+
+# Start GNOME/Keyring
+# https://wiki.archlinux.org/title/GNOME/Keyring#Launching_gnome-keyring-daemon_outside_desktop_environments_(KDE,_GNOME,_XFCE,_...)
+exec --no-startup-id dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
+exec --no-startup-id gnome-keyring-daemon --start --components=secrets
 
 ###############
 # system tray #
