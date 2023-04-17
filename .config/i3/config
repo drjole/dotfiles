@@ -271,19 +271,19 @@ client.urgent           $urgentred $urgentred $white $yellowbrown $yellowbrown
 
 # Start i3bar to display a workspace bar
 bar {
-		status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	  position top 
-		tray_output primary
-		strip_workspace_numbers yes
-    colors {
-	    separator          $purple
-		  background         $darkgrey
-		  statusline         $white
-      #                  border      bg          text      indicator
-			focused_workspace  $mediumgrey $grey       $darkgrey $purple
-			active_workspace   $lightblue  $mediumgrey $darkgrey $purple
-			inactive_workspace $darkgrey   $darkgrey   $grey     $purple
-			urgent_workspace   $urgentred  $urgentred  $white    $purple
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	position top 
+	tray_output primary
+	strip_workspace_numbers yes
+	colors {
+		separator          $purple
+		background         $darkgrey
+		statusline         $white
+		#                  border      bg          text      indicator
+		focused_workspace  $mediumgrey $grey       $darkgrey $purple
+		active_workspace   $lightblue  $mediumgrey $darkgrey $purple
+		inactive_workspace $darkgrey   $darkgrey   $grey     $purple
+		urgent_workspace   $urgentred  $urgentred  $white    $purple
 	}
 }
 
