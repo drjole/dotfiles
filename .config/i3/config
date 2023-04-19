@@ -1,112 +1,43 @@
-# Font for window titles
-font pango: JetBrains Mono Nerd Font Regular 10
+# Adpated from https://github.com/jorgeloopzz/dotfiles
 
-# Set the mod key to the Windows key
+#######################################################################
+#                Mod key (Mod1=<Alt>, Mod4=<Super>)                   #
+#######################################################################
 set $mod Mod4
 
-# Default i3 tiling mode
-workspace_layout default
-
-# Border indicator on windows
-new_window pixel 1
-
-# Thin borders
-hide_edge_borders both
-
-# Set inner/outer gaps
+#######################################################################
+#                                 Gaps                                #
+#######################################################################
 gaps inner 6
 gaps outer 3
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# Only enable gaps on a workspace when there is at least one container
+smart_gaps on
 
-# Switch/iterate between workspaces
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
+# Only enable outer gaps when there is exactly one container
+smart_gaps inverse_outer
 
-# Switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+# Activate smart borders (always)
+smart_borders on
 
-# Switch to workspace with numpad keys
-bindcode $mod+87 workspace 1
-bindcode $mod+88 workspace 2
-bindcode $mod+89 workspace 3
-bindcode $mod+83 workspace 4
-bindcode $mod+84 workspace 5
-bindcode $mod+85 workspace 6
-bindcode $mod+79 workspace 7
-bindcode $mod+80 workspace 8
-bindcode $mod+81 workspace 9
-bindcode $mod+90 workspace 10
+# Activate smart borders (only when there are effectively no gaps)
+smart_borders no_gaps
 
-# Switch to workspace with numlock numpad keys
-bindcode $mod+Mod2+87 workspace $ws1
-bindcode $mod+Mod2+88 workspace $ws2
-bindcode $mod+Mod2+89 workspace $ws3
-bindcode $mod+Mod2+83 workspace $ws4
-bindcode $mod+Mod2+84 workspace $ws5
-bindcode $mod+Mod2+85 workspace $ws6
-bindcode $mod+Mod2+79 workspace $ws7
-bindcode $mod+Mod2+80 workspace $ws8
-bindcode $mod+Mod2+81 workspace $ws9
-bindcode $mod+Mod2+90 workspace $ws10
+#######################################################################
+#                              Window borders                         #
+#######################################################################
 
-# Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+# class                 border      background  text        indicator   child border
+client.focused          #96CDFB     #96CDFB     #96CDFB     #96CDFB     #96CDFB
+client.focused_inactive #055494     #055494     #055494     #055494     #055494
+client.unfocused        #055494     #055494     #055494     #055494     #055494
 
-# Move focused container to workspace with numpad keys
-bindcode $mod+Shift+Mod2+87 move container to workspace $ws1
-bindcode $mod+Shift+Mod2+88 move container to workspace $ws2
-bindcode $mod+Shift+Mod2+89 move container to workspace $ws3
-bindcode $mod+Shift+Mod2+83 move container to workspace $ws4
-bindcode $mod+Shift+Mod2+84 move container to workspace $ws5
-bindcode $mod+Shift+Mod2+85 move container to workspace $ws6
-bindcode $mod+Shift+Mod2+79 move container to workspace $ws7
-bindcode $mod+Shift+Mod2+80 move container to workspace $ws8
-bindcode $mod+Shift+Mod2+81 move container to workspace $ws9
-bindcode $mod+Shift+Mod2+90 move container to workspace $ws10
+# Disable window titlebars
+for_window [class="^.*"] border pixel 1# Window borders
 
-# Move focused container to workspace with numpad keys
-bindcode $mod+Shift+87 move container to workspace $ws1
-bindcode $mod+Shift+88 move container to workspace $ws2
-bindcode $mod+Shift+89 move container to workspace $ws3
-bindcode $mod+Shift+83 move container to workspace $ws4
-bindcode $mod+Shift+84 move container to workspace $ws5
-bindcode $mod+Shift+85 move container to workspace $ws6
-bindcode $mod+Shift+79 move container to workspace $ws7
-bindcode $mod+Shift+80 move container to workspace $ws8
-bindcode $mod+Shift+81 move container to workspace $ws9
-bindcode $mod+Shift+90 move container to workspace $ws10
-
-# Start a terminal
-bindsym $mod+Return exec alacritty
-
-# Kill focused window
-bindsym $mod+q kill
-
-# Exit menu
-bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
-
-# Lock the system
-bindsym $mod+o exec ~/.config/i3/scripts/blur-lock
+#######################################################################
+#                               Keybindings                           #
+#######################################################################
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -114,20 +45,40 @@ bindsym $mod+Shift+c reload
 # Restart i3 in place (preserves your layout/session, can be used to update i3)
 bindsym $mod+Shift+r restart
 
+# Float window
+bindsym $mod+Shift+space floating toggle
+floating_modifier $mod
+
+# Start a terminal
+bindsym $mod+Return exec alacritty
+
+# Kill focused window
+bindsym $mod+q kill
+
+# Programs
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+w exec firefox
+bindsym $mod+e exec thunar
+
 # Keybinding in fancy rofi (automated):
 bindsym F1 exec ~/.config/i3/scripts/keyhint-2
 
-# Backlight control
-bindsym XF86MonBrightnessUp exec xbacklight +10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
-bindsym XF86MonBrightnessDown exec xbacklight -10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+# Power profiles menu switcher (rofi)
+bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
-# Change focus
+# Exit system
+bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
+
+# Lock screen
+bindsym $mod+o exec ~/.config/i3/scripts/blur-lock
+
+# Move focus of the windows 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# Move focused window
+# Move windows around the space
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
@@ -143,29 +94,44 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # Change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+g layout tabbed
-bindsym $mod+n layout toggle split
-
-# Toggle tiling/floating
-bindsym $mod+Shift+space floating toggle
-
-# Change focus between tiling/floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+n layout stacking
+bindsym $mod+m layout tabbed
+bindsym $mod+Period layout toggle split
 
 # Focus the parent container
 bindsym $mod+a focus parent
 
-# Open new empty workspace
-bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace
+# Focus the child container
+bindsym $mod+Shift+a focus child
+
+# Enter resize mode
+bindsym $mod+r mode "resize"
+
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    # Back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+# Backlight control
+bindsym XF86MonBrightnessUp exec xbacklight +10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+bindsym XF86MonBrightnessDown exec xbacklight -10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 
 # Volume
 bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
-
-# Gradular volume control
-bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
-bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
 
 # Mute
 bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
@@ -176,36 +142,80 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# Redirect sound to headphones
-bindsym $mod+p exec /usr/local/bin/switch-audio-port
-
-## App shortcuts
-bindsym $mod+w exec /usr/bin/firefox
-bindsym $mod+e exec /usr/bin/thunar
-bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
-
-# Power profiles menu switcher (rofi)
-bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
+#######################################################################
+#                               Workspace                             #
+#######################################################################
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4"
-set $ws5 "5:󱞁"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10:"
+set $ws1 "1:<span color='#66FFB2'> </span>"
+set $ws2 "2:<span color='#D9E0EE'> </span>"
+set $ws3 "3:<span color='#ea4879'> </span>"
+set $ws4 "4:<span color='#96CDFB'> </span>"
+set $ws5 "5:<span color='#F8BD96'> </span>"
+set $ws6 "6:<span color='#E8A2AF'> </span>"
+set $ws7 "7:<span color='#DDB6F2'> </span>"
 
-# Bind program to workspace and focus to them on startup
-assign [class="Alacritty"] $ws1
-assign [class="(?i)firefox"] $ws2
-assign [class="neovide"] $ws3
-assign [class="obsidian"] $ws5
-assign [class="Spotify"] $ws10
+# Switch/iterate between workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# Switch to workspace
+bindsym $mod+1 workspace $ws1 
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+
+# Open applications in certain workspaces
+assign [class="^Alacritty$"] → $ws1
+assign [class="^firefox$"] → $ws2
+assign [class="^neovide$"] → $ws3
+assign [class="^$"] → $ws4
+assign [instance="^obsidian$"] → $ws4
+assign [class="^$"] → $ws5
+assign [class="^$"] → $ws6
+assign [class="^Spotify$"] → $ws7
+
+# Focus window opened automatically
+for_window [class="."] focus
+
+#######################################################################
+#                               Scratchpad                            #
+#######################################################################
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+u move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+u scratchpad show
+
+### Put workspaces on specific monitors ###
+
+# Monitor 1
+workspace $ws1 output eDP1
+workspace $ws5 output eDP1
+workspace $ws6 output eDP1
+
+# Monitor 2
+workspace $ws2 output HDMI1
+workspace $ws3 output HDMI1
+workspace $ws4 output HDMI1
+
+#######################################################################
+#                               Autostart                             #
+#######################################################################
 
 # Compositor
 exec_always --no-startup-id picom --config ~/.config/picom.conf
@@ -249,47 +259,21 @@ exec --no-startup-id blueberry-tray
 # NetworkManager applet
 exec --no-startup-id nm-applet
 
-# Define color variables
-set $darkbluetrans #08052be6
-set $darkblue      #08052b
-set $lightblue     #5294e2
-set $urgentred     #e53935
-set $white         #ffffff
-set $black         #000000
-set $purple        #e345ff
-set $darkgrey      #383c4a
-set $grey          #b0b5bd
-set $mediumgrey    #8b8b8b
-set $yellowbrown   #e1b700
-
-# Define colors for windows
-#class                  border     bground    text   indicator    child_border
-client.focused          $lightblue $darkblue  $white $mediumgrey  $mediumgrey
-client.unfocused        $darkblue  $darkblue  $grey  $darkgrey    $darkgrey
-client.focused_inactive $darkblue  $darkblue  $grey  $black       $black
-client.urgent           $urgentred $urgentred $white $yellowbrown $yellowbrown
-
-# Start i3bar to display a workspace bar
+# Start any status bar
+# exec_always --no-startup-id yabar &
 bar {
-	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	position top 
-	tray_output primary
-	strip_workspace_numbers yes
-	colors {
-		separator          $purple
-		background         $darkgrey
-		statusline         $white
-		#                  border      bg          text      indicator
-		focused_workspace  $mediumgrey $grey       $darkgrey $purple
-		active_workspace   $lightblue  $mediumgrey $darkgrey $purple
-		inactive_workspace $darkgrey   $darkgrey   $grey     $purple
-		urgent_workspace   $urgentred  $urgentred  $white    $purple
-	}
+    status_command i3status-rs ~/.config/i3status-rust/config.toml
+    strip_workspace_numbers yes
+    workspace_min_width 40
+    tray_output primary
+    position top
+    workspace_buttons yes
+    font pango:JetBrains Mono Nerd Font 10
+    colors {
+        background #302D41
+        separator #D9E0EE
+        focused_workspace #302D41 #302D41 #D9E0EE
+        active_workspace #1E1E2E #1E1E2E #808080
+    }
 }
-
-# rofi bindings fancy application menu
-bindsym $mod+d exec rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
-
-# rofi bindings for window menu
-bindsym $mod+t exec rofi -show window -config ~/.config/rofi/rofidmenu.rasi
 
