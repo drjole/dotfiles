@@ -224,9 +224,6 @@ assign [class="^neovide$"] → $ws3
 assign [instance="^obsidian$"] → $ws5
 assign [class="^Spotify$"] → $ws7
 
-# Focus window opened automatically
-for_window [class="."] focus
-
 #######################################################################
 #                               Scratchpad                            #
 #######################################################################
@@ -279,8 +276,8 @@ exec --no-startup-id dunst
 
 # Start GNOME/Keyring
 # https://wiki.archlinux.org/title/GNOME/Keyring#Launching_gnome-keyring-daemon_outside_desktop_environments_(KDE,_GNOME,_XFCE,_...)
-exec --no-startup-id dbus-update-activation-environment DISPLAY XAUTHORITY 
-exec --no-startup-id gnome-keyring-daemon --start --components=secrets
+#exec --no-startup-id dbus-update-activation-environment DISPLAY XAUTHORITY 
+#exec --no-startup-id gnome-keyring-daemon --start --components=secrets
 
 # Autostart apps as you like
 exec --no-startup-id sleep 1 && alacritty 
