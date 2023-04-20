@@ -54,13 +54,13 @@ set $base      #1e1e2e
 set $mantle    #181825
 set $crust     #11111b
 
-# target                 title     bg    text   indicator  border
-client.focused           $pink     $base $text  $rosewater $pink
-client.focused_inactive  $mauve    $base $text  $rosewater $mauve
-client.unfocused         $mauve    $base $text  $rosewater $mauve
-client.urgent            $peach    $base $peach $overlay0  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
-client.background        $base
+# target                title     bg    text   indicator  border
+client.focused          $pink     $base $text  $rosewater $pink
+client.focused_inactive $mauve    $base $text  $rosewater $mauve
+client.unfocused        $mauve    $base $text  $rosewater $mauve
+client.urgent           $peach    $base $peach $overlay0  $peach
+client.placeholder      $overlay0 $base $text  $overlay0  $overlay0
+client.background       $base
 
 # Disable window titlebars
 for_window [class="^.*"] border pixel 1# Window borders
@@ -160,11 +160,11 @@ bindsym XF86MonBrightnessUp exec xbacklight +10
 bindsym XF86MonBrightnessDown exec xbacklight -10
 
 # Volume
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
 
 # Mute
-bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
+bindsym XF86AudioMute exec amixer sset Master toggle
 
 # Audio control
 bindsym XF86AudioPlay exec playerctl play
