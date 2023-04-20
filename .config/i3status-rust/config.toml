@@ -31,6 +31,9 @@ missing_format = ""
 [[block]]
 block = "custom"
 command = "powerprofilesctl get"
+[[block.click]]
+button = "left"
+cmd = "~/.config/i3/scripts/power-profiles"
 
 [[block]]
 block = "time"
