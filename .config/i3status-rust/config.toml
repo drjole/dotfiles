@@ -20,6 +20,7 @@ missing_format = ""
 
 [[block]]
 block = "sound"
+max_vol = 100
 [[block.click]]
 button = "left"
 cmd = "pavucontrol"
