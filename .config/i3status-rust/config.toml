@@ -1,21 +1,8 @@
-# icons_format = "{icon}"
-#
-[theme]
-theme = "catppuccin-mocha"
-# [theme.overrides]
-# idle_bg = "#123456"
-# idle_fg = "#abcdef"
-
 [icons]
 icons = "awesome4"
 [icons.overrides]
 bat = ["|E|", "|_|", "|=|", "|F|"]
 bat_charging = "|^| "
-
-[[block]]
-block = "pomodoro"
-notify_cmd = "notify-send '{msg}'"
-blocking_cmd = false
 
 [[block]]
 block = "disk_space"

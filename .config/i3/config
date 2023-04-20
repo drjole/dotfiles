@@ -178,13 +178,16 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:<span color='#66FFB2'> </span>"
-set $ws2 "2:<span color='#D9E0EE'> </span>"
-set $ws3 "3:<span color='#ea4879'> </span>"
-set $ws4 "4:<span color='#96CDFB'> </span>"
-set $ws5 "5:<span color='#F8BD96'> </span>"
-set $ws6 "6:<span color='#E8A2AF'> </span>"
-set $ws7 "7:<span color='#DDB6F2'> </span>"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # Switch/iterate between workspaces
 bindsym $mod+Tab workspace next
@@ -198,6 +201,9 @@ bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -207,15 +213,15 @@ bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Open applications in certain workspaces
 assign [class="^Alacritty$"] → $ws1
 assign [class="^firefox$"] → $ws2
 assign [class="^neovide$"] → $ws3
-assign [class="^$"] → $ws4
-assign [instance="^obsidian$"] → $ws4
-assign [class="^$"] → $ws5
-assign [class="^$"] → $ws6
+assign [instance="^obsidian$"] → $ws5
 assign [class="^Spotify$"] → $ws7
 
 # Focus window opened automatically
@@ -297,7 +303,6 @@ bar {
     workspace_min_width 40
     tray_output primary
     position top
-    workspace_buttons yes
     font pango:JetBrains Mono Nerd Font 10
     colors {
         background $base 
