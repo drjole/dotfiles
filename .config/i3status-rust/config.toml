@@ -30,13 +30,6 @@ block = "battery"
 missing_format = ""
 
 [[block]]
-block = "custom"
-command = "powerprofilesctl get"
-[[block.click]]
-button = "left"
-cmd = "~/.config/i3/scripts/power-profiles"
-
-[[block]]
 block = "time"
 interval = 1
 format = " $timestamp.datetime(f:'%A %d.%B.%Y %H:%M:%S') "

@@ -6,61 +6,8 @@
 set $mod Mod4
 
 #######################################################################
-#                                 Gaps                                #
-#######################################################################
-gaps inner 6
-gaps outer 3
-
-# Only enable gaps on a workspace when there is at least one container
-smart_gaps on
-
-# Only enable outer gaps when there is exactly one container
-smart_gaps inverse_outer
-
-# Activate smart borders (always)
-smart_borders on
-
-# Activate smart borders (only when there are effectively no gaps)
-smart_borders no_gaps
-
-#######################################################################
 #                              Window borders                         #
 #######################################################################
-
-# Set colors
-set $rosewater #f5e0dc
-set $flamingo  #f2cdcd
-set $pink      #f5c2e7
-set $mauve     #cba6f7
-set $red       #f38ba8
-set $maroon    #eba0ac
-set $peach     #fab387
-set $green     #a6e3a1
-set $teal      #94e2d5
-set $sky       #89dceb
-set $sapphire  #74c7ec
-set $blue      #89b4fa
-set $lavender  #b4befe
-set $text      #cdd6f4
-set $subtext1  #bac2de
-set $subtext0  #a6adc8
-set $overlay2  #9399b2
-set $overlay1  #7f849c
-set $overlay0  #6c7086
-set $surface2  #585b70
-set $surface1  #45475a
-set $surface0  #313244
-set $base      #1e1e2e
-set $mantle    #181825
-set $crust     #11111b
-
-# target                title     bg    text   indicator  border
-client.focused          $pink     $base $text  $rosewater $pink
-client.focused_inactive $mauve    $base $text  $rosewater $mauve
-client.unfocused        $mauve    $base $text  $rosewater $mauve
-client.urgent           $peach    $base $peach $overlay0  $peach
-client.placeholder      $overlay0 $base $text  $overlay0  $overlay0
-client.background       $base
 
 # Disable window titlebars
 for_window [class="^.*"] border pixel 1# Window borders
@@ -86,21 +33,12 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+q kill
 
 # Programs
-bindsym $mod+d exec rofi -show drun
+bindsym $mod+d exec ~/.config/i3/rofi.sh 
 bindsym $mod+w exec firefox
 bindsym $mod+e exec thunar
 
-# Keybinding in fancy rofi (automated):
-bindsym F1 exec ~/.config/i3/scripts/keyhint-2
-
-# Power profiles menu switcher (rofi)
-bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
-
-# Exit system
-bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
-
 # Lock screen
-bindsym $mod+o exec ~/.config/i3/scripts/blur-lock
+bindsym $mod+o exec i3lock 
 
 # Move focus of the windows 
 bindsym $mod+h focus left
@@ -140,10 +78,10 @@ bindsym $mod+r mode "resize"
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
 
-    # Pressing left will shrink the window’s width.
-    # Pressing right will grow the window’s width.
-    # Pressing up will shrink the window’s height.
-    # Pressing down will grow the window’s height.
+    # Pressing h will shrink the window’s width.
+    # Pressing j will grow the window’s width.
+    # Pressing k will shrink the window’s height.
+    # Pressing k will grow the window’s height.
     bindsym h resize shrink width 10 px or 10 ppt
     bindsym j resize grow height 10 px or 10 ppt
     bindsym k resize shrink height 10 px or 10 ppt
@@ -193,6 +131,10 @@ set $ws10 "10"
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
+# Move workspaces between screens
+bindsym $mod+Shift+Left move workspace to output left
+bindsym $mod+Shift+Right move workspace to output right
+
 # Switch to workspace
 bindsym $mod+1 workspace $ws1 
 bindsym $mod+2 workspace $ws2
@@ -225,28 +167,6 @@ assign [instance="^obsidian$"] → $ws5
 assign [class="^Spotify$"] → $ws7
 
 #######################################################################
-#                               Scratchpad                            #
-#######################################################################
-
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+u move scratchpad
-
-# Show the first scratchpad window
-bindsym $mod+u scratchpad show
-
-### Put workspaces on specific monitors ###
-
-# Monitor 1
-workspace $ws1 output eDP1
-workspace $ws5 output eDP1
-workspace $ws6 output eDP1
-
-# Monitor 2
-workspace $ws2 output HDMI1
-workspace $ws3 output HDMI1
-workspace $ws4 output HDMI1
-
-#######################################################################
 #                               Autostart                             #
 #######################################################################
 
@@ -269,15 +189,10 @@ exec --no-startup-id setxkbmap -layout 'de'
 exec --no-startup-id sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
 
 # Set powersavings for display
-exec --no-startup-id xset s 480 dpms 600 600 600
+exec --no-startup-id xset s 600 dpms 1800 1800 1800
 
 # Desktop notifications
 exec --no-startup-id dunst
-
-# Start GNOME/Keyring
-# https://wiki.archlinux.org/title/GNOME/Keyring#Launching_gnome-keyring-daemon_outside_desktop_environments_(KDE,_GNOME,_XFCE,_...)
-#exec --no-startup-id dbus-update-activation-environment DISPLAY XAUTHORITY 
-#exec --no-startup-id gnome-keyring-daemon --start --components=secrets
 
 # Autostart apps as you like
 exec --no-startup-id sleep 1 && alacritty 
@@ -293,20 +208,9 @@ exec --no-startup-id blueberry-tray
 exec --no-startup-id nm-applet
 
 # Start any status bar
-# exec_always --no-startup-id yabar &
 bar {
     status_command i3status-rs ~/.config/i3status-rust/config.toml
-    strip_workspace_numbers yes
-    workspace_min_width 40
     tray_output primary
     position top
-    font pango:JetBrains Mono Nerd Font 10
-    colors {
-        background $base 
-        separator $surface1
-        #                 border background text
-        focused_workspace $pink  $base      $text
-        active_workspace  $mauve $base      $text
-    }
+    font pango:JetBrains Mono Nerd Font 8
 }
-
