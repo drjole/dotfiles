@@ -212,5 +212,5 @@ bar {
     status_command i3status-rs ~/.config/i3status-rust/config.toml
     tray_output primary
     position top
-    font pango:JetBrains Mono Nerd Font 8
+    font pango:JetBrains Mono Nerd Font 10
 }
