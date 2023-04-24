@@ -1,1 +1,4 @@
-.dotfiles
+/.dotfiles
+/go
+/.cache
+node_modules
