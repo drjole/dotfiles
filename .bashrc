@@ -5,7 +5,10 @@ alias ls='ls --color=auto'
 
 [[ "$(whoami)" = "root" ]] && return
 
-[[ -z "$FUNCNEST" ]] && export FUNCNEST=100          # limits recursive functions, see 'man bash'
+[[ -z "$FUNCNEST" ]] && export FUNCNEST=100 # limits recursive functions, see 'man bash'
+
+# Starship prompt
+eval "$(starship init bash)"
 
 # dotfiles setup
 # https://wiki.archlinux.org/title/Dotfiles#Tracking_dotfiles_directly_with_Git
@@ -20,9 +23,9 @@ __git_complete dotfiles __git_main
 alias cat=bat
 alias bathelp='bat --plain --language=help'
 help() {
-    "$@" --help 2>&1 | bathelp
+	"$@" --help 2>&1 | bathelp
 }
 alias ls=exa
 
-# Starship prompt
-eval "$(starship init bash)"
+# Key bindings
+bind -x '"\C-f": /home/jole/.local/bin/tmux-sessionizer'
