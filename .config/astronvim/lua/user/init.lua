@@ -5,6 +5,7 @@ return {
   },
   polish = function()
     vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h13"
+    vim.treesitter.language.register("json", "har")
 
     local function set_us_layout()
       os.execute("setxkbmap us_intl")

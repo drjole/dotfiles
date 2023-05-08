@@ -10,3 +10,6 @@ eval "$(rbenv init -)"
 
 # Added by Toolbox App
 export PATH="$PATH:/home/jole/.local/share/JetBrains/Toolbox/scripts"
+
+# Mouse speed bei Laurin
+x=2.6 && xinput set-prop "Logitech USB Receiver" "Coordinate Transformation Matrix" $x 0 0 0 $x 0 0 0 1
