@@ -26,6 +26,7 @@ help() {
 	"$@" --help 2>&1 | bathelp
 }
 alias ls=exa
+alias vim=nvim
 
 # Key bindings
 bind -x '"\C-f": /home/jole/.local/bin/tmux-sessionizer'
