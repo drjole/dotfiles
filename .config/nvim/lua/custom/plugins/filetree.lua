@@ -1,10 +1,9 @@
 return {
   'nvim-neo-tree/neo-tree.nvim',
   version = '*',
-  lazy = false,
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+    'nvim-tree/nvim-web-devicons',
     'MunifTanjim/nui.nvim',
   },
   config = function()
@@ -53,7 +52,6 @@ return {
           StaticMethod = { icon = '󰠄 ', hl = 'Function' },
         },
       },
-      -- Add this section only if you've configured source selector.
       source_selector = {
         winbar = true,
         sources = {
