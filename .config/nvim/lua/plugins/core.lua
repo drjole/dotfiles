@@ -12,6 +12,8 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
+        docker_compose_language_service = {},
+        dockerls = {},
         rust_analyzer = {
           settings = {
             ["rust-analyzer"] = {
@@ -51,6 +53,7 @@ return {
     opts = {
       ensure_installed = {
         "bash",
+        "dockerfile",
         "html",
         "javascript",
         "json",
@@ -61,9 +64,19 @@ return {
         "query",
         "regex",
         "ruby",
+        "rust",
         "sql",
         "vim",
         "yaml",
+      },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-Space>",
+          node_incremental = "<C-Space>",
+          scope_incremental = false,
+          node_decremental = "<A-Space>",
+        },
       },
     },
   },
