@@ -23,7 +23,7 @@ return {
                   "clippy",
                   "--message-format=json",
                   "--",
-                  "--warn=clippy::pedantic",
+                  -- "--warn=clippy::pedantic",
                   "--warn=clippy::nursery",
                   "--warn=clippy::unwrap_used",
                   "--warn=clippy::expect_used",
