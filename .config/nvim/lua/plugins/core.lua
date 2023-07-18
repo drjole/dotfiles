@@ -24,7 +24,7 @@ return {
                   "--message-format=json",
                   "--",
                   -- "--warn=clippy::pedantic",
-                  "--warn=clippy::nursery",
+                  -- "--warn=clippy::nursery",
                   "--warn=clippy::unwrap_used",
                   "--warn=clippy::expect_used",
                 },
@@ -40,6 +40,7 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "latexindent",
         "luacheck",
         "shellcheck",
         "shfmt",
@@ -57,6 +58,7 @@ return {
         "html",
         "javascript",
         "json",
+        "latex",
         "lua",
         "markdown",
         "markdown_inline",
@@ -151,5 +153,9 @@ return {
         end, { "i", "s" }),
       })
     end,
+  },
+
+  {
+    "lervag/vimtex",
   },
 }
