@@ -30,3 +30,8 @@ alias vim=nvim
 
 # Key bindings
 bind -x '"\C-f": /home/jole/.local/bin/tmux-sessionizer'
+
+# Start tmux
+if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+	exec tmux
+fi
