@@ -1,8 +1,6 @@
-#
-# ~/.bash_profile
-#
-
 [[ -f ~/.bashrc ]] && . ~/.bashrc
+
+# Rust/Cargo
 . "$HOME/.cargo/env"
 
 # Added by Toolbox App

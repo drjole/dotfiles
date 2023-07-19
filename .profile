@@ -1,9 +1,11 @@
 export EDITOR=nvim
-export TERMINAL=alacritty
+export VISUAL=nvim
 export PATH="/home/jole/.local/bin:$PATH"
 
+# Rust/Cargo
 . "$HOME/.cargo/env"
 
+# rbenv
 eval "$(rbenv init -)"
 
 # Added by Toolbox App
