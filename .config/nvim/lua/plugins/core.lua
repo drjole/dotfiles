@@ -68,6 +68,7 @@ return {
         "ruby",
         "rust",
         "sql",
+        "toml",
         "vim",
         "yaml",
       },
