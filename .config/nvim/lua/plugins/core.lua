@@ -14,6 +14,7 @@ return {
       servers = {
         docker_compose_language_service = {},
         dockerls = {},
+        html = {},
         rust_analyzer = {
           settings = {
             ["rust-analyzer"] = {
@@ -40,6 +41,7 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "prettier",
         "latexindent",
         "luacheck",
         "shellcheck",
