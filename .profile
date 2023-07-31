@@ -1,6 +1,6 @@
 export EDITOR=nvim
 export VISUAL=nvim
-export PATH="/home/jole/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
 
 # Rust/Cargo
 . "$HOME/.cargo/env"
@@ -9,4 +9,4 @@ export PATH="/home/jole/.local/bin:$PATH"
 eval "$(rbenv init -)"
 
 # Added by Toolbox App
-export PATH="$PATH:/home/jole/.local/share/JetBrains/Toolbox/scripts"
+export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
