@@ -4,4 +4,4 @@
 . "$HOME/.cargo/env"
 
 # Added by Toolbox App
-export PATH="$PATH:/home/jole/.local/share/JetBrains/Toolbox/scripts"
+export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
