@@ -12,6 +12,6 @@ eval "$(rbenv init -)"
 export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
 
 export BAT_THEME="Catppuccin-mocha"
-export GTK_THEME=Adwaita:dark
-export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
-export QT_STYLE_OVERRIDE=adwaita-dark
+export GTK_THEME=Arc-Dark
+export GTK2_RC_FILES=/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc
+export QT_STYLE_OVERRIDE=kvantum

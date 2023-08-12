@@ -10,6 +10,9 @@ return {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
     opts = {
+      inlay_hints = {
+        enabled = true,
+      },
       ---@type lspconfig.options
       servers = {
         docker_compose_language_service = {},
@@ -48,6 +51,8 @@ return {
         "prettier",
         "shellcheck",
         "shfmt",
+        "sql-formatter",
+        "sqlls",
         "stylua",
       },
     },
