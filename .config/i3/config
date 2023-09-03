@@ -62,9 +62,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # Change container layout (stacked, tabbed, toggle split)
-bindsym $mod+n layout stacking
-bindsym $mod+m layout tabbed
-bindsym $mod+Period layout toggle split
+bindsym $mod+b layout toggle split
+bindsym $mod+n layout tabbed
+bindsym $mod+m layout stacking
 
 # Focus the parent container
 bindsym $mod+a focus parent

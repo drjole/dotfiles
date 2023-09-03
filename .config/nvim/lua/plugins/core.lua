@@ -10,15 +10,8 @@ return {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
     opts = {
-      inlay_hints = {
-        enabled = true,
-      },
       ---@type lspconfig.options
       servers = {
-        docker_compose_language_service = {},
-        dockerls = {},
-        html = {},
-        pyright = {},
         rust_analyzer = {
           settings = {
             ["rust-analyzer"] = {
@@ -46,42 +39,24 @@ return {
     opts = {
       ensure_installed = {
         "black",
-        "latexindent",
-        "luacheck",
-        "prettier",
+        "hadolint",
+        "prettierd",
         "shellcheck",
-        "shfmt",
-        "sql-formatter",
-        "sqlls",
-        "stylua",
       },
     },
   },
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
         "bash",
-        "dockerfile",
-        "html",
-        "javascript",
-        "json",
-        "latex",
         "lua",
         "markdown",
         "markdown_inline",
-        "python",
-        "query",
-        "regex",
-        "ruby",
-        "rust",
-        "sql",
-        "toml",
         "vim",
-        "yaml",
-      },
-      incremental_selection = {
+      })
+      opts.incremental_selection = {
         enable = true,
         keymaps = {
           init_selection = "<C-Space>",
@@ -89,8 +64,17 @@ return {
           scope_incremental = false,
           node_decremental = "<A-Space>",
         },
-      },
-    },
+      }
+    end,
+  },
+
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      table.insert(opts.sources, nls.builtins.formatting.black)
+      table.insert(opts.sources, nls.builtins.formatting.prettierd)
+    end,
   },
 
   {
@@ -114,7 +98,14 @@ return {
   },
 
   {
-    "christoomey/vim-tmux-navigator",
+    "telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
+    },
   },
 
   {
@@ -143,7 +134,10 @@ return {
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
+            -- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
             cmp.select_next_item()
+          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+          -- this way you will only jump inside the snippet region
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
           elseif has_words_before() then
@@ -166,6 +160,6 @@ return {
   },
 
   {
-    "lervag/vimtex",
+    "christoomey/vim-tmux-navigator",
   },
 }
