@@ -33,4 +33,3 @@ missing_format = ""
 block = "time"
 interval = 1
 format = " $timestamp.datetime(f:'%A %d.%B.%Y %H:%M:%S') "
-
