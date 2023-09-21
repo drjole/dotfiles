@@ -7,74 +7,14 @@ return {
   },
 
   {
-    "neovim/nvim-lspconfig",
-    ---@class PluginLspOpts
-    opts = {
-      ---@type lspconfig.options
-      servers = {
-        rust_analyzer = {
-          settings = {
-            ["rust-analyzer"] = {
-              checkOnSave = {
-                overrideCommand = {
-                  "cargo",
-                  "clippy",
-                  "--message-format=json",
-                  "--",
-                  "--warn=clippy::pedantic",
-                  "--warn=clippy::nursery",
-                  "--warn=clippy::unwrap_used",
-                  "--warn=clippy::expect_used",
-                },
-              },
-            },
-          },
-        },
-      },
+    "telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
     },
-  },
-
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "black",
-        "hadolint",
-        "prettierd",
-        "shellcheck",
-      },
-    },
-  },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "bash",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "vim",
-      })
-      opts.incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-Space>",
-          node_incremental = "<C-Space>",
-          scope_incremental = false,
-          node_decremental = "<A-Space>",
-        },
-      }
-    end,
-  },
-
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      table.insert(opts.sources, nls.builtins.formatting.black)
-      table.insert(opts.sources, nls.builtins.formatting.prettierd)
-    end,
   },
 
   {
@@ -97,30 +37,18 @@ return {
     },
   },
 
-  {
-    "telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-    },
-  },
-
+  -- Supertab
   {
     "L3MON4D3/LuaSnip",
     keys = function()
       return {}
     end,
   },
-
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-emoji",
     },
-    ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local has_words_before = function()
         unpack = unpack or table.unpack
@@ -130,6 +58,8 @@ return {
 
       local luasnip = require("luasnip")
       local cmp = require("cmp")
+
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" }, { name = "crates" } }))
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
@@ -157,9 +87,5 @@ return {
         end, { "i", "s" }),
       })
     end,
-  },
-
-  {
-    "christoomey/vim-tmux-navigator",
   },
 }
