@@ -1,2 +1,2 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+require("jole.core")
+require("jole.lazy")
