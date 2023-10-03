@@ -1,4 +1,5 @@
+/.cache
 /.dotfiles
 /go
-/.cache
+/.config/tmux/plugins
 node_modules
