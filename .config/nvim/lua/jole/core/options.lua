@@ -1,19 +1,25 @@
--- Leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Options
-vim.opt.clipboard = "unnamedplus" -- Sync with system clipboard
-vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
-vim.opt.cursorline = true -- Enable highlighting of the current line
-vim.opt.ignorecase = true -- Ignore case
-vim.opt.mouse = "a" -- Enable mouse mode
-vim.opt.number = true -- Print line number
-vim.opt.relativenumber = true -- Relative line numbers
-vim.opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
-vim.opt.smartcase = true -- Don't ignore case with capitals
-vim.opt.smartindent = true -- Insert indents automatically
-vim.opt.termguicolors = true -- True color support
-vim.opt.undofile = true -- Save undo history to a file
-vim.opt.undolevels = 10000 -- Maximum number of changes that can be undone
-vim.opt.wrap = false -- Disable line wrap
+vim.opt.backup = false
+vim.opt.clipboard = "unnamedplus"
+vim.opt.confirm = true
+vim.opt.cursorline = true
+vim.opt.expandtab = true
+vim.opt.ignorecase = true
+vim.opt.mouse = "a"
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.scrolloff = 8
+vim.opt.shiftwidth = 4
+vim.opt.signcolumn = "yes"
+vim.opt.smartcase = true
+vim.opt.smartindent = true
+vim.opt.softtabstop = 4
+vim.opt.swapfile = false
+vim.opt.tabstop = 4
+vim.opt.termguicolors = true
+vim.opt.undofile = true
+vim.opt.undolevels = 10000
+vim.opt.updatetime = 50
+vim.opt.wrap = false

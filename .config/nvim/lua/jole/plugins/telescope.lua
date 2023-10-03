@@ -10,6 +10,7 @@ return {
         local telescope = require("telescope")
         local actions = require("telescope.actions")
         local builtin = require("telescope.builtin")
+
         telescope.setup({
             defaults = {
                 mappings = {
@@ -22,7 +23,7 @@ return {
             },
         })
 
-        require("telescope").load_extension("fzf")
+        telescope.load_extension("fzf")
 
         vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
         vim.keymap.set("n", "<leader>fr", builtin.oldfiles, {})
