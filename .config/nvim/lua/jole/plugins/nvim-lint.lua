@@ -11,7 +11,7 @@ return {
             javascript = { "eslint_d" },
             json = { "jsonlint" },
             markdown = { "markdownlint" },
-            python = { "mypy", "pylint", "flake8" },
+            python = { "mypy", "ruff", "flake8" },
             -- ruby = { "standardrb" },
             scss = { "stylelint" },
             typescript = { "eslint_d" },
@@ -27,6 +27,6 @@ return {
 
         vim.keymap.set("n", "<leader>l", function()
             lint.try_lint()
-        end)
+        end, { desc = "Lint buffer" })
     end,
 }

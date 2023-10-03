@@ -16,6 +16,7 @@ return {
                 python = { "isort", "black" },
                 ruby = { "standardrb" },
                 rust = { "rustfmt" },
+                tex = { "latexindent" },
                 typescript = { "prettier" },
                 yaml = { "prettier" },
                 ["_"] = { "trim_whitespace" },
@@ -33,6 +34,6 @@ return {
                 async = false,
                 timeout_ms = 2000,
             })
-        end)
+        end, { desc = "Format buffer" })
     end,
 }

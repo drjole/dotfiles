@@ -2,13 +2,12 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
-        "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-cmdline",
+        "saadparwaiz1/cmp_luasnip",
+        "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
         "neovim/nvim-lspconfig",
-        "hrsh7th/cmp-cmdline",
-        "L3MON4D3/LuaSnip",
     },
     config = function()
         local cmp = require("cmp")
