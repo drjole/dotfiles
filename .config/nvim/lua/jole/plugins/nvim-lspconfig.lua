@@ -72,12 +72,12 @@ return {
             on_attach = on_attach,
         })
 
-        lspconfig["rust_analyzer"].setup({
+        lspconfig["rubocop"].setup({
             capabilities = capabilities,
             on_attach = on_attach,
         })
 
-        lspconfig["solargraph"].setup({
+        lspconfig["rust_analyzer"].setup({
             capabilities = capabilities,
             on_attach = on_attach,
         })

@@ -12,7 +12,7 @@ return {
             json = { "jsonlint" },
             markdown = { "markdownlint" },
             python = { "mypy", "pylint", "flake8" },
-            ruby = { "rubocop" },
+            -- ruby = { "standardrb" },
             scss = { "stylelint" },
             typescript = { "eslint_d" },
             yaml = { "yamllint" },
