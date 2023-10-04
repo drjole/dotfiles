@@ -6,6 +6,7 @@ return {
             highlight = { enabled = true },
             indent = { enabled = true },
             ensure_installed = {
+                "bash",
                 "c",
                 "css",
                 "dockerfile",
