@@ -6,6 +6,7 @@ return {
 
         conform.setup({
             formatters_by_ft = {
+                bash = { "shfmt" },
                 css = { "prettier" },
                 -- eruby = { "erb_format" },
                 html = { "prettier" },

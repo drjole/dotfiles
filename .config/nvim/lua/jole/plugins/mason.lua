@@ -38,6 +38,7 @@ return {
                 "mypy",
                 "prettier",
                 "ruff",
+                "shfmt",
                 "sql-formatter",
                 "standardrb",
                 "stylelint",
