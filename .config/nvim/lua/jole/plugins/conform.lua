@@ -16,7 +16,6 @@ return {
                 markdown = { "prettier" },
                 python = { "isort", "black" },
                 ruby = { "standardrb" },
-                rust = { "rustfmt" },
                 tex = { "latexindent" },
                 typescript = { "prettier" },
                 yaml = { "prettier" },
