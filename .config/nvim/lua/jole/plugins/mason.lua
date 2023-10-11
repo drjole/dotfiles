@@ -14,6 +14,7 @@ return {
             ensure_installed = {
                 "docker_compose_language_service",
                 "dockerls",
+                "gopls",
                 "lua_ls",
                 "pyright",
                 "rubocop",
@@ -31,6 +32,9 @@ return {
                 "erb-lint",
                 "eslint_d",
                 "flake8",
+                "gofumpt",
+                "golangci-lint",
+                "golines",
                 "isort",
                 "jsonlint",
                 "latexindent",
