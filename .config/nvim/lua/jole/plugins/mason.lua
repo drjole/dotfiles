@@ -22,7 +22,6 @@ return {
                 "sqlls",
                 "taplo",
                 "texlab",
-                "yamlls",
             },
             automatic_installation = true,
         })
@@ -47,7 +46,6 @@ return {
                 "standardrb",
                 "stylelint",
                 "stylua",
-                "yamllint",
             },
         })
     end,

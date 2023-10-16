@@ -16,7 +16,6 @@ return {
             -- ruby = { "standardrb" },
             scss = { "stylelint" },
             typescript = { "eslint_d" },
-            yaml = { "yamllint" },
         }
 
         vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
