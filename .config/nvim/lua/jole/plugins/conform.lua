@@ -19,6 +19,7 @@ return {
                 markdown = { "prettier" },
                 python = { "isort", "black" },
                 ruby = { "standardrb" },
+                scss = { "prettier" },
                 tex = { "latexindent" },
                 typescript = { "prettier" },
                 yaml = { "prettier" },

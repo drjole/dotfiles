@@ -7,7 +7,6 @@ return {
         lint.linters_by_ft = {
             css = { "stylelint" },
             eruby = { "erb_lint" },
-            go = { "golangcilint" },
             html = { "erb_lint" },
             javascript = { "eslint_d" },
             json = { "jsonlint" },

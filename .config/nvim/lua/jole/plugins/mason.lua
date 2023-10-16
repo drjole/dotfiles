@@ -32,7 +32,6 @@ return {
                 "eslint_d",
                 "flake8",
                 "gofumpt",
-                "golangci-lint",
                 "golines",
                 "isort",
                 "jsonlint",
