@@ -18,7 +18,7 @@ return {
                 lua = { "stylua" },
                 markdown = { "prettier" },
                 python = { "isort", "black" },
-                ruby = { "standardrb" },
+                ruby = { "rubocop" },
                 scss = { "prettier" },
                 tex = { "latexindent" },
                 typescript = { "prettier" },

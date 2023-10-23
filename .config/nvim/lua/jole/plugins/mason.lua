@@ -42,7 +42,6 @@ return {
                 "ruff",
                 "shfmt",
                 "sql-formatter",
-                "standardrb",
                 "stylelint",
                 "stylua",
             },

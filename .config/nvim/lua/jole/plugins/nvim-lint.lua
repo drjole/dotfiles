@@ -12,7 +12,6 @@ return {
             json = { "jsonlint" },
             markdown = { "markdownlint" },
             python = { "mypy", "ruff", "flake8" },
-            -- ruby = { "standardrb" },
             scss = { "stylelint" },
             typescript = { "eslint_d" },
         }
