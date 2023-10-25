@@ -16,6 +16,7 @@ return {
                 "gomod",
                 "gosum",
                 "html",
+                "latex",
                 "javascript",
                 "json",
                 "lua",
