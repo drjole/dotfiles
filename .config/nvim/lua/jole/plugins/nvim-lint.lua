@@ -8,12 +8,8 @@ return {
             css = { "stylelint" },
             eruby = { "erb_lint" },
             html = { "erb_lint" },
-            javascript = { "eslint_d" },
-            json = { "jsonlint" },
-            markdown = { "markdownlint" },
             python = { "mypy", "ruff", "flake8" },
             scss = { "stylelint" },
-            typescript = { "eslint_d" },
         }
 
         vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

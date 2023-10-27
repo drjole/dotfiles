@@ -20,6 +20,7 @@ return {
                 python = { "isort", "black" },
                 ruby = { "rubocop" },
                 scss = { "prettier" },
+                sql = { "sql-formatter" },
                 tex = { "latexindent" },
                 typescript = { "prettier" },
                 yaml = { "prettier" },
