@@ -24,7 +24,6 @@ help() {
 	"$@" --help 2>&1 | bathelp
 }
 alias ls=exa
-alias vim=nvim
 
 # Start tmux
 if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
