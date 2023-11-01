@@ -26,6 +26,11 @@ return {
                 yaml = { "prettier" },
                 ["_"] = { "trim_whitespace" },
             },
+            formatters = {
+                latexindent = {
+                    prepend_args = { "-m", "-l", "latexindent.yaml" },
+                },
+            },
             format_on_save = {
                 lsp_fallback = true,
                 async = false,
