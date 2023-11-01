@@ -2,8 +2,11 @@ export EDITOR=nvim
 export VISUAL=nvim
 export MANPATH="$MANPATH:/usr/local/texlive/2023/texmf-dist/doc/man"
 export INFOPATH="$INFOPATH:/usr/local/texlive/2023/texmf-dist/doc/info"
-export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 export PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
+
+export npm_config_prefix="$HOME/.local"
 
 # Rust/Cargo
 . "$HOME/.cargo/env"

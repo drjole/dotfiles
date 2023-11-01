@@ -86,11 +86,6 @@ return {
             on_attach = on_attach,
         })
 
-        lspconfig["rubocop"].setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-        })
-
         lspconfig["rust_analyzer"].setup({
             capabilities = capabilities,
             on_attach = on_attach,
@@ -103,12 +98,7 @@ return {
             },
         })
 
-        lspconfig["sqlls"].setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-        })
-
-        lspconfig["taplo"].setup({
+        lspconfig["solargraph"].setup({
             capabilities = capabilities,
             on_attach = on_attach,
         })

@@ -8,7 +8,7 @@ return {
             formatters_by_ft = {
                 bash = { "shfmt" },
                 css = { "prettier" },
-                -- eruby = { "erb_format" },
+                eruby = { "prettier" },
                 go = { "gofumpt", "goimports", "golines" },
                 gohtmltmpl = { "prettier" },
                 gotexttmpl = { "prettier" },
@@ -18,7 +18,7 @@ return {
                 lua = { "stylua" },
                 markdown = { "prettier" },
                 python = { "isort", "black" },
-                ruby = { "rubocop" },
+                ruby = { "standardrb" },
                 scss = { "prettier" },
                 sql = { "sql-formatter" },
                 tex = { "latexindent" },

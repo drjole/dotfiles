@@ -4,13 +4,7 @@ return {
     config = function()
         local lint = require("lint")
 
-        lint.linters_by_ft = {
-            css = { "stylelint" },
-            eruby = { "erb_lint" },
-            html = { "erb_lint" },
-            python = { "mypy", "ruff", "flake8" },
-            scss = { "stylelint" },
-        }
+        lint.linters_by_ft = {}
 
         vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
             group = vim.api.nvim_create_augroup("lint", { clear = true }),
