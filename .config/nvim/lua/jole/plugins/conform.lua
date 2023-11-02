@@ -27,12 +27,12 @@ return {
                 ["_"] = { "trim_whitespace" },
             },
             formatters = {
-                latexindent = {
-                    prepend_args = { "-m", "-l", "latexindent.yaml" },
-                },
                 erb_format = {
                     command = "bundle",
                     prepend_args = { "exec", "erb-format", "--print-width", "120" },
+                },
+                latexindent = {
+                    prepend_args = { "-m", "-l", "latexindent.yaml" },
                 },
             },
             format_on_save = {
@@ -41,13 +41,5 @@ return {
                 timeout_ms = 2000,
             },
         })
-
-        vim.keymap.set({ "n", "v" }, "<leader>f", function()
-            conform.format({
-                lsp_fallback = true,
-                async = false,
-                timeout_ms = 2000,
-            })
-        end, { desc = "Format buffer" })
     end,
 }
