@@ -8,7 +8,7 @@ return {
             formatters_by_ft = {
                 bash = { "shfmt" },
                 css = { "prettier" },
-                eruby = { "prettier" },
+                eruby = { "erb_format" },
                 go = { "gofumpt", "goimports", "golines" },
                 gohtmltmpl = { "prettier" },
                 gotexttmpl = { "prettier" },
@@ -29,6 +29,10 @@ return {
             formatters = {
                 latexindent = {
                     prepend_args = { "-m", "-l", "latexindent.yaml" },
+                },
+                erb_format = {
+                    command = "bundle",
+                    prepend_args = { "exec", "erb-format", "--print-width", "120" },
                 },
             },
             format_on_save = {
