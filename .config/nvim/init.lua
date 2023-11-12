@@ -146,21 +146,18 @@ local plugins = {
             })
 
             local servers = {
-                docker_compose_language_service = {},
+                bashls = {},
                 dockerls = {},
                 gopls = {
                     filetypes = { "go", "gomod", "gowork", "gotmpl", "template" },
                     settings = {
-                        gopls = {
-                            analyses = {
-                                unusedparams = true,
-                                composites = false,
-                            },
-                            gofumpt = true,
-                            staticcheck = true,
-                            templateExtensions = { "tmpl" }
+                        analyses = {
+                            unusedparams = true,
                         },
-                    },
+                        completeUnimported = true,
+                        templateExtensions = { "tmpl" },
+                        usePlaceholders = true,
+                    }
                 },
                 html = {},
                 lua_ls = {
@@ -171,6 +168,7 @@ local plugins = {
                         }
                     }
                 },
+                marksman = {},
                 pylsp = {},
                 rust_analyzer = {
                     settings = {
@@ -183,7 +181,9 @@ local plugins = {
                 },
                 solargraph = {},
                 sqlls = {},
-                standardrb = {}
+                standardrb = {},
+                texlab = {},
+                yamlls = {},
             }
 
             for name, config in pairs(servers) do
@@ -308,7 +308,9 @@ local plugins = {
     },
     {
         "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
+        build = function()
+            vim.cmd [[ silent! TSUpdate ]]
+        end,
         dependencies = {
             "nvim-treesitter/nvim-treesitter-textobjects",
         },
@@ -465,7 +467,7 @@ local plugins = {
         config = function()
             vim.keymap.set("n", "<leader>gg", vim.cmd.LazyGit, { desc = "Open LazyGit" })
         end,
-    }
+    },
 }
 
 local opts = {
