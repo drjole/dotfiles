@@ -20,6 +20,12 @@ vim.opt.undolevels = 10000
 vim.opt.updatetime = 50
 vim.opt.wrap = false
 
+-- Diagnostics
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
+
 -- Center view when navigating
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
@@ -71,121 +77,124 @@ local plugins = {
             { "folke/neodev.nvim", opts = {} },
         },
         config = function()
-            local lspconfig = require("lspconfig")
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-            local on_attach = function(client, bufnr)
-                if client.supports_method("textDocument/formatting") then
-                    vim.api.nvim_clear_autocmds({
-                        group = augroup,
-                        buffer = bufnr
-                    })
-                    vim.api.nvim_create_autocmd("BufWritePre", {
-                        group = augroup,
-                        buffer = bufnr,
-                        callback = function()
-                            vim.lsp.buf.format({ bufnr = bufnr, async = true })
-                        end
-                    })
-                end
+            local on_attach = function(_, bufnr)
+                local opts = { buffer = bufnr }
+
+                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+                vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+
+                vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, opts)
+                vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, opts)
+                vim.keymap.set("n", "gi", require("telescope.builtin").lsp_implementations, opts)
+                vim.keymap.set("n", "<leader>D", require("telescope.builtin").lsp_type_definitions, opts)
+                vim.keymap.set("n", "<leader>sd", require("telescope.builtin").lsp_document_symbols, opts)
+                vim.keymap.set("n", "<leader>ws", require("telescope.builtin").lsp_workspace_symbols, opts)
+
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+
+                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+                vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
+                vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+                vim.keymap.set("n", "<leader>wl", function()
+                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                end, opts)
+
+                vim.keymap.set("n", "<leader>f", function()
+                    vim.lsp.buf.format({ async = false })
+                end, opts)
             end
 
-            lspconfig.docker_compose_language_service.setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-            })
+            local _augroups = {}
+            local get_augroup = function(client)
+                if not _augroups[client.id] then
+                    local group_name = "lsp-format-" .. client.name
+                    local id = vim.api.nvim_create_augroup(group_name, { clear = true })
+                    _augroups[client.id] = id
+                end
 
-            lspconfig.dockerls.setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-            })
-
-            lspconfig.gopls.setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-                settings = {
-                    gopls = {
-                        analyses = {
-                            unusedparams = true,
-                            composites = false,
-                        },
-                    },
-                },
-            })
-
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-                settings = {
-                    Lua = {
-                        workspace = {
-                            checkThirdParty = false,
-                        },
-                        telemetry = {
-                            enable = false,
-                        },
-                    }
-                }
-            })
-
-            lspconfig.pylsp.setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-            })
-
-            lspconfig.rust_analyzer.setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-                settings = {
-                    ["rust-analyzer"] = {
-                        cargo = {
-                            features = "all",
-                        },
-                    },
-                },
-            })
-
-            lspconfig.solargraph.setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-            })
-
-            lspconfig.standardrb.setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-            })
-
-            vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
-            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-            vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-            vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
+                return _augroups[client.id]
+            end
 
             vim.api.nvim_create_autocmd("LspAttach", {
-                group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-                callback = function(ev)
-                    vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+                group = vim.api.nvim_create_augroup("lsp-attach-format", { clear = true }),
+                callback = function(args)
+                    local client_id = args.data.client_id
+                    local client = vim.lsp.get_client_by_id(client_id)
+                    local bufnr = args.buf
 
-                    local opts = { buffer = ev.buf }
-                    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                    vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, opts)
-                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                    vim.keymap.set("n", "gi", require("telescope.builtin").lsp_implementations, opts)
-                    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-                    vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-                    vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
-                    vim.keymap.set("n", "<leader>wl", function()
-                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                    end, opts)
-                    vim.keymap.set("n", "<leader>D", require("telescope.builtin").lsp_type_definitions, opts)
-                    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-                    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-                    vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, opts)
-                    vim.keymap.set("n", "<leader>f", function()
-                        vim.lsp.buf.format({ async = true })
-                    end, opts)
+                    if not client.server_capabilities.documentFormattingProvider then
+                        return
+                    end
+
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        group = get_augroup(client),
+                        buffer = bufnr,
+                        callback = function()
+                            vim.lsp.buf.format {
+                                async = false,
+                                filter = function(c)
+                                    return c.id == client.id
+                                end,
+                            }
+                        end,
+                    })
                 end,
             })
+
+            local servers = {
+                docker_compose_language_service = {},
+                dockerls = {},
+                gopls = {
+                    filetypes = { "go", "gomod", "gowork", "gotmpl", "template" },
+                    settings = {
+                        gopls = {
+                            analyses = {
+                                unusedparams = true,
+                                composites = false,
+                            },
+                            gofumpt = true,
+                            staticcheck = true,
+                            templateExtensions = { "tmpl" }
+                        },
+                    },
+                },
+                html = {},
+                lua_ls = {
+                    settings = {
+                        Lua = {
+                            workspace = { checkThirdParty = false, },
+                            telemetry = { enable = false, },
+                        }
+                    }
+                },
+                pylsp = {},
+                rust_analyzer = {
+                    settings = {
+                        ["rust-analyzer"] = {
+                            cargo = {
+                                features = "all",
+                            },
+                        },
+                    },
+                },
+                solargraph = {},
+                sqlls = {},
+                standardrb = {}
+            }
+
+            for name, config in pairs(servers) do
+                require("lspconfig")[name].setup({
+                    capabilities = capabilities,
+                    on_attach = on_attach,
+                    filetypes = (config or {}).filetypes,
+                    settings = (config or {}).settings
+                }
+                )
+            end
         end
     },
     {
@@ -300,24 +309,12 @@ local plugins = {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+        },
         config = function()
             ---@diagnostic disable-next-line: missing-fields
             require("nvim-treesitter.configs").setup({
-                sync_install = false,
-                auto_install = false,
-                highlight = {
-                    enable = true,
-                    additional_vim_regex_highlighting = false,
-                },
-                incremental_selection = {
-                    enable = true,
-                    keymaps = {
-                        init_selection = "<C-space>",
-                        node_incremental = "<C-space>",
-                        scope_incremental = false,
-                        node_decremental = "<A-space>",
-                    },
-                },
                 ensure_installed = {
                     "bash",
                     "c",
@@ -347,6 +344,61 @@ local plugins = {
                     "vimdoc",
                     "yaml",
                 },
+                auto_install = false,
+                highlight = { enable = true, },
+                indent = { enable = true },
+                incremental_selection = {
+                    enable = true,
+                    keymaps = {
+                        init_selection = "<C-space>",
+                        node_incremental = "<C-space>",
+                        scope_incremental = false,
+                        node_decremental = "<A-space>",
+                    },
+                },
+                textobjects = {
+                    select = {
+                        enable = true,
+                        lookahead = true,
+                        keymaps = {
+                            ['aa'] = '@parameter.outer',
+                            ['ia'] = '@parameter.inner',
+                            ['af'] = '@function.outer',
+                            ['if'] = '@function.inner',
+                            ['ac'] = '@class.outer',
+                            ['ic'] = '@class.inner',
+                        },
+                    },
+                    move = {
+                        enable = true,
+                        set_jumps = true,
+                        goto_next_start = {
+                            [']m'] = '@function.outer',
+                            [']]'] = '@class.outer',
+                        },
+                        goto_next_end = {
+                            [']M'] = '@function.outer',
+                            [']['] = '@class.outer',
+                        },
+                        goto_previous_start = {
+                            ['[m'] = '@function.outer',
+                            ['[['] = '@class.outer',
+                        },
+                        goto_previous_end = {
+                            ['[M'] = '@function.outer',
+                            ['[]'] = '@class.outer',
+                        },
+                    },
+                    swap = {
+                        enable = true,
+                        swap_next = {
+                            ['<leader>a'] = '@parameter.inner',
+                        },
+                        swap_previous = {
+                            ['<leader>A'] = '@parameter.inner',
+                        },
+                    },
+                }
             })
         end
     },
@@ -354,11 +406,11 @@ local plugins = {
         "nvim-treesitter/nvim-treesitter-context",
     },
     {
-        'stevearc/dressing.nvim',
+        "stevearc/dressing.nvim",
         opts = {},
     },
     {
-        'numToStr/Comment.nvim',
+        "numToStr/Comment.nvim",
         opts = {},
         lazy = false,
     },
