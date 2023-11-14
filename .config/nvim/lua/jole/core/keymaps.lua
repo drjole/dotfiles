@@ -11,3 +11,6 @@ vim.keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi")
 vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi")
 vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv")
 vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv")
+
+-- Clear search highlighting
+vim.keymap.set("n", "<F3>", ":set hlsearch!<CR>")
