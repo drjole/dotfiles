@@ -5,39 +5,21 @@ return {
         "nvim-lua/plenary.nvim",
         {
             "nvim-telescope/telescope-fzf-native.nvim",
-            build = "make",
+            build =
+            "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         },
-        "nvim-tree/nvim-web-devicons",
     },
-    config = function()
+    opts = {},
+    init = function()
         local telescope = require("telescope")
-        local actions = require("telescope.actions")
         local builtin = require("telescope.builtin")
-        local trouble = require("trouble.providers.telescope")
-
-        telescope.setup({
-            defaults = {
-                mappings = {
-                    i = {
-                        ["<C-k>"] = actions.move_selection_previous,
-                        ["<C-j>"] = actions.move_selection_next,
-                        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-                        ["<C-t>"] = trouble.open_with_trouble,
-                    },
-                    n = {
-                        ["<C-t>"] = trouble.open_with_trouble,
-                    },
-                },
-            },
-        })
 
         telescope.load_extension("fzf")
 
-        vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
-        vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Telescope old files" })
-        vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
-        vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
-        vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
-        vim.keymap.set("n", "z=", builtin.spell_suggest, { desc = { "Telescope spelling suggestions" } })
+        vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+        vim.keymap.set("n", "<leader>fr", builtin.oldfiles, {})
+        vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+        vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+        vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
     end,
 }
