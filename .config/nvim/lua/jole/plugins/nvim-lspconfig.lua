@@ -123,7 +123,15 @@ return {
             solargraph = {},
             sqlls = {},
             standardrb = {},
-            texlab = {},
+            texlab = {
+                settings = {
+                    texlab = {
+                        latexindent = {
+                            modifyLineBreaks = true,
+                        },
+                    },
+                },
+            },
             yamlls = {},
         }
 
