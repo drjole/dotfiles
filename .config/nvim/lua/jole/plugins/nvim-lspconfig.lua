@@ -8,6 +8,8 @@ return {
         "hrsh7th/nvim-cmp",
     },
     config = function()
+        local lspconfig = require("lspconfig")
+
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
@@ -77,80 +79,96 @@ return {
             end,
         })
 
-        local servers = {
-            dockerls = {},
-            gopls = {
-                filetypes = { "go", "gomod", "gowork", "gotmpl", "template", },
-                settings = {
-                    analyses = {
-                        unusedparams = true,
-                    },
-                    completeUnimported = true,
-                    templateExtensions = { "tmpl", },
-                    usePlaceholders = true,
-                },
-            },
-            lua_ls = {
-                settings = {
-                    Lua = {
-                        workspace = { checkThirdParty = false, },
-                        telemetry = { enable = false, },
-                        format = {
-                            enable = true,
-                            defaultConfig = {
-                                call_arg_parentheses = "keep",
-                                insert_final_newline = "true",
-                                quote_style = "double",
-                                trailing_table_separator = "always",
-                            },
-                        },
-                    },
-                },
-            },
-            pylsp = {},
-            rust_analyzer = {
-                settings = {
-                    ["rust-analyzer"] = {
-                        cargo = {
-                            features = "all",
-                        },
-                    },
-                },
-            },
-            solargraph = {
-                on_attach = function(client, bufnr)
-                    -- solargraph does not use standardrb yet or at least the configuration is painful so I disable solargraph's formatting capabilty for now
-                    client.server_capabilities.documentFormattingProvider = false
-                    on_attach(client, bufnr)
-                end,
-            },
-            standardrb = {},
-            texlab = {
-                settings = {
-                    texlab = {
-                        latexindent = {
-                            modifyLineBreaks = true,
-                        },
-                    },
-                },
-            },
-            yamlls = {
-                on_attach = function(client, bufnr)
-                    -- Disable formatting for yamlls since I'm using vim-prettier
-                    client.server_capabilities.documentFormattingProvider = false
-                    on_attach(client, bufnr)
-                end,
-            },
-        }
+        lspconfig.dockerls.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
 
-        for name, config in pairs(servers) do
-            require("lspconfig")[name].setup({
-                capabilities = capabilities,
-                on_attach = (config or { on_attach = on_attach, }).on_attach,
-                filetypes = (config or {}).filetypes,
-                settings = (config or {}).settings,
-            }
-            )
-        end
+        lspconfig.gopls.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            filetypes = { "go", "gomod", "gowork", "gotmpl", "template", },
+            settings = {
+                analyses = {
+                    unusedparams = true,
+                },
+                completeUnimported = true,
+                templateExtensions = { "tmpl", },
+                usePlaceholders = true,
+            },
+        })
+
+        lspconfig.lua_ls.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = {
+                Lua = {
+                    workspace = { checkThirdParty = false, },
+                    telemetry = { enable = false, },
+                    format = {
+                        enable = true,
+                        defaultConfig = {
+                            call_arg_parentheses = "keep",
+                            insert_final_newline = "true",
+                            quote_style = "double",
+                            trailing_table_separator = "always",
+                        },
+                    },
+                },
+            },
+        })
+
+        lspconfig.pylsp.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
+        lspconfig.rust_analyzer.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = {
+                ["rust-analyzer"] = {
+                    cargo = {
+                        features = "all",
+                    },
+                },
+            },
+
+        })
+
+        lspconfig.solargraph.setup({
+            capabilities = capabilities,
+            on_attach = function(client, bufnr)
+                -- solargraph does not use standardrb yet or at least the configuration is painful so I disable solargraph's formatting capabilty for now
+                client.server_capabilities.documentFormattingProvider = false
+                on_attach(client, bufnr)
+            end,
+        })
+
+        lspconfig.standardrb.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
+        lspconfig.texlab.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = {
+                texlab = {
+                    latexindent = {
+                        modifyLineBreaks = true,
+                    },
+                },
+            },
+        })
+
+        lspconfig.yamlls.setup({
+            capabilities = capabilities,
+            on_attach    = function(client, bufnr)
+                -- Disable formatting for yamlls since I'm using vim-prettier
+                client.server_capabilities.documentFormattingProvider = false
+                on_attach(client, bufnr)
+            end,
+        })
     end,
 }
