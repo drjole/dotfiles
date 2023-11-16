@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- LaTeX specific settings
-vim.api.nvim_create_autocmd({ "FileType", }, {
+vim.api.nvim_create_autocmd("FileType", {
     pattern = { "tex", },
     callback = function()
         vim.cmd.setlocal({ "spell", "spelllang=en_us", })

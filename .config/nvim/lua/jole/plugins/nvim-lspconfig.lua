@@ -78,7 +78,6 @@ return {
         })
 
         local servers = {
-            bashls = {},
             dockerls = {},
             gopls = {
                 filetypes = { "go", "gomod", "gowork", "gotmpl", "template", },
@@ -91,7 +90,6 @@ return {
                     usePlaceholders = true,
                 },
             },
-            html = {},
             lua_ls = {
                 settings = {
                     Lua = {
@@ -109,7 +107,6 @@ return {
                     },
                 },
             },
-            marksman = {},
             pylsp = {},
             rust_analyzer = {
                 settings = {
@@ -120,8 +117,13 @@ return {
                     },
                 },
             },
-            solargraph = {},
-            sqlls = {},
+            solargraph = {
+                on_attach = function(client, bufnr)
+                    -- solargraph does not use standardrb yet or at least the configuration is painful so I disable solargraph's formatting capabilty for now
+                    client.server_capabilities.documentFormattingProvider = false
+                    on_attach(client, bufnr)
+                end,
+            },
             standardrb = {},
             texlab = {
                 settings = {
@@ -132,13 +134,19 @@ return {
                     },
                 },
             },
-            yamlls = {},
+            yamlls = {
+                on_attach = function(client, bufnr)
+                    -- Disable formatting for yamlls since I'm using vim-prettier
+                    client.server_capabilities.documentFormattingProvider = false
+                    on_attach(client, bufnr)
+                end,
+            },
         }
 
         for name, config in pairs(servers) do
             require("lspconfig")[name].setup({
                 capabilities = capabilities,
-                on_attach = on_attach,
+                on_attach = (config or { on_attach = on_attach, }).on_attach,
                 filetypes = (config or {}).filetypes,
                 settings = (config or {}).settings,
             }
