@@ -17,7 +17,7 @@ eval "$(rbenv init -)"
 # Added by Toolbox App
 export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
 
-export BAT_THEME="Catppuccin-mocha"
+export BAT_THEME=Catppuccin-mocha
 export GTK_THEME=Arc-Dark
 export GTK2_RC_FILES=/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc
 export QT_STYLE_OVERRIDE=kvantum

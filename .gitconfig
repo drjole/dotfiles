@@ -3,3 +3,5 @@
 [user]
 	email = jonas@jole.dev
 	name = Jonas Weber
+[pull]
+	rebase = false
