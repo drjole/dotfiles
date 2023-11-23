@@ -92,6 +92,7 @@ return {
                     unusedparams = true,
                 },
                 completeUnimported = true,
+                gofumpt = true,
                 templateExtensions = { "tmpl", },
                 usePlaceholders = true,
             },

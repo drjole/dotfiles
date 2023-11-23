@@ -17,6 +17,7 @@ vim.opt.smartcase = true
 vim.opt.softtabstop = 4
 vim.opt.swapfile = false
 vim.opt.tabstop = 4
+vim.opt.termguicolors = true
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
 vim.opt.updatetime = 50
