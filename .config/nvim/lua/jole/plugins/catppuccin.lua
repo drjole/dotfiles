@@ -4,6 +4,6 @@ return {
     priority = 1000,
     opts = {},
     init = function()
-        vim.cmd.colorscheme "catppuccin"
+        vim.cmd [[ silent! colorscheme catppuccin]]
     end,
 }

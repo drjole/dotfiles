@@ -87,14 +87,18 @@ return {
         lspconfig.gopls.setup({
             capabilities = capabilities,
             on_attach = on_attach,
+            filetypes = { "go", "gomod", "gowork", "gotmpl", "gohtmltmpl", },
             settings = {
-                analyses = {
-                    unusedparams = true,
+                gopls = {
+                    analyses = {
+                        composites = false,
+                        unusedparams = true,
+                    },
+                    completeUnimported = true,
+                    gofumpt = true,
+                    templateExtensions = { "tmpl", },
+                    usePlaceholders = true,
                 },
-                completeUnimported = true,
-                gofumpt = true,
-                templateExtensions = { "tmpl", },
-                usePlaceholders = true,
             },
         })
 
@@ -160,6 +164,11 @@ return {
                     },
                 },
             },
+        })
+
+        lspconfig.tsserver.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
         })
 
         lspconfig.yamlls.setup({
