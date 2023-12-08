@@ -17,15 +17,13 @@ __git_complete dotfiles __git_main
 # Rust/Cargo
 . "$HOME/.cargo/env"
 
-# Aliases
-alias cat=bat
+# Aliases and functions
 alias bathelp='bat --plain --language=help'
+alias cat=bat
+alias ls=exa
 help() {
 	"$@" --help 2>&1 | bathelp
 }
-alias ls=exa
 
-# Start tmux
-if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-	exec tmux
-fi
+# Key binding for tmux-sessionizer
+bind -x '"\C-f": "tmux-sessionizer"'
