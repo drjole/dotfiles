@@ -27,3 +27,8 @@ help() {
 
 # Key binding for tmux-sessionizer
 bind -x '"\C-f": "tmux-sessionizer"'
+
+# Automatically start tmux
+if command -v tmux &>/dev/null && [ -z "$TMUX" ]; then
+	tmux-sessionizer ~
+fi

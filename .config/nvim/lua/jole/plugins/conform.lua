@@ -12,6 +12,7 @@ return {
             json = { "prettier", },
             markdown = { "prettier", },
             scss = { "prettier", },
+            sh = { "shfmt", },
             template = { "prettier", },
             typescript = { "prettier", },
             yaml = { "prettier", },
