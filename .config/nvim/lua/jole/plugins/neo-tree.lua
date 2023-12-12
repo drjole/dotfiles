@@ -10,7 +10,7 @@ return {
         close_if_last_window = true,
         git_status_async = false,
         filesystem = {
-            follow_current_file = { enabled = true, },
+            follow_current_file = { enabled = true },
             use_libuv_file_watcher = true,
         },
         window = {
@@ -22,8 +22,7 @@ return {
                         node:collapse(node:get_id())
                         require("neo-tree.ui.renderer").redraw(state)
                     else
-                        require("neo-tree.ui.renderer").focus_node(state,
-                            node:get_parent_id())
+                        require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
                     end
                 end,
                 ["l"] = "open",

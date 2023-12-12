@@ -1,6 +1,6 @@
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-    group = vim.api.nvim_create_augroup("HighlightYank", { clear = true, }),
+    group = vim.api.nvim_create_augroup("HighlightYank", { clear = true }),
     callback = function()
         vim.highlight.on_yank()
     end,
@@ -8,9 +8,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- LaTeX specific settings
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "tex", },
+    pattern = { "tex" },
     callback = function()
-        vim.cmd.setlocal({ "spell", "spelllang=en_us", })
+        vim.cmd.setlocal({ "spell", "spelllang=en_us" })
         vim.o.wrap = true
     end,
 })

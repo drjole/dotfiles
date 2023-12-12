@@ -14,10 +14,10 @@ return {
         capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
         local on_attach = function(_, bufnr)
-            local opts = { buffer = bufnr, }
+            local opts = { buffer = bufnr }
 
             vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-            vim.keymap.set({ "n", "v", }, "<leader>ca", vim.lsp.buf.code_action, opts)
+            vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
             vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, opts)
             vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, opts)
@@ -38,7 +38,7 @@ return {
             end, opts)
 
             vim.keymap.set("n", "<leader>f", function()
-                vim.lsp.buf.format({ async = false, })
+                vim.lsp.buf.format({ async = false })
             end, opts)
         end
 
@@ -46,7 +46,7 @@ return {
         local get_augroup = function(client)
             if not _augroups[client.id] then
                 local group_name = "lsp-format-" .. client.name
-                local id = vim.api.nvim_create_augroup(group_name, { clear = true, })
+                local id = vim.api.nvim_create_augroup(group_name, { clear = true })
                 _augroups[client.id] = id
             end
 
@@ -54,7 +54,7 @@ return {
         end
 
         vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("lsp-attach-format", { clear = true, }),
+            group = vim.api.nvim_create_augroup("lsp-attach-format", { clear = true }),
             callback = function(args)
                 local client_id = args.data.client_id
                 local client = vim.lsp.get_client_by_id(client_id)
@@ -87,7 +87,7 @@ return {
         lspconfig.gopls.setup({
             capabilities = capabilities,
             on_attach = on_attach,
-            filetypes = { "go", "gomod", "gowork", "gotmpl", "gohtmltmpl", },
+            filetypes = { "go", "gomod", "gowork", "gotmpl", "gohtmltmpl" },
             settings = {
                 gopls = {
                     analyses = {
@@ -96,7 +96,7 @@ return {
                     },
                     completeUnimported = true,
                     gofumpt = true,
-                    templateExtensions = { "tmpl", },
+                    templateExtensions = { "tmpl" },
                     usePlaceholders = true,
                 },
             },
@@ -107,15 +107,15 @@ return {
             on_attach = on_attach,
             settings = {
                 Lua = {
-                    workspace = { checkThirdParty = false, },
-                    telemetry = { enable = false, },
+                    workspace = { checkThirdParty = false },
+                    telemetry = { enable = false },
                     format = {
                         enable = true,
                         defaultConfig = {
                             call_arg_parentheses = "keep",
                             insert_final_newline = "true",
                             quote_style = "double",
-                            trailing_table_separator = "always",
+                            trailing_table_separator = "smart",
                         },
                     },
                 },

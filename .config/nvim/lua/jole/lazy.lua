@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("jole.plugins", {
     install = {
-        colorscheme = { "catppuccin", },
+        colorscheme = { "catppuccin" },
     },
     checker = {
         enabled = true,
