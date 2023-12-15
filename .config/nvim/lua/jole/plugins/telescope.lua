@@ -8,11 +8,21 @@ return {
             build =
             "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         },
+        "folke/trouble.nvim",
     },
-    opts = {},
-    init = function()
+    config = function()
         local telescope = require("telescope")
         local builtin = require("telescope.builtin")
+        local trouble = require("trouble.providers.telescope")
+
+        telescope.setup {
+            defaults = {
+                mappings = {
+                    i = { ["<C-q>"] = trouble.open_with_trouble },
+                    n = { ["<C-q>"] = trouble.open_with_trouble },
+                },
+            },
+        }
 
         telescope.load_extension("fzf")
 
