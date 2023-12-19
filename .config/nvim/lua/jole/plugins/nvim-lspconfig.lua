@@ -28,7 +28,7 @@ return {
                 opts)
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-            vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+            vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help, opts)
 
             vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
             vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
@@ -142,14 +142,10 @@ return {
 
         lspconfig.solargraph.setup({
             capabilities = capabilities,
-            on_attach = function(client, bufnr)
-                -- solargraph does not use standardrb yet or at least the configuration is painful so I disable solargraph's formatting capabilty for now
-                client.server_capabilities.documentFormattingProvider = false
-                on_attach(client, bufnr)
-            end,
+            on_attach = on_attach,
         })
 
-        lspconfig.standardrb.setup({
+        lspconfig.stimulus_ls.setup({
             capabilities = capabilities,
             on_attach = on_attach,
         })
@@ -173,11 +169,7 @@ return {
 
         lspconfig.yamlls.setup({
             capabilities = capabilities,
-            on_attach    = function(client, bufnr)
-                -- Disable formatting for yamlls since I'm using vim-prettier
-                client.server_capabilities.documentFormattingProvider = false
-                on_attach(client, bufnr)
-            end,
+            on_attach = on_attach,
         })
     end,
 }

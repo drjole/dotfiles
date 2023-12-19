@@ -10,7 +10,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "tex" },
     callback = function()
+        vim.cmd.setlocal({ "colorcolumn=120" })
         vim.cmd.setlocal({ "spell", "spelllang=en_us" })
-        vim.o.wrap = true
+        vim.cmd.setlocal({ "wrap" })
     end,
 })

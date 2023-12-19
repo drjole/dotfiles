@@ -20,8 +20,7 @@ return {
         },
         formatters = {
             erb_format = {
-                command = "bundle",
-                prepend_args = { "exec", "erb-format", "--print-width", "120" },
+                prepend_args = { "--print-width", "120" },
             },
         },
         format_on_save = {
