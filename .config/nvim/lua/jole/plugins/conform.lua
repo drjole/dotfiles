@@ -11,6 +11,7 @@ return {
             javascript = { "prettier" },
             json = { "prettier" },
             markdown = { "prettier" },
+            ruby = { "standardrb" },
             scss = { "prettier" },
             sh = { "shfmt" },
             template = { "prettier" },
@@ -26,6 +27,7 @@ return {
         format_on_save = {
             lsp_fallback = true,
             async = false,
+            timeout_ms = 5000,
         },
     },
 }

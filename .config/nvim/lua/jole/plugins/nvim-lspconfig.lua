@@ -142,7 +142,11 @@ return {
 
         lspconfig.solargraph.setup({
             capabilities = capabilities,
-            on_attach = on_attach,
+            on_attach = function(client, bufnr)
+                -- solargraph does not use standardrb yet or at least the configuration is painful so I disable solargraph's formatting capabilty for now
+                client.server_capabilities.documentFormattingProvider = false
+                on_attach(client, bufnr)
+            end,
         })
 
         lspconfig.stimulus_ls.setup({
