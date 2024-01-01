@@ -3,7 +3,6 @@ return {
     dependencies = {
         {
             "folke/neodev.nvim",
-            opts = {},
         },
         "hrsh7th/nvim-cmp",
     },

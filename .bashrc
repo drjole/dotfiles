@@ -8,6 +8,9 @@
 # Starship prompt
 eval "$(starship init bash)"
 
+# tmuxifier
+# eval "$(tmuxifier init -)"
+
 # dotfiles setup
 # https://wiki.archlinux.org/title/Dotfiles#Tracking_dotfiles_directly_with_Git
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

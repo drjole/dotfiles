@@ -5,6 +5,7 @@
 eval "$(rbenv init -)"
 
 # PATH
+# export PATH="$HOME/.config/tmux/plugins/tmuxifier/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 

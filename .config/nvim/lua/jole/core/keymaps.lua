@@ -22,3 +22,10 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv")
 
 -- tmux-sessionizer
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+
+-- DAP
+vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>")
+vim.keymap.set("n", "<F5>", "<cmd>DapContinue<CR>")
+vim.keymap.set("n", "<F6>", "<cmd>DapStepOut<CR>")
+vim.keymap.set("n", "<F7>", "<cmd>DapStepInto<CR>")
+vim.keymap.set("n", "<F8>", "<cmd>DapStepOver<CR>")
