@@ -5,15 +5,7 @@ return {
         "hrsh7th/cmp-cmdline",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
-        {
-            "L3MON4D3/LuaSnip",
-            dependencies = {
-                "rafamadriz/friendly-snippets",
-            },
-            config = function()
-                require("luasnip.loaders.from_vscode").lazy_load()
-            end,
-        },
+        "L3MON4D3/LuaSnip",
         "petertriho/cmp-git",
         "saadparwaiz1/cmp_luasnip",
     },
