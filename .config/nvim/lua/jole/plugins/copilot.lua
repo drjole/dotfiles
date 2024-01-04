@@ -1,8 +1,6 @@
 return {
     "github/copilot.vim",
-    build = function()
-        vim.cmd [[Copilot setup]]
-    end,
+    build = ":Copilot setup",
     init = function()
         vim.keymap.set("i", "<C-J>", 'copilot#Accept("<CR>")', {
             expr = true,

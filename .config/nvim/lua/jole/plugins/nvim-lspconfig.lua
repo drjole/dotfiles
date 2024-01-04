@@ -1,8 +1,17 @@
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        "folke/neodev.nvim",
         "hrsh7th/nvim-cmp",
+        {
+            "folke/neodev.nvim",
+            opts = {
+                library = {
+                    plugins = {
+                        "nvim-dap-ui",
+                    },
+                },
+            },
+        },
     },
     config = function()
         local lspconfig = require("lspconfig")

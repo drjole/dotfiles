@@ -1,8 +1,6 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    build = function()
-        vim.cmd [[ silent! TSUpdate ]]
-    end,
+    build = ":TSUpdate",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-context",
         "nvim-treesitter/nvim-treesitter-textobjects",
@@ -45,6 +43,7 @@ return {
         highlight = {
             enable = true,
             disable = { "latex" },
+            additional_vim_regex_highlighting = false,
         },
         indent = { enable = true },
         incremental_selection = {

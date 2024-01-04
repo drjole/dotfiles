@@ -16,3 +16,5 @@ require("lazy").setup("jole.plugins", {
         notify = false,
     },
 })
+
+vim.cmd.colorscheme("catppuccin")

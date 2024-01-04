@@ -1,10 +1,10 @@
 return {
-    "folke/neodev.nvim",
-    opts = {
-        library = {
-            plugins = {
-                "nvim-dap-ui",
-            },
-        },
-    },
+    -- "folke/neodev.nvim",
+    -- opts = {
+    --     library = {
+    --         plugins = {
+    --             "nvim-dap-ui",
+    --         },
+    --     },
+    -- },
 }
