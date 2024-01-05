@@ -3,7 +3,6 @@ return {
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },
-    opts = {},
     init = function()
         vim.keymap.set("n", "]t", function()
             require("trouble").next({ skip_groups = true, jump = true })
@@ -12,4 +11,5 @@ return {
             require("trouble").previous({ skip_groups = true, jump = true })
         end)
     end,
+    opts = {},
 }

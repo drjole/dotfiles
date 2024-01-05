@@ -13,7 +13,6 @@ return {
         local cmp = require("cmp")
         local luasnip = require("luasnip")
 
-        ---@diagnostic disable-next-line: missing-fields
         cmp.setup({
             snippet = {
                 expand = function(args)
@@ -57,7 +56,6 @@ return {
             }),
         })
 
-        ---@diagnostic disable-next-line: missing-fields
         cmp.setup.filetype("gitcommit", {
             sources = cmp.config.sources({
                 { name = "git" },
@@ -66,7 +64,6 @@ return {
             }),
         })
 
-        ---@diagnostic disable-next-line: missing-fields
         cmp.setup.cmdline({ "/", "?" }, {
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
@@ -74,7 +71,6 @@ return {
             },
         })
 
-        ---@diagnostic disable-next-line: missing-fields
         cmp.setup.cmdline(":", {
             mapping = cmp.mapping.preset.cmdline(),
             sources = cmp.config.sources({

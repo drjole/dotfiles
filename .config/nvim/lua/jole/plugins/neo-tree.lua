@@ -6,6 +6,9 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
     },
+    init = function()
+        vim.keymap.set("n", "<leader>e", "<cmd>Neotree float reveal<CR>")
+    end,
     opts = {
         git_status_async = false,
         filesystem = {
@@ -18,7 +21,4 @@ return {
             },
         },
     },
-    init = function()
-        vim.keymap.set("n", "<leader>e", "<cmd>Neotree float reveal<CR>")
-    end,
 }
