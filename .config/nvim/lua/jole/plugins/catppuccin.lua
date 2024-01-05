@@ -6,12 +6,8 @@ return {
         integrations = {
             fidget = true,
             lsp_trouble = true,
-            mini = {
-                enabled = false,
-            },
             neotree = true,
-            nvimtree = false,
-            treesitter_context = false,
+            treesitter_context = true,
             which_key = true,
         },
     },
