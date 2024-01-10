@@ -15,4 +15,9 @@ require("lazy").setup("jole.plugins", {
     change_detection = {
         notify = false,
     },
+    install = {
+        colorscheme = {
+            "catppuccin",
+        },
+    },
 })

@@ -7,9 +7,9 @@ return {
     end,
     opts = {
         integrations = {
-            fidget = true,
             lsp_trouble = true,
             neotree = true,
+            noice = true,
             treesitter_context = true,
             which_key = true,
         },

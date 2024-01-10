@@ -42,10 +42,17 @@ return {
         auto_install = false,
         highlight = {
             enable = true,
+            -- VimTex handles highlighting for LaTeX
             disable = { "latex" },
             additional_vim_regex_highlighting = false,
         },
-        indent = { enable = true },
+        indent = {
+            enable = true,
+            -- YAML is broken in treesitter
+            disable = {
+                "yaml",
+            },
+        },
         incremental_selection = {
             enable = true,
             keymaps = {

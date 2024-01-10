@@ -2,6 +2,7 @@ return {
     "stevearc/conform.nvim",
     config = function()
         local slow_format_filetypes = {}
+
         require("conform").setup({
             formatters_by_ft = {
                 bash = { "shfmt" },
@@ -25,6 +26,9 @@ return {
                 erb_format = {
                     prepend_args = { "--print-width", "120" },
                 },
+                shfmt = {
+                    prepend_args = { "-i", "2" },
+                },
             },
             format_on_save = function(bufnr)
                 if slow_format_filetypes[vim.bo[bufnr].filetype] then
@@ -38,7 +42,6 @@ return {
 
                 return { timeout_ms = 200, lsp_fallback = true }, on_format
             end,
-
             format_after_save = function(bufnr)
                 if not slow_format_filetypes[vim.bo[bufnr].filetype] then
                     return

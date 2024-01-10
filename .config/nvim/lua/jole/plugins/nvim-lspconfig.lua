@@ -22,7 +22,7 @@ return {
         local on_attach = function(_, bufnr)
             local opts = { buffer = bufnr }
 
-            vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+            vim.keymap.set("n", "<leader>rn", ":IncRename ", opts)
             vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
             vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, opts)
@@ -65,7 +65,9 @@ return {
                 local client_id = args.data.client_id
                 local client = vim.lsp.get_client_by_id(client_id)
                 local bufnr = args.buf
-
+                if client == nil then
+                    return
+                end
                 if not client.server_capabilities.documentFormattingProvider then
                     return
                 end
