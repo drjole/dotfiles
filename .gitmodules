@@ -1,6 +1,0 @@
-[submodule "/home/jole/.tmux/plugins/tpm"]
-	path = /home/jole/.tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-[submodule ".config/alacritty/catppuccin"]
-	path = .config/alacritty/catppuccin
-	url = https://github.com/catppuccin/alacritty.git
