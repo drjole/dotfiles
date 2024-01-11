@@ -2,14 +2,19 @@
 
 # Select the directory to open in a (new) tmux session
 if [[ $# -eq 1 ]]; then
-    selected=$1
+  selected=$1
 else
-    selected=$(find /home ~/code ~/code/reditus ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+  selected=$(
+    (
+      find /home ~/.config ~/code ~/code/reditus -mindepth 1 -maxdepth 1 -type d
+      echo ~/dotfiles # Specifically include this directory in the list of directories for fzf
+    ) | fzf
+  )
 fi
 
 # Exit if no directory was selected
 if [[ -z $selected ]]; then
-    exit 0
+  exit 0
 fi
 
 # Get the name of the selected directory and replace dots with underscores
@@ -20,19 +25,19 @@ tmux_running=$(pgrep tmux)
 
 # If tmux is not running, start a new session with the selected directory
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
-    exit 0
+  tmux new-session -s $selected_name -c $selected
+  exit 0
 fi
 
 # If tmux is running and no session with the selected directory exists, create
 # a new session with the selected directory
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
+if ! tmux has-session -t=$selected_name 2>/dev/null; then
+  tmux new-session -ds $selected_name -c $selected
 fi
 
 # Attach or switch to the session based on whether we are in a tmux client
 if [[ -z $TMUX ]]; then
-    tmux attach-session -t $selected_name
+  tmux attach-session -t $selected_name
 else
-    tmux switch-client -t $selected_name
+  tmux switch-client -t $selected_name
 fi
