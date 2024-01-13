@@ -18,6 +18,16 @@ return {
                     n = { ["<C-q>"] = trouble.open_with_trouble },
                 },
             },
+            pickers = {
+                find_files = {
+                    follow = true,
+                },
+                live_grep = {
+                    additional_args = {
+                        "-L",
+                    },
+                },
+            },
         }
 
         telescope.load_extension("fzf")
