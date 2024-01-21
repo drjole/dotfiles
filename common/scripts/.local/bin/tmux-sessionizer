@@ -6,8 +6,11 @@ if [[ $# -eq 1 ]]; then
 else
   selected=$(
     (
-      find /home ~/dotfiles ~/code ~/code/reditus -mindepth 1 -maxdepth 1 -type d
-      echo ~/dotfiles # Specifically include this directory in the list of directories for fzf
+      find /home ~/code ~/code/reditus -mindepth 1 -maxdepth 1 -type d
+      find ~/dotfiles -name .config -not -path '*/.git/*' -type d -exec find {} -mindepth 1 -maxdepth 1 -type d \;
+      find ~/dotfiles -name .local -not -path '*/.git/*' -type d -exec find {} -mindepth 1 -maxdepth 1 -type d \;
+      find ~/dotfiles -name ssh -not -path '*/.git/*' -type d -exec find {} -mindepth 1 -maxdepth 1 -type d \;
+      echo ~/dotfiles
     ) | fzf
   )
 fi
