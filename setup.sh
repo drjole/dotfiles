@@ -1,8 +1,13 @@
 #!/bin/bash
 
-STOW_FOLDERS=$(find . -maxdepth 1 -type d -not -path . -not -path ./.git -printf '%P\n' | sort)
+echo "Stowing $(hostname)"
+pushd "$(hostname)" >/dev/null
+stow -t "$HOME" -D */
+stow -t "$HOME" --adopt */
+popd >/dev/null
 
-echo "$STOW_FOLDERS" | while read stow_folder; do
-  echo "Stowing $stow_folder"
-  stow --adopt $stow_folder
-done
+pushd common >/dev/null
+echo "Stowing common"
+stow -t "$HOME" -D */
+stow -t "$HOME" --adopt */
+popd >/dev/null
