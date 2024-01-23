@@ -6,8 +6,8 @@ stow -t "$HOME" -D */
 stow -t "$HOME" --adopt */
 popd >/dev/null
 
-pushd common >/dev/null
 echo "Stowing common"
+pushd common >/dev/null
 stow -t "$HOME" -D */
 stow -t "$HOME" --adopt */
 popd >/dev/null
