@@ -24,10 +24,15 @@ return {
             },
             formatters = {
                 erb_format = {
-                    prepend_args = { "--print-width", "120" },
+                    command = "bundle",
+                    args = { "exec", "erb-format", "--stdin", "--print-width", "120" },
                 },
                 shfmt = {
                     prepend_args = { "-i", "2" },
+                },
+                standardrb = {
+                    command = "bundle",
+                    args = { "exec", "standardrb", "--fix", "-f", "quiet", "--stderr", "--stdin", "$FILENAME" },
                 },
             },
             format_on_save = function(bufnr)
