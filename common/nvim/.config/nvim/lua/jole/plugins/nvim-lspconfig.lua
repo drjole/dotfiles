@@ -22,7 +22,7 @@ return {
         local on_attach = function(_, bufnr)
             local opts = { buffer = bufnr }
 
-            vim.keymap.set("n", "<leader>rn", ":IncRename ", opts)
+            vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
             vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
             vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, opts)
@@ -30,8 +30,7 @@ return {
             vim.keymap.set("n", "gi", require("telescope.builtin").lsp_implementations, opts)
             vim.keymap.set("n", "<leader>D", require("telescope.builtin").lsp_type_definitions, opts)
             vim.keymap.set("n", "<leader>sd", require("telescope.builtin").lsp_document_symbols, opts)
-            vim.keymap.set("n", "<leader>ws", require("telescope.builtin").lsp_workspace_symbols,
-                opts)
+            vim.keymap.set("n", "<leader>ws", require("telescope.builtin").lsp_workspace_symbols, opts)
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
             vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help, opts)

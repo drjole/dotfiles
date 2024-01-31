@@ -9,7 +9,6 @@ return {
         integrations = {
             lsp_trouble = true,
             neotree = true,
-            noice = true,
             treesitter_context = true,
             which_key = true,
         },
