@@ -68,10 +68,6 @@ bindsym $mod+d exec "rofi -modi drun,p:rofi-power-menu -show drun"
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
-# firefox
-bindsym $mod+e exec thunar
-bindsym $mod+w exec firefox
-
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -146,6 +142,9 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# bindings to programs
+bindsym $mod+w exec firefox
 
 # open specific applications in specific workspaces
 assign [class="^Alacritty$"] → $ws1
