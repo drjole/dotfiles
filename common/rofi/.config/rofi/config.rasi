@@ -1,7 +1,0 @@
-@theme "Arc-Dark"
-listview {
-	lines: 6;
-}
-window {
-	width: 30%;
-}
