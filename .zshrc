@@ -1,5 +1,27 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# History
+HISTFILE=~/.cache/zsh/history
+HISTSIZE=10000
+SAVEHIST=10000
+
+# Don't beep on errors
+unsetopt beep
+
+# Vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Edit command line in editor
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^v' edit-command-line
+
 # Completion
-autoload -Uz compinit && compinit
+zstyle :compinstall filename '/home/jole/.zshrc'
+autoload -Uz compinit
+compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # Special keys
@@ -63,6 +85,7 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 alias ls=exa
 
 # Key bindings
+bindkey -v
 bindkey -s ^f "tmux-sessionizer\n"
 
 # rbenv
