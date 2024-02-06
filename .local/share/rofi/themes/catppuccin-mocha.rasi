@@ -21,7 +21,7 @@ element-text {
 }
 
 window {
-    height: 300px;
+    height: 350px;
     border-radius: 10px;
     border-color: @border-col;
     background-color: @bg-col;
