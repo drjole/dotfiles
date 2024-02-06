@@ -3,8 +3,10 @@ export TERMINAL=alacritty
 export EDITOR=nvim
 export VISUAL=nvim
 
-export GTK_THEME='Catppuccin-Mocha-Standard-Lavender-Dark:dark'
+export QT_STYLE_OVERRIDE=kvantum
+
+export npm_config_prefix="$HOME/.local"
 
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-	exec startx
+    [[ $(fgconsole 2>/dev/null) == 1 ]] && exec startx &> /dev/null
 fi

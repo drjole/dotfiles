@@ -8,8 +8,7 @@
     fg-col2: #ed8796;
     grey: #6e738d;
 
-    width: 600;
-    font: "JetBrainsMono Nerd Font 13";
+    width: 600px;
 }
 
 element-text, element-icon , mode-switcher {
@@ -17,8 +16,12 @@ element-text, element-icon , mode-switcher {
     text-color:       inherit;
 }
 
+element-text {
+    vertical-align: 0.5;
+}
+
 window {
-    height: 350px;
+    height: 300px;
     border-radius: 10px;
     border-color: @border-col;
     background-color: @bg-col;
@@ -66,11 +69,12 @@ listview {
 element {
     padding: 5px;
     background-color: @bg-col;
-    text-color: @fg-col  ;
+    text-color: @fg-col;
 }
 
 element-icon {
-    size: 25px;
+    size: 32px;
+    margin: 0px 10px 0px 0px;
 }
 
 element selected {

@@ -1,11 +1,6 @@
 configuration{
-    modi: "drun,p:rofi-power-menu";
+    modi: "drun,power-menu:rofi-power-menu --no-symbols";
     show-icons: true;
-    terminal: "alacritty";
-    drun-display-format: "{icon} {name}";
-    hide-scrollbar: true;
-    display-drun: "Apps";
-    display-p: "Power Menu";
 }
 
 @theme "catppuccin-mocha"

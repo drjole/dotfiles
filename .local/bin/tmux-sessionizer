@@ -8,6 +8,7 @@ else
     (
       find -L /home ~/code ~/code/reditus ~/.config -mindepth 1 -maxdepth 1 -type d
       echo ~/.dotfiles
+      echo ~/code
     ) | fzf
   )
 fi

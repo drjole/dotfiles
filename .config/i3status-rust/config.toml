@@ -1,19 +1,5 @@
 [icons]
 icons = "awesome4"
-[icons.overrides]
-bat = ["|E|", "|_|", "|=|", "|F|"]
-bat_charging = "|^| "
-
-[[block]]
-block = "pacman"
-signal = 1
-interval = 600
-error_interval = 300
-format = " $icon $pacman + $aur = $both updates available "
-format_singular = " $icon $both update available "
-format_up_to_date = " $icon system up to date "
-critical_updates_regex = "linux"
-aur_command = "yay -Qua"
 
 [[block]]
 block = "disk_space"
@@ -31,11 +17,7 @@ missing_format = ""
 
 [[block]]
 block = "sound"
-driver = "alsa"
-format = " $icon $output_description {$volume.eng(w:2)|} "
-step_width = 3
 max_vol = 100
-natural_mapping = true
 
 [[block]]
 block = "battery"
