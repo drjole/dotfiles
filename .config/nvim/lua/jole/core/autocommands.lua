@@ -14,3 +14,12 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.cmd.setlocal({ "wrap" })
     end,
 })
+
+-- Ruby indent bug
+-- https://github.com/nvim-treesitter/nvim-treesitter/issues/3363
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "ruby" },
+    callback = function()
+        vim.cmd.setlocal({ "indentkeys-=." })
+    end,
+})

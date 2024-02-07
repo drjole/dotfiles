@@ -14,7 +14,6 @@ return {
                 javascript = { "prettier" },
                 json = { "prettier" },
                 markdown = { "prettier" },
-                ruby = { "standardrb" },
                 scss = { "prettier" },
                 sh = { "shfmt" },
                 template = { "prettier" },
@@ -29,10 +28,6 @@ return {
                 },
                 shfmt = {
                     prepend_args = { "-i", "2" },
-                },
-                standardrb = {
-                    command = "bundle",
-                    args = { "exec", "standardrb", "--fix", "-f", "quiet", "--stderr", "--stdin", "$FILENAME" },
                 },
             },
             format_on_save = function(bufnr)

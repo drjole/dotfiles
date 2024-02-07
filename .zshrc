@@ -23,6 +23,8 @@ zstyle :compinstall filename '/home/jole/.zshrc'
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# Also autocomplete hidden files
+setopt globdots
 
 # Special keys
 typeset -g -A key
