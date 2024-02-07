@@ -4,6 +4,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 export QT_STYLE_OVERRIDE=kvantum
+export QT_QPA_PLATFORMTHEME=gtk2
 
 export npm_config_prefix="$HOME/.local"
 
