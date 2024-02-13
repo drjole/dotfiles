@@ -1,0 +1,9 @@
+[submodule ".local/share/catppuccin-alacritty"]
+	path = .local/share/catppuccin-alacritty
+	url = https://github.com/catppuccin/alacritty.git
+[submodule ".local/share/catppuccin-bat"]
+	path = .local/share/catppuccin-bat
+	url = https://github.com/catppuccin/bat.git
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm.git
