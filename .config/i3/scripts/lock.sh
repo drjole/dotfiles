@@ -6,7 +6,7 @@
 ## CONFIGURATION ##############################################################
 
 # Options to pass to i3lock
-i3lock_options="--ignore-empty-password --show-failed-attempts --image=$HOME/.local/share/wallpapers/catppuccin.png"
+i3lock_options="--ignore-empty-password --show-failed-attempts --image=$HOME/.local/share/wallpapers/$HOSTNAME.png"
 
 # Run before starting the locker
 pre_lock() {
