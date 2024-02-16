@@ -1,0 +1,5 @@
+#!/bin/bash
+
+brightness=$1
+ddcutil --display 1 setvcp 10 $brightness 2>/dev/null
+ddcutil --display 2 setvcp 10 $brightness 2>/dev/null
