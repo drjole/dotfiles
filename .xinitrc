@@ -31,6 +31,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 setxkbmap 'de(us)'
-nvidia-settings --assign "CurrentMetaMode=DPY-2: 2560x1440_144 @2560x1440 +0+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0}, DPY-4: 2560x1440_144 @2560x1440 +2560+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0}"
+xrandr --output DP-0 --mode 2560x1440 --rate 144 --output DP-2 --primary --mode 2560x1440 --rate 144 --right-of DP-0
 numlockx &
 exec i3
