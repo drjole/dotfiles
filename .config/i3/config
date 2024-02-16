@@ -255,6 +255,7 @@ client.background           $base
 bar {
     status_command i3status-rs ~/.config/i3status-rust/config.toml
     position top
+    tray_output primary
     colors {
         background         $base
         statusline         $text
