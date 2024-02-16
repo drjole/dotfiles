@@ -132,6 +132,10 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+# Move workspaces between screens
+bindsym $mod+Shift+Left move workspace to output left
+bindsym $mod+Shift+Right move workspace to output right
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -165,6 +169,14 @@ assign [class="^Alacritty$"] → $ws1
 assign [class="^firefox$"] → $ws2
 assign [class="^obsidian$"] → $ws3
 assign [class="^Spotify$"] → $ws10
+
+# assign workspaces to specific screens
+workspace $ws1 output DP-2
+workspace $ws3 output DP-2
+workspace $ws4 output DP-2
+workspace $ws5 output DP-2
+workspace $ws2 output DP-0
+workspace $ws10 output DP-0
 
 # autostart
 exec --no-startup-id dunst
