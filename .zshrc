@@ -90,9 +90,15 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Aliases
 alias ls=exa
 
-# Key bindings
+# Vim key bindings
 bindkey -v
-bindkey -s ^f "tmux-sessionizer\n"
+
+# Other key bindings
+tmux-sessionizer-widget() {
+    tmux-sessionizer
+}
+zle -N tmux-sessionizer-widget
+bindkey '^f' tmux-sessionizer-widget
 
 # rbenv
 eval "$(rbenv init -)"
