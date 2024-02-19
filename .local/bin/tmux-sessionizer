@@ -6,7 +6,7 @@ if [[ $# -eq 1 ]]; then
 else
   selected=$(
     (
-      find -L /home ~/code ~/code/reditus ~/.config -mindepth 1 -maxdepth 1 -type d
+      find -L /home ~/code ~/code/reditus ~/code/reditus-main ~/.config -mindepth 1 -maxdepth 1 -type d
       echo ~/.dotfiles
       echo ~/code
     ) | fzf
