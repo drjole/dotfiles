@@ -1,5 +1,20 @@
 [icons]
-icons = "awesome4"
+icons = "material-nf"
+
+[theme.overrides]
+idle_bg = "#1e1e2e"
+idle_fg = "#cdd6f4"
+info_bg = "#1e1e2e"
+info_fg = "#cdd6f4"
+good_bg = "#1e1e2e"
+good_fg = "#cdd6f4"
+warning_bg = "#1e1e2e"
+warning_fg = "#cdd6f4"
+critical_bg = "#1e1e2e"
+critical_fg = "#cdd6f4"
+separator = "\ue0b2"
+separator_bg = "auto"
+separator_fg = "auto"
 
 [[block]]
 block = "disk_space"
