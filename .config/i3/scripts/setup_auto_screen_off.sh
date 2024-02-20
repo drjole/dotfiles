@@ -1,4 +1,7 @@
 #!/bin/sh
 
+TIMEOUT=300
+
 # Define the number of seconds of inactivity before the screen is turned off and the session is locked
-xset dpms 300 300 300
+xset dpms $TIMEOUT $TIMEOUT $TIMEOUT
+xset s $TIMEOUT $TIMEOUT
