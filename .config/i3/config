@@ -264,6 +264,7 @@ bar {
         active_workspace   $base $text $lavender
         focused_separator  $base
         focused_workspace  $base $base $text
+        active_workspace   $base $base $lavender
         inactive_workspace $base $base $surface1
         urgent_workspace   $base $base $surface1
         binding_mode       $base $base $surface1
