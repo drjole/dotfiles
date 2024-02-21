@@ -31,9 +31,14 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # jolepc
-xrandr --output DP-0 --mode 2560x1440 --rate 144 --output DP-2 --primary --mode 2560x1440 --rate 144 --right-of DP-0
-# jolelaptop
-xrandr --output eDP --primary --mode 1920x1080 --rate 60
+if [ $(hostname) = "jolepc" ]; then
+  nvidia-settings --assign CurrentMetaMode="
+        DPY-2: 2560x1440_144 @2560x1440 +0+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On},
+        DPY-4: 2560x1440_144 @2560x1440 +2560+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+elif [ $(hostname) = "jolelaptop" ]; then
+  xrandr --output eDP --primary --mode 1920x1080 --rate 60
+  picom &
+fi
 
 setxkbmap 'de(us)'
 numlockx &
