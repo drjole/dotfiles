@@ -2,9 +2,10 @@
 [[ $- != *i* ]] && return
 
 # History
-HISTFILE=~/.cache/zsh/history
+HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
+setopt appendhistory
 
 # Don't beep on errors
 unsetopt beep
