@@ -21,6 +21,7 @@ export npm_config_prefix="$HOME/.local"
 # https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jdtls
 export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/java/lombok.jar"
 
+# Automatically start X when logging in on tty1 and no X server is running
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
     [[ $(fgconsole 2>/dev/null) == 1 ]] && exec startx &> /dev/null
 fi
