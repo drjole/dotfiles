@@ -3,7 +3,7 @@ Description=Check for Padel court bookings
 
 [Service]
 Type=oneshot
-ExecStart=padel
+ExecStart=/home/jole/.local/bin/padel
 
 [Install]
 WantedBy=multi-user.target
