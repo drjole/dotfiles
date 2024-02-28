@@ -1,0 +1,9 @@
+[Unit]
+Description=Check for Padel court bookings
+
+[Service]
+Type=oneshot
+ExecStart=padel
+
+[Install]
+WantedBy=multi-user.target
