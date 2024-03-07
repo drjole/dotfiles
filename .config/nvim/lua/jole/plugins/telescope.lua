@@ -23,7 +23,7 @@ return {
                     find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
                 },
                 live_grep = {
-                    additional_args = { "--hidden" },
+                    additional_args = { "--hidden", "--glob", "!**/.git/*" },
                 },
             },
         }
