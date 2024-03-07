@@ -3,27 +3,12 @@ return {
     dependencies = {
         "rcarriga/nvim-dap-ui",
     },
-    config = function()
-        local dap = require("dap")
-
-        dap.adapters.codelldb = {
-            type = "server",
-            port = "${port}",
-            executable = {
-                command = "/home/jole/.local/share/codelldb/extension/adapter/codelldb",
-                args = { "--port", "${port}" },
-            },
-        }
-
-        dap.configurations.rust = {
-            {
-                name = "Launch",
-                type = "codelldb",
-                request = "launch",
-                program = function()
-                    return vim.fn.input("Path to executable: " .. vim.fn.getcwd() .. "/file")
-                end,
-            },
-        }
-    end,
+    lazy = true,
+    keys = {
+        { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "DAP: Toggle breakpoint" },
+        { "<F5>",       function() require("dap").continue() end,          desc = "DAP: Continue" },
+        { "<F6>",       function() require("dap").step_out() end,          desc = "DAP: Step out" },
+        { "<F7>",       function() require("dap").step_into() end,         desc = "DAP: Step into" },
+        { "<F8>",       function() require("dap").step_over() end,         desc = "DAP: Step over" },
+    },
 }

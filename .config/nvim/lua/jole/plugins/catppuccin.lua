@@ -2,9 +2,6 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    init = function()
-        vim.cmd.colorscheme("catppuccin")
-    end,
     opts = {
         integrations = {
             lsp_trouble = true,
@@ -13,4 +10,7 @@ return {
             which_key = true,
         },
     },
+    init = function()
+        vim.cmd.colorscheme("catppuccin")
+    end,
 }
