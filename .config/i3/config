@@ -50,6 +50,12 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec xbacklight +10
 bindsym XF86MonBrightnessDown exec xbacklight -10
 
+# Audio control
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
 # Screenshots
 bindsym Print exec --no-startup-id maim "/$HOME/Downloads/$(date +'%Y_%m_%dT%H_%M_%S_%4N').png"
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/$HOME/Downloads/$(date +'%Y_%m_%dT%H_%M_%S_%4N').png"
