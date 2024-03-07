@@ -20,7 +20,7 @@ zle -N edit-command-line
 bindkey '^v' edit-command-line
 
 # Completion
-zstyle :compinstall filename '/home/jole/.zshrc'
+zstyle :compinstall filename '$HOME/.zshrc'
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
