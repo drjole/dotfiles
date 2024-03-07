@@ -6,6 +6,10 @@ export VISUAL=nvim
 export QT_STYLE_OVERRIDE=kvantum
 export QT_QPA_PLATFORMTHEME=gtk2
 
+# TexLive
+export MANPATH="$MANPATH:/usr/local/texlive/2023/texmf-dist/doc/man"
+export INFOPATH="$INFOPATH:/usr/local/texlive/2023/texmf-dist/doc/info"
+
 # https://github.com/catppuccin/lazygit
 export LG_CONFIG_FILE="$HOME/.local/share/catppuccin-lazygit/themes-mergable/mocha/lavender.yml" lazygit
 
