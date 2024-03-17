@@ -93,6 +93,11 @@ return {
             end,
         })
 
+        lspconfig.ansiblels.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
         lspconfig.dockerls.setup({
             capabilities = capabilities,
             on_attach = on_attach,
@@ -202,8 +207,8 @@ return {
             on_attach = on_attach,
             settings = {
                 yaml = {
-                    schemas = {
-                        kubernetes = "/*.yaml",
+                    schemaStore = {
+                        enable = true,
                     },
                 },
             },
