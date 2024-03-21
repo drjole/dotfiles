@@ -46,46 +46,45 @@ return {
         auto_install = false,
         highlight = {
             enable = true,
-            -- VimTex handles highlighting for LaTeX
-            disable = { "latex" },
             additional_vim_regex_highlighting = false,
+            disable = {
+                "latex", -- VimTex handles highlighting for LaTeX
+            },
         },
         indent = {
             enable = true,
-            -- YAML is broken in treesitter
-            disable = {
-                "yaml",
-            },
         },
         incremental_selection = {
             enable = true,
             keymaps = {
-                init_selection = "<C-space>",
-                node_incremental = "<C-space>",
-                scope_incremental = false,
-                node_decremental = "<M-space>",
+                init_selection = "gnn",
+                node_incremental = "grn",
+                scope_incremental = "grc",
+                node_decremental = "grm",
             },
         },
         textobjects = {
-            lsp_interop = {
-                enable = true,
-                border = "none",
-                floating_preview_opts = {},
-                peek_definition_code = {
-                    ["<leader>df"] = "@function.outer",
-                    ["<leader>dF"] = "@class.outer",
-                },
-            },
             select = {
                 enable = true,
                 lookahead = true,
                 keymaps = {
-                    ["aa"] = "@parameter.outer",
-                    ["ia"] = "@parameter.inner",
                     ["af"] = "@function.outer",
                     ["if"] = "@function.inner",
                     ["ac"] = "@class.outer",
                     ["ic"] = "@class.inner",
+                    ["aa"] = "@parameter.outer",
+                    ["ia"] = "@parameter.inner",
+                },
+            },
+            swap = {
+                enable = true,
+                swap_next = {
+                    ["<leader>sa"] = "@parameter.inner",
+                    ["<leader>sf"] = "@function.outer",
+                },
+                swap_previous = {
+                    ["<leader>sA"] = "@parameter.inner",
+                    ["<leader>sF"] = "@function.outer",
                 },
             },
             move = {
@@ -108,13 +107,13 @@ return {
                     ["[]"] = "@class.outer",
                 },
             },
-            swap = {
+            lsp_interop = {
                 enable = true,
-                swap_next = {
-                    ["<leader>a"] = "@parameter.inner",
-                },
-                swap_previous = {
-                    ["<leader>A"] = "@parameter.inner",
+                border = "none",
+                floating_preview_opts = {},
+                peek_definition_code = {
+                    ["<leader>df"] = "@function.outer",
+                    ["<leader>dF"] = "@class.outer",
                 },
             },
         },
