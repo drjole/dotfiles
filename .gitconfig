@@ -5,3 +5,7 @@
 	email = jonas@jole.dev
 [pull]
     rebase = false
+[rerere]
+	enabled = true
+[maintenance]
+	repo = /home/jole/code/reditus/intern
