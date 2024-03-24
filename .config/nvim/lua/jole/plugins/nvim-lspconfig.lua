@@ -164,25 +164,9 @@ return {
 
         })
 
-        lspconfig.solargraph.setup({
+        lspconfig.ruby_ls.setup({
             capabilities = capabilities,
             on_attach = on_attach,
-            init_options = {
-                formatting = false,
-            },
-            settings = {
-                -- standardrb handles diagnostics and formatting
-                solargraph = {
-                    diagnostics = false,
-                    formatting = false,
-                },
-            },
-        })
-
-        lspconfig.standardrb.setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-            cmd = { "bundle", "exec", "standardrb", "--lsp" },
         })
 
         lspconfig.stimulus_ls.setup({
