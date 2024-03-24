@@ -9,3 +9,4 @@
 	enabled = true
 [maintenance]
 	repo = /home/jole/code/reditus/intern
+	repo = /home/jole/.dotfiles
