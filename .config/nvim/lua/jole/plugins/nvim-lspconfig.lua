@@ -15,20 +15,79 @@ return {
     },
     config = function()
         local lspconfig = require("lspconfig")
-        local telescope_builtin = require("telescope.builtin")
 
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-        local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+        local formatting_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
         local on_attach = function(client, bufnr)
+            -- Enable completion triggered by <c-x><c-o>
+            vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+            -- Buffer local mappings.
+            -- See `:help vim.lsp.*` for documentation on any of the below functions
+            local telescope_builtin = require("telescope.builtin")
+            vim.keymap.set("n", "gD", vim.lsp.buf.declaration,
+                { desc = "LSP: Go to declaration", buffer = bufnr })
+
+            vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions,
+                { desc = "LSP: Go to definitions", buffer = bufnr })
+
+            vim.keymap.set("n", "K", vim.lsp.buf.hover,
+                { desc = "LSP: Hover", buffer = bufnr })
+
+            vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations,
+                { desc = "LSP: Go to implementations", buffer = bufnr })
+
+            vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help,
+                { desc = "LSP: Signature Help", buffer = bufnr })
+
+            vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder,
+                { desc = "LSP: Add workspace folder", buffer = bufnr })
+
+            vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder,
+                { desc = "LSP: Remove workspace folder", buffer = bufnr })
+
+            vim.keymap.set("n", "<leader>wl", function()
+                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            end, { desc = "LSP: List workspace folders", buffer = bufnr })
+
+            vim.keymap.set("n", "<leader>D", telescope_builtin.lsp_type_definitions,
+                { desc = "LSP: Go to type definitions", buffer = bufnr })
+
+            vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
+                { desc = "LSP: Rename", buffer = bufnr })
+
+            vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action,
+                { desc = "LSP: Code Action", buffer = bufnr })
+
+            vim.keymap.set("n", "gr", telescope_builtin.lsp_references,
+                { desc = "LSP: Go to references", buffer = bufnr })
+
+            vim.keymap.set("n", "<leader>f", function()
+                vim.lsp.buf.format { async = false }
+            end, { desc = "LSP: Format", buffer = bufnr })
+
+            vim.keymap.set("n", "<leader>sd", telescope_builtin.lsp_document_symbols,
+                { desc = "LSP: Document symbols", buffer = bufnr })
+
+            vim.keymap.set("n", "<leader>ws", telescope_builtin.lsp_dynamic_workspace_symbols,
+                { desc = "LSP: Workspace symbols", buffer = bufnr })
+
             -- Format on save
-            if client.supports_method("textDocument/formatting") then
-                vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            if client.server_capabilities.documentFormattingProvider then
+                vim.api.nvim_clear_autocmds({ group = formatting_augroup, buffer = bufnr })
                 vim.api.nvim_create_autocmd("BufWritePre", {
-                    group = augroup,
+                    group = formatting_augroup,
                     buffer = bufnr,
                     callback = function()
-                        vim.lsp.buf.format({ async = false })
+                        vim.lsp.buf.format({
+                            async = false,
+                            filter = function(c)
+                                return c.id == client.id
+                            end,
+                        })
                     end,
                 })
             end
@@ -86,7 +145,7 @@ return {
             },
 
         })
-        lspconfig.ruby_ls.setup({ capabilities = capabilities, on_attach = on_attach })
+        lspconfig.solargraph.setup({ capabilities = capabilities, on_attach = on_attach })
         lspconfig.stimulus_ls.setup({ capabilities = capabilities, on_attach = on_attach })
         lspconfig.texlab.setup({
             capabilities = capabilities,
@@ -110,64 +169,6 @@ return {
                     },
                 },
             },
-        })
-
-        -- LSP-related keymaps
-        vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-            callback = function(ev)
-                -- Enable completion triggered by <c-x><c-o>
-                vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-                -- Buffer local mappings.
-                -- See `:help vim.lsp.*` for documentation on any of the below functions
-                vim.keymap.set("n", "gD", vim.lsp.buf.declaration,
-                    { desc = "LSP: Go to declaration", buffer = ev.buf })
-
-                vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions,
-                    { desc = "LSP: Go to definitions", buffer = ev.buf })
-
-                vim.keymap.set("n", "K", vim.lsp.buf.hover,
-                    { desc = "LSP: Hover", buffer = ev.buf })
-
-                vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations,
-                    { desc = "LSP: Go to implementations", buffer = ev.buf })
-
-                vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help,
-                    { desc = "LSP: Signature Help", buffer = ev.buf })
-
-                vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder,
-                    { desc = "LSP: Add workspace folder", buffer = ev.buf })
-
-                vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder,
-                    { desc = "LSP: Remove workspace folder", buffer = ev.buf })
-
-                vim.keymap.set("n", "<leader>wl", function()
-                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                end, { desc = "LSP: List workspace folders", buffer = ev.buf })
-
-                vim.keymap.set("n", "<leader>D", telescope_builtin.lsp_type_definitions,
-                    { desc = "LSP: Go to type definitions", buffer = ev.buf })
-
-                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
-                    { desc = "LSP: Rename", buffer = ev.buf })
-
-                vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action,
-                    { desc = "LSP: Code Action", buffer = ev.buf })
-
-                vim.keymap.set("n", "gr", telescope_builtin.lsp_references,
-                    { desc = "LSP: Go to references", buffer = ev.buf })
-
-                vim.keymap.set("n", "<leader>f", function()
-                    vim.lsp.buf.format { async = false }
-                end, { desc = "LSP: Format", buffer = ev.buf })
-
-                vim.keymap.set("n", "<leader>sd", telescope_builtin.lsp_document_symbols,
-                    { desc = "LSP: Document symbols", buffer = ev.buf })
-
-                vim.keymap.set("n", "<leader>ws", telescope_builtin.lsp_dynamic_workspace_symbols,
-                    { desc = "LSP: Workspace symbols", buffer = ev.buf })
-            end,
         })
     end,
 }
