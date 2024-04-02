@@ -1,17 +1,21 @@
 return {
     "hrsh7th/nvim-cmp",
     dependencies = {
+        -- nvim-cmp dependencies
+        "neovim/nvim-lspconfig",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
+        -- LuaSnip
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
+        -- cmp-git
         "petertriho/cmp-git",
+        "nvim-lua/plenary.nvim",
     },
     config = function()
         local cmp = require("cmp")
-
         cmp.setup({
             snippet = {
                 expand = function(args)
@@ -59,6 +63,9 @@ return {
             }, {
                 { name = "cmdline" },
             }),
+            matching = { disallow_symbol_nonprefix_matching = false },
         })
+
+        require("cmp_git").setup()
     end,
 }

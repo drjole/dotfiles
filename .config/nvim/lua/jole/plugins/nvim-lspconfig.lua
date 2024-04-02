@@ -1,118 +1,45 @@
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        "hrsh7th/nvim-cmp",
         {
             "folke/neodev.nvim",
-            opts = {
-                library = {
-                    plugins = {
-                        "nvim-dap-ui",
-                    },
-                },
-            },
+            opts = {},
         },
     },
     config = function()
+        -- Setup
         local lspconfig = require("lspconfig")
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-        local formatting_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
+        -- Custom on_attach callback that includes an autocommand to format on save
+        local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
         local on_attach = function(client, bufnr)
-            -- Enable completion triggered by <c-x><c-o>
-            vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-            -- Buffer local mappings.
-            -- See `:help vim.lsp.*` for documentation on any of the below functions
-            local telescope_builtin = require("telescope.builtin")
-            vim.keymap.set("n", "gD", vim.lsp.buf.declaration,
-                { desc = "LSP: Go to declaration", buffer = bufnr })
-
-            vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions,
-                { desc = "LSP: Go to definitions", buffer = bufnr })
-
-            vim.keymap.set("n", "K", vim.lsp.buf.hover,
-                { desc = "LSP: Hover", buffer = bufnr })
-
-            vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations,
-                { desc = "LSP: Go to implementations", buffer = bufnr })
-
-            vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help,
-                { desc = "LSP: Signature Help", buffer = bufnr })
-
-            vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder,
-                { desc = "LSP: Add workspace folder", buffer = bufnr })
-
-            vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder,
-                { desc = "LSP: Remove workspace folder", buffer = bufnr })
-
-            vim.keymap.set("n", "<leader>wl", function()
-                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-            end, { desc = "LSP: List workspace folders", buffer = bufnr })
-
-            vim.keymap.set("n", "<leader>D", telescope_builtin.lsp_type_definitions,
-                { desc = "LSP: Go to type definitions", buffer = bufnr })
-
-            vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
-                { desc = "LSP: Rename", buffer = bufnr })
-
-            vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action,
-                { desc = "LSP: Code Action", buffer = bufnr })
-
-            vim.keymap.set("n", "gr", telescope_builtin.lsp_references,
-                { desc = "LSP: Go to references", buffer = bufnr })
-
-            vim.keymap.set("n", "<leader>f", function()
-                vim.lsp.buf.format { async = false }
-            end, { desc = "LSP: Format", buffer = bufnr })
-
-            vim.keymap.set("n", "<leader>sd", telescope_builtin.lsp_document_symbols,
-                { desc = "LSP: Document symbols", buffer = bufnr })
-
-            vim.keymap.set("n", "<leader>ws", telescope_builtin.lsp_dynamic_workspace_symbols,
-                { desc = "LSP: Workspace symbols", buffer = bufnr })
-
             -- Format on save
-            if client.server_capabilities.documentFormattingProvider then
-                vim.api.nvim_clear_autocmds({ group = formatting_augroup, buffer = bufnr })
+            if client.supports_method("textDocument/formatting") then
+                vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
                 vim.api.nvim_create_autocmd("BufWritePre", {
-                    group = formatting_augroup,
+                    group = augroup,
                     buffer = bufnr,
                     callback = function()
-                        vim.lsp.buf.format({
-                            async = false,
-                            filter = function(c)
-                                return c.id == client.id
-                            end,
-                        })
+                        vim.lsp.buf.format({ bufnr = bufnr, async = false })
                     end,
                 })
             end
         end
 
-        lspconfig.ansiblels.setup({ capabilities = capabilities, on_attach = on_attach })
-        lspconfig.dockerls.setup({ capabilities = capabilities, on_attach = on_attach })
-        lspconfig.gopls.setup({
+        -- LSP servers
+        lspconfig.dockerls.setup({
             capabilities = capabilities,
             on_attach = on_attach,
-            filetypes = { "go", "gomod", "gowork", "gotmpl", "gohtmltmpl" },
-            settings = {
-                gopls = {
-                    analyses = {
-                        composites = false,
-                        unusedparams = true,
-                    },
-                    completeUnimported = true,
-                    gofumpt = true,
-                    templateExtensions = { "tmpl" },
-                    usePlaceholders = true,
-                },
-            },
         })
-        lspconfig.jdtls.setup({ capabilities = capabilities, on_attach = on_attach })
+
+        lspconfig.jdtls.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
         lspconfig.lua_ls.setup({
             capabilities = capabilities,
             on_attach = on_attach,
@@ -121,10 +48,8 @@ return {
                     workspace = { checkThirdParty = false },
                     telemetry = { enable = false },
                     format = {
-                        enable = true,
                         defaultConfig = {
                             call_arg_parentheses = "keep",
-                            insert_final_newline = "true",
                             quote_style = "double",
                             trailing_table_separator = "smart",
                         },
@@ -132,21 +57,27 @@ return {
                 },
             },
         })
-        lspconfig.pylsp.setup({ capabilities = capabilities, on_attach = on_attach })
+
+        lspconfig.pylsp.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
         lspconfig.rust_analyzer.setup({
             capabilities = capabilities,
             on_attach = on_attach,
-            settings = {
-                ["rust-analyzer"] = {
-                    cargo = {
-                        features = "all",
-                    },
-                },
-            },
-
         })
-        lspconfig.solargraph.setup({ capabilities = capabilities, on_attach = on_attach })
-        lspconfig.stimulus_ls.setup({ capabilities = capabilities, on_attach = on_attach })
+
+        lspconfig.solargraph.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
+        lspconfig.stimulus_ls.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
         lspconfig.texlab.setup({
             capabilities = capabilities,
             on_attach = on_attach,
@@ -158,17 +89,80 @@ return {
                 },
             },
         })
-        lspconfig.tsserver.setup({ capabilities = capabilities, on_attach = on_attach })
-        lspconfig.yamlls.setup({
+
+        lspconfig.tsserver.setup({
             capabilities = capabilities,
             on_attach = on_attach,
-            settings = {
-                yaml = {
-                    schemaStore = {
-                        enable = true,
-                    },
-                },
-            },
+        })
+
+        -- Global mappings.
+        -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+        vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open diagnostics float" })
+        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
+        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+        vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Set localtion list" })
+
+        -- Use LspAttach autocommand to only map the following keys
+        -- after the language server attaches to the current buffer
+        vim.api.nvim_create_autocmd("LspAttach", {
+            group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+            callback = function(ev)
+                local builtin = require("telescope.builtin")
+
+                -- Enable completion triggered by <c-x><c-o>
+                vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+                -- Buffer local mappings.
+                -- See `:help vim.lsp.*` for documentation on any of the below functions
+                local opts = { desc = "LSP: Go to declaration", buffer = ev.buf }
+                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+
+                opts = { desc = "LSP: Go to definition", buffer = ev.buf }
+                vim.keymap.set("n", "gd", builtin.lsp_definitions, opts)
+
+                opts = { desc = "LSP: Hover", buffer = ev.buf }
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+
+                opts = { desc = "LSP: Go to implementations", buffer = ev.buf }
+                vim.keymap.set("n", "gi", builtin.lsp_implementations, opts)
+
+                opts = { desc = "LSP: Signature help", buffer = ev.buf }
+                vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+
+                opts = { desc = "LSP: Add workspace folder", buffer = ev.buf }
+                vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
+
+                opts = { desc = "LSP: Remove workspace folder", buffer = ev.buf }
+                vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+
+                opts = { desc = "LSP: List workspace folders", buffer = ev.buf }
+                vim.keymap.set("n", "<leader>wl", function()
+                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                end, opts)
+
+                opts = { desc = "LSP: Go to type definitions", buffer = ev.buf }
+                vim.keymap.set("n", "<leader>D", builtin.lsp_type_definitions, opts)
+
+                opts = { desc = "LSP: Rename", buffer = ev.buf }
+                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+
+                opts = { desc = "LSP: Code actions", buffer = ev.buf }
+                vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+
+                opts = { desc = "LSP: Go to references", buffer = ev.buf }
+                vim.keymap.set("n", "gr", builtin.lsp_references, opts)
+
+                opts = { desc = "LSP: Format", buffer = ev.buf }
+                vim.keymap.set("n", "<leader>f", function()
+                    vim.lsp.buf.format({ async = false })
+                end, opts)
+
+                opts = { desc = "LSP: Document symbols", buffer = ev.buf }
+                vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, opts)
+
+                opts = { desc = "LSP: Workspace symbols", buffer = ev.buf }
+                vim.keymap.set("n", "<leader>ws", builtin.lsp_dynamic_workspace_symbols, opts)
+            end,
         })
     end,
 }

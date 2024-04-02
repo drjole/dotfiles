@@ -1,16 +1,9 @@
 return {
     "catppuccin/nvim",
     name = "catppuccin",
+    lazy = false,
     priority = 1000,
-    opts = {
-        integrations = {
-            lsp_trouble = true,
-            neotree = true,
-            treesitter_context = true,
-            which_key = true,
-        },
-    },
-    init = function()
+    config = function()
         vim.cmd.colorscheme("catppuccin")
     end,
 }

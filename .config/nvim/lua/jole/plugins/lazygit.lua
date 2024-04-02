@@ -3,7 +3,7 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
     },
-    keys = {
-        { "<leader>gg", vim.cmd.LazyGit, desc = "Open LazyGit" },
-    },
+    config = function()
+        vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
+    end,
 }
