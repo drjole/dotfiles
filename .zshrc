@@ -95,11 +95,9 @@ alias ls=exa
 bindkey -v
 
 # Other key bindings
-tmux-sessionizer-widget() {
-    tmux-sessionizer
-}
+tmux-sessionizer-widget() { tmux-sessionizer }
 zle -N tmux-sessionizer-widget
-bindkey '^f' tmux-sessionizer-widget
+bindkey ^f tmux-sessionizer-widget
 
 # rbenv
 eval "$(rbenv init -)"

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Select the directory to open in a (new) tmux session
 if [[ $# -eq 1 ]]; then
   selected=$1
@@ -7,9 +9,10 @@ else
   selected=$(
     (
       find -L /home -mindepth 1 -maxdepth 1 -type d | sort
-      echo ~/code | sort
-      find -L "$HOME/code" -mindepth 1 -maxdepth 2 -type d -exec test -e '{}/.git' \; -print | sort
-      echo ~/.dotfiles | sort
+      echo ~/code
+      find -L "$HOME/code" -mindepth 2 -maxdepth 2 -iname '.git' | sed -e 's/\/.git$//' | sort
+      find -L "$HOME/code" -mindepth 3 -maxdepth 3 -iname '.git' | sed -e 's/\/.git$//' | sort
+      echo ~/.dotfiles
     ) | fzf
   )
 fi
@@ -19,27 +22,19 @@ if [[ -z $selected ]]; then
   exit 0
 fi
 
-# Get the name of the selected directory and replace dots with underscores
-selected_name=$(basename "$selected" | tr . _)
-
-# Check if tmux is already running
-tmux_running=$(pgrep tmux)
-
-# If tmux is not running, start a new session with the selected directory
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-  tmux new-session -s $selected_name -c $selected
-  exit 0
-fi
-
-# If tmux is running and no session with the selected directory exists, create
-# a new session with the selected directory
-if ! tmux has-session -t=$selected_name 2>/dev/null; then
-  tmux new-session -ds $selected_name -c $selected
-fi
-
-# Attach or switch to the session based on whether we are in a tmux client
-if [[ -z $TMUX ]]; then
-  tmux attach-session -t $selected_name
+# Generate a session name based on the selected directory
+if [[ $selected == "$HOME/code"* ]]; then
+  session_name=$(echo $selected | sed -e "s|$HOME/code/||")
 else
-  tmux switch-client -t $selected_name
+  session_name=$(basename $selected | tr . _)
+fi
+
+# (Create and) attach/switch to the session
+if [[ -z $TMUX ]]; then
+  tmux new-session -A -s $session_name -c $selected
+else
+  if ! tmux has-session -t=$session_name 2>/dev/null; then
+    tmux new-session -ds $session_name -c $selected
+  fi
+  tmux switch-client -t $session_name
 fi
