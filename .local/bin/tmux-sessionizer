@@ -13,7 +13,7 @@ else
       find -L "$HOME/code" -mindepth 2 -maxdepth 2 -iname '.git' | sed -e 's/\/.git$//' | sort
       find -L "$HOME/code" -mindepth 3 -maxdepth 3 -iname '.git' | sed -e 's/\/.git$//' | sort
       echo ~/.dotfiles
-    ) | fzf
+    ) | fzf --cycle
   )
 fi
 
