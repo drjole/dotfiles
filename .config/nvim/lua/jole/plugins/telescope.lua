@@ -23,8 +23,5 @@ return {
         vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope: Find in files" })
         vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope: Find help tags" })
         vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Telescope: Find recent files" })
-        vim.keymap.set("n", "<leader>fd", function()
-            builtin.find_files({ cwd = vim.fn.expand("%:p:h") })
-        end, { desc = "Telescope: Find files in the same directory as the current file" })
     end,
 }
