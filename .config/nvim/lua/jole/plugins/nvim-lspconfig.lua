@@ -95,6 +95,18 @@ return {
             on_attach = on_attach,
         })
 
+        lspconfig.yamlls.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = {
+                yaml = {
+                    schemaStore = {
+                        enable = true,
+                    },
+                },
+            },
+        })
+
         -- Global mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
         vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open diagnostics float" })
