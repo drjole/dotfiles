@@ -28,6 +28,6 @@ vim.keymap.set("n", "<leader>n", function()
     local current_file_name = vim.fn.expand("%:p:t")
     vim.cmd.Explore()
     if current_file_name then
-        vim.fn.search(current_file_name)
+        vim.fn.search("^" .. current_file_name .. "$")
     end
 end, { desc = "Open file explorer" })
