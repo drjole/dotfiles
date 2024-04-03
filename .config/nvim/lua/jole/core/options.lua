@@ -8,6 +8,8 @@ vim.g.loaded_ruby_provider = 0
 
 vim.opt.mouse = "a"
 
+vim.opt.clipboard = "unnamedplus"
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 
