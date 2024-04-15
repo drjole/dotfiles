@@ -6,5 +6,5 @@
 # xset s $TIMEOUT $TIMEOUT
 
 # Disable auto screen off for now...
-xset -dpms
-xset s off
+# xset -dpms
+# xset s off
