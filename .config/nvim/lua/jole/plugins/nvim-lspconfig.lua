@@ -139,7 +139,7 @@ return {
                 vim.keymap.set("n", "gi", builtin.lsp_implementations, opts)
 
                 opts = { desc = "LSP: Signature help", buffer = ev.buf }
-                vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+                vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help, opts)
 
                 opts = { desc = "LSP: Add workspace folder", buffer = ev.buf }
                 vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
