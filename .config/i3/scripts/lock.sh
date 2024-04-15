@@ -17,7 +17,7 @@ pre_lock() {
   dunstctl set-paused true
 
   # Turn off the screen after SCREEN_OFF_TIMEOUT_DURING_LOCK seconds
-  xset dpms $SCREEN_OFF_TIMEOUT_DURING_LOCK $SCREEN_OFF_TIMEOUT_DURING_LOCK $SCREEN_OFF_TIMEOUT_DURING_LOCK
+  # xset dpms $SCREEN_OFF_TIMEOUT_DURING_LOCK $SCREEN_OFF_TIMEOUT_DURING_LOCK $SCREEN_OFF_TIMEOUT_DURING_LOCK
 
   return
 }
@@ -28,7 +28,7 @@ post_lock() {
   dunstctl set-paused false
 
   # Disable automatic screen off
-  xset -dpms
+  # xset -dpms
 
   # Re-enable automatic screen saver (which also locks the session)
   $HOME/.config/i3/scripts/setup_auto_screen_off.sh
