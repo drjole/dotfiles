@@ -5,7 +5,7 @@ return {
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
         null_ls.setup({
             sources = {
-                null_ls.builtins.diagnostics.erb_lint,
+                -- null_ls.builtins.diagnostics.erb_lint,
                 null_ls.builtins.formatting.erb_format.with({
                     extra_args = { "--print-width", "120" },
                 }),
