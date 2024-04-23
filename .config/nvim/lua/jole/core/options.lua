@@ -28,6 +28,7 @@ vim.opt.autoindent = true
 
 vim.opt.cursorline = true
 vim.opt.scrolloff = 8
+vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
 vim.opt.wrap = false
 
