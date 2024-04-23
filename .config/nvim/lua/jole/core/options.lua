@@ -6,7 +6,7 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 
-vim.opt.mouse = ""
+vim.opt.mouse = "a"
 
 vim.opt.clipboard = "unnamedplus"
 
@@ -28,7 +28,6 @@ vim.opt.autoindent = true
 
 vim.opt.cursorline = true
 vim.opt.scrolloff = 8
-vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
 vim.opt.wrap = false
 
