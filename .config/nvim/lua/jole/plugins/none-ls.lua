@@ -5,11 +5,15 @@ return {
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
         null_ls.setup({
             sources = {
-                -- null_ls.builtins.diagnostics.erb_lint,
                 null_ls.builtins.formatting.erb_format.with({
-                    extra_args = { "--print-width", "120" },
+                    args = { "--print-width", "120" },
                 }),
-                null_ls.builtins.formatting.prettier,
+                -- null_ls.builtins.formatting.topiary.with({
+                --     filetypes = { "eruby", "scm" },
+                -- }),
+                null_ls.builtins.formatting.prettier.with({
+                    filetypes = { "gohtmltmpl" },
+                }),
                 null_ls.builtins.formatting.shfmt.with({
                     extra_args = { "-i", "2" },
                 }),
