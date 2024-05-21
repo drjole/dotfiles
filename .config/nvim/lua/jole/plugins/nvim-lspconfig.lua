@@ -30,7 +30,17 @@ return {
         end
 
         -- LSP servers
+        lspconfig.clangd.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
         lspconfig.dockerls.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
+        lspconfig.gopls.setup({
             capabilities = capabilities,
             on_attach = on_attach,
         })
