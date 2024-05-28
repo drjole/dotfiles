@@ -12,7 +12,9 @@ return {
                 --     filetypes = { "eruby", "scm" },
                 -- }),
                 null_ls.builtins.formatting.prettier.with({
-                    filetypes = { "gohtmltmpl" },
+                    filetypes = vim.tbl_extend("force", null_ls.builtins.formatting.prettier.filetypes, {
+                        "gohtmltmpl",
+                    }),
                 }),
                 null_ls.builtins.formatting.shfmt.with({
                     extra_args = { "-i", "2" },

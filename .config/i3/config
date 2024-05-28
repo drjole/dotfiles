@@ -181,7 +181,6 @@ bindsym $mod+Shift+p exec pkill -USR1 '^redshift$'
 assign [class="^Alacritty$"] → $ws1
 assign [class="^firefox$"] → $ws2
 assign [class="^obsidian$"] → $ws3
-assign [class="^Zathura$"] → $ws4
 assign [class="^Zotero$"] → $ws5
 assign [class="^Spotify$"] → $ws10
 
@@ -198,7 +197,7 @@ exec --no-startup-id dunst
 exec --no-startup-id redshift-gtk
 
 exec --no-startup-id alacritty
-exec --no-startup-id sleep 3 && firefox
+exec --no-startup-id sleep 1 && firefox
 exec --no-startup-id obsidian
 exec --no-startup-id spotify-launcher
 
