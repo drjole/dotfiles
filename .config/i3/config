@@ -193,6 +193,7 @@ workspace $ws2 output DP-0
 workspace $ws10 output DP-0
 
 # autostart
+exec --no-startup-id $HOME/.config/i3/scripts/wallpaper.sh
 exec --no-startup-id dunst
 exec --no-startup-id redshift-gtk
 
