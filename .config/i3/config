@@ -181,12 +181,12 @@ bindsym $mod+Shift+p exec pkill -USR1 '^redshift$'
 assign [class="^Alacritty$"] → $ws1
 assign [class="^firefox$"] → $ws2
 assign [class="^obsidian$"] → $ws3
-assign [class="^Zotero$"] → $ws3
+assign [class="^Zotero$"] → $ws4
 assign [class="^signal$"] → $ws5
 assign [class="^discord$"] → $ws6
 assign [class="^steam$"] → $ws7
 assign [class="^steam_app_.*$"] → $ws9
-assign [class="^spotify$"] → $ws10
+assign [class="^Spotify$"] → $ws10
 
 # assign workspaces to specific screens
 # right
