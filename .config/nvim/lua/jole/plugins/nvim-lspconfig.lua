@@ -15,18 +15,16 @@ return {
 
         -- Custom on_attach callback that includes an autocommand to format on save
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-        local on_attach = function(client, bufnr)
+        local on_attach = function(_, bufnr)
             -- Format on save
-            if client.supports_method("textDocument/formatting") then
-                vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    group = augroup,
-                    buffer = bufnr,
-                    callback = function()
-                        vim.lsp.buf.format({ bufnr = bufnr, async = false })
-                    end,
-                })
-            end
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    vim.lsp.buf.format({ bufnr = bufnr, async = false })
+                end,
+            })
         end
 
         -- LSP servers
