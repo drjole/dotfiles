@@ -86,6 +86,22 @@ return {
             on_attach = on_attach,
         })
 
+        local tailwindcss_default_config = require("lspconfig.server_configurations.tailwindcss").default_config
+        lspconfig.tailwindcss.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            filetypes = vim.tbl_extend("force", tailwindcss_default_config.filetypes, {
+                "rust",
+            }),
+            settings = {
+                tailwindCSS = vim.tbl_extend("force", tailwindcss_default_config.settings.tailwindCSS, {
+                    includeLanguages = {
+                        rust = "html",
+                    },
+                }),
+            },
+        })
+
         lspconfig.texlab.setup({
             capabilities = capabilities,
             on_attach = on_attach,
