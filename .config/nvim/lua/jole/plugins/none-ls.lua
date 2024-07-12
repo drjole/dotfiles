@@ -8,12 +8,17 @@ return {
                 null_ls.builtins.formatting.erb_format.with({
                     args = { "--print-width", "120" },
                 }),
+                null_ls.builtins.formatting.leptosfmt.with({
+                    extra_args = { "--max-width", "120", "--tab-spaces", "4", "--experimental-tailwind" },
+                }),
                 -- null_ls.builtins.formatting.topiary.with({
                 --     filetypes = { "eruby", "scm" },
                 -- }),
                 null_ls.builtins.formatting.prettier.with({
                     filetypes = vim.tbl_extend("force", null_ls.builtins.formatting.prettier.filetypes, {
                         "gohtmltmpl",
+                        "sql",
+                        "toml",
                     }),
                 }),
                 null_ls.builtins.formatting.shfmt.with({
