@@ -1,11 +1,5 @@
 return {
     "neovim/nvim-lspconfig",
-    dependencies = {
-        {
-            "folke/neodev.nvim",
-            opts = {},
-        },
-    },
     config = function()
         -- Setup
         local lspconfig = require("lspconfig")
