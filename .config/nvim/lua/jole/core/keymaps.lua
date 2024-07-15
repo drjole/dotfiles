@@ -20,7 +20,7 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux new-window tmux-sessionizer<CR>"
 -- Other keymaps
 vim.keymap.set("n", "<leader>n", function()
     -- Don't do anything if we are already in the file explorer
-    if vim.api.nvim_buf_get_option(0, "filetype") == "netrw" then
+    if vim.api.nvim_get_option_value("filetype", {}) == "netrw" then
         return
     end
 
