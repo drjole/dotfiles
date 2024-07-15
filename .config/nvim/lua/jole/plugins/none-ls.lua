@@ -6,7 +6,7 @@ return {
         null_ls.setup({
             sources = {
                 null_ls.builtins.formatting.erb_format.with({
-                    args = { "--print-width", "120" },
+                    extra_args = { "--print-width", "120" },
                 }),
                 null_ls.builtins.formatting.leptosfmt.with({
                     extra_args = { "--max-width", "120", "--tab-spaces", "4", "--experimental-tailwind" },
