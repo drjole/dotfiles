@@ -41,6 +41,7 @@ elif [ "$(hostname)" = "jolelaptop" ]; then
   xrandr --output eDP --primary --mode 1920x1080 --rate 60
 fi
 
+picom --no-frame-pacing &
 numlockx &
 setxkbmap 'de(us)'
 
