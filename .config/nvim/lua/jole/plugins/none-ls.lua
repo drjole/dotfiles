@@ -5,6 +5,11 @@ return {
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
         null_ls.setup({
             sources = {
+                -- Linters
+                null_ls.builtins.diagnostics.sqlfluff.with({
+                    extra_args = { "--dialect", "postgres" },
+                }),
+                -- Formatters
                 null_ls.builtins.formatting.erb_format.with({
                     extra_args = { "--print-width", "120" },
                 }),
@@ -17,12 +22,14 @@ return {
                 null_ls.builtins.formatting.prettier.with({
                     filetypes = vim.tbl_extend("force", null_ls.builtins.formatting.prettier.filetypes, {
                         "gohtmltmpl",
-                        "sql",
                         "toml",
                     }),
                 }),
                 null_ls.builtins.formatting.shfmt.with({
                     extra_args = { "-i", "2" },
+                }),
+                null_ls.builtins.formatting.sqlfluff.with({
+                    extra_args = { "--dialect", "postgres" },
                 }),
             },
             on_attach = function(client, bufnr)

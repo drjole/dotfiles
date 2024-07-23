@@ -74,7 +74,7 @@ return {
                     },
                     check = {
                         command = "clippy",
-                        extraArgs = { "--", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-W", "clippy::unwrap_used", "-W", "clippy::expect_used" },
+                        -- extraArgs = { "--", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-W", "clippy::unwrap_used", "-W", "clippy::expect_used" },
                     },
                     procMacro = {
                         ignored = {
@@ -90,6 +90,17 @@ return {
         lspconfig.solargraph.setup({
             capabilities = capabilities,
             on_attach = on_attach,
+        })
+
+        lspconfig.sqls.setup({
+            capabilities = capabilities,
+            on_attach = function(client, bufnr)
+                -- Disable formatting for now
+                -- https://github.com/sqls-server/sqls/issues/149
+                client.server_capabilities.documentFormattingProvider = false
+                client.server_capabilities.documentRangeFormattingProvider = false
+                on_attach(client, bufnr)
+            end,
         })
 
         lspconfig.stimulus_ls.setup({
