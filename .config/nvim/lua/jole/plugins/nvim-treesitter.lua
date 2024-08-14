@@ -30,6 +30,7 @@ return {
             "lua",
             "markdown",
             "markdown_inline",
+            "nginx",
             "php",
             "proto",
             "python",
