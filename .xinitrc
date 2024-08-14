@@ -30,19 +30,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-if [ "$(hostname)" = "jolepc" ]; then
-  # DPY-2 is the right monitor, DPY-4 is the left monitor
-  # Both are 2560x1440 144Hz
-  nvidia-settings --assign CurrentMetaMode="
-        DPY-2: 2560x1440_144 @2560x1440 +0+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On},
-        DPY-4: 2560x1440_144 @2560x1440 +2560+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
-  xrandr --output DP-2 --primary
-elif [ "$(hostname)" = "jolelaptop" ]; then
-  xrandr --output eDP --primary --mode 1920x1080 --rate 60
-fi
-
-picom --no-frame-pacing &
-numlockx &
-setxkbmap 'de(us)'
+# Execute ~/.xprofile if it exists.
+[ -f ~/.xprofile ] && . ~/.xprofile
 
 exec i3

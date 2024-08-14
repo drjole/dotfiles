@@ -6,18 +6,12 @@
 ## CONFIGURATION ##############################################################
 
 # Options to pass to i3lock
-i3lock_options="--ignore-empty-password --show-failed-attempts --tiling --image=$HOME/.local/share/wallpapers/$HOSTNAME.png"
-
-# The number of seconds of inactivity before the screen is turned off during session lock
-SCREEN_OFF_TIMEOUT_DURING_LOCK=60
+i3lock_options="--nofork --ignore-empty-password --show-failed-attempts --tiling --image=$HOME/.local/share/wallpapers/$HOSTNAME.png"
 
 # Run before starting the locker
 pre_lock() {
   # Disable notifications on lock screen
   dunstctl set-paused true
-
-  # Turn off the screen after SCREEN_OFF_TIMEOUT_DURING_LOCK seconds
-  # xset dpms $SCREEN_OFF_TIMEOUT_DURING_LOCK $SCREEN_OFF_TIMEOUT_DURING_LOCK $SCREEN_OFF_TIMEOUT_DURING_LOCK
 
   return
 }
@@ -26,12 +20,6 @@ pre_lock() {
 post_lock() {
   # Re-enable notifications
   dunstctl set-paused false
-
-  # Disable automatic screen off
-  # xset -dpms
-
-  # Re-enable automatic screen saver (which also locks the session)
-  $HOME/.config/i3/scripts/setup_auto_screen_off.sh
 
   return
 }
