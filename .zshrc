@@ -85,6 +85,9 @@ key[Control-Right]="${terminfo[kRIT5]}"
 source "$HOME/.local/share/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # bat
 alias cat=bat
 alias -g -- -help='-help 2>&1 | bat --language=help --style=plain'
