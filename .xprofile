@@ -19,3 +19,4 @@ xset -b
 
 # Disable screen blanking
 xset dpms 0 0 0
+xset -dpms
