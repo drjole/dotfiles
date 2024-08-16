@@ -1,3 +1,4 @@
+# Configure the monitors
 if [ "$(hostname)" = "jolepc" ]; then
   # DPY-2 is the right monitor, DPY-4 is the left monitor
   # Both are 2560x1440 144Hz
@@ -9,14 +10,22 @@ elif [ "$(hostname)" = "jolelaptop" ]; then
   xrandr --output eDP --primary --mode 1920x1080 --rate 60 --set TearFree on
 fi
 
+# Start the compositor
 picom --no-frame-pacing &
+
+# Enable numlock
 numlockx &
+
+# Set the keyboard layout
 setxkbmap 'de(us)'
 
 # Turn off the bell
 # https://wiki.archlinux.org/title/PC_speaker#Xorg
 xset -b
 
-# Disable screen blanking
-xset dpms 0 0 0
-xset -dpms
+# Disable DPMS and screen saving
+# We only enable screen saving while the session is locked
+xset s off -dpms
+
+# Lock the screen when suspending or hibernating
+xss-lock --transfer-sleep-lock -- screen-lock &
