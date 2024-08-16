@@ -6,7 +6,7 @@ if [ "$(hostname)" = "jolepc" ]; then
         DPY-4: 2560x1440_144 @2560x1440 +2560+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
   xrandr --output DP-2 --primary
 elif [ "$(hostname)" = "jolelaptop" ]; then
-  xrandr --output eDP --primary --mode 1920x1080 --rate 60
+  xrandr --output eDP --primary --mode 1920x1080 --rate 60 --set TearFree on
 fi
 
 picom --no-frame-pacing &
