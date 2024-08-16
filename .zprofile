@@ -5,12 +5,6 @@ export VISUAL=nvim
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-# Hardware video acceleration on jolepc using libva-nvidia-driver
-# https://github.com/elFarto/nvidia-vaapi-driver
-if [ "$(hostname)" = "jolepc" ]; then
-    export MOZ_DISABLE_RDD_SANDBOX=1
-    export LIBVA_DRIVER_NAME=nvidia
-fi
 
 # TexLive
 export MANPATH="$MANPATH:/usr/local/texlive/2023/texmf-dist/doc/man"
