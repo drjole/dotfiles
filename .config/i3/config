@@ -175,26 +175,28 @@ bindsym $mod+w exec firefox
 bindsym $mod+Shift+p exec pkill -USR1 '^redshift$'
 
 # open specific applications in specific workspaces
+# Use `xprop WM_CLASS` to get the class name of the application (the second value in the output)
 assign [class="^Alacritty$"] → $ws1
 assign [class="^firefox$"] → $ws2
 assign [class="^obsidian$"] → $ws3
-assign [class="^chromium$"] → $ws4
+assign [class="^Chromium$"] → $ws4
 assign [class="^Zotero$"] → $ws4
 assign [class="^Signal$"] → $ws5
 assign [class="^discord$"] → $ws6
 assign [class="^steam$"] → $ws7
 assign [class="^steam_app_.*$"] → $ws9
+assign [class="^PrismLauncher$"] → $ws9
 assign [class="^Spotify$"] → $ws10
 
 # assign workspaces to specific screens
 # right
 workspace $ws1 output DP-2
+workspace $ws2 output DP-2
 workspace $ws3 output DP-2
-workspace $ws4 output DP-2
 workspace $ws7 output DP-2
 workspace $ws9 output DP-2
 # left
-workspace $ws2 output DP-0
+workspace $ws4 output DP-0
 workspace $ws5 output DP-0
 workspace $ws6 output DP-0
 workspace $ws10 output DP-0
