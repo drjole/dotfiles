@@ -32,6 +32,7 @@ return {
             "markdown_inline",
             "nginx",
             "php",
+            "properties",
             "proto",
             "python",
             "query",
