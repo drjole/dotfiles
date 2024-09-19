@@ -3,16 +3,16 @@ if [ "$(hostname)" = "jolepc" ]; then
   # Zuhause
   # DPY-2 is the right monitor, DPY-4 is the left monitor
   # Both are 2560x1440 144Hz
-  # nvidia-settings --assign CurrentMetaMode="
-  #       DPY-2: 2560x1440_144 @2560x1440 +0+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On},
-  #       DPY-4: 2560x1440_144 @2560x1440 +2560+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+  nvidia-settings --assign CurrentMetaMode="
+        DPY-2: 2560x1440_144 @2560x1440 +0+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On},
+        DPY-4: 2560x1440_144 @2560x1440 +2560+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
 
   # Bei Laurin
   # DP-2 is the right monitor, DPY-4 is the left monitor
   # Both are 2560x1440 144Hz
-  nvidia-settings --assign CurrentMetaMode="
-        DP-2: 2560x1440_144 @2560x1440 +2560+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On},
-        DP-4: 2560x1440_144 @2560x1440 +0+165 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+  # nvidia-settings --assign CurrentMetaMode="
+  #       DP-2: 2560x1440_144 @2560x1440 +2560+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On},
+  #       DP-4: 2560x1440_144 @2560x1440 +0+165 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
 
   xrandr --output DP-2 --primary
 elif [ "$(hostname)" = "jolelaptop" ]; then

@@ -87,10 +87,20 @@ return {
             },
         })
 
-        lspconfig.solargraph.setup({
+        lspconfig.ruby_lsp.setup({
             capabilities = capabilities,
             on_attach = on_attach,
+            filetypes = { "ruby", "eruby" },
+            init_options = {
+                formatter = "standard",
+                linters = { "standard" },
+            },
         })
+
+        -- lspconfig.solargraph.setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
 
         lspconfig.sqls.setup({
             capabilities = capabilities,
