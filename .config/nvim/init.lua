@@ -1,2 +1,1 @@
-require("jole.core")
-require("jole.lazy")
+require("config.lazy")
