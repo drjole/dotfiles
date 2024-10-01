@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+if [ $# -eq 0 ]; then
+  echo "No arguments provided."
+  exit 1
+fi
+
+argument=$1
+
+if [ "$argument" == "up" ]; then
+  sudo sysctl -w net.ipv6.conf.enp3s0.disable_ipv6=1
+  nmcli connection up TH\ Köln
+elif [ "$argument" == "down" ]; then
+  nmcli connection down TH\ Köln
+  sudo sysctl -w net.ipv6.conf.enp3s0.disable_ipv6=0
+else
+  echo "Invalid argument. Please provide either 'up' or 'down'."
+fi
