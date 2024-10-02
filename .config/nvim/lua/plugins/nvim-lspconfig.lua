@@ -118,7 +118,7 @@ return {
             on_attach = on_attach,
         })
 
-        local tailwindcss_default_config = require("lspconfig.server_configurations.tailwindcss").default_config
+        local tailwindcss_default_config = require("lspconfig.configs.tailwindcss").default_config
         lspconfig.tailwindcss.setup({
             capabilities = capabilities,
             on_attach = on_attach,
