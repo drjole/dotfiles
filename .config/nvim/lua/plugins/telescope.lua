@@ -22,6 +22,7 @@ return {
         vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope: Find files" })
         vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope: Find in files" })
         vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope: Find help tags" })
-        vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Telescope: Find recent files" })
+        vim.keymap.set("n", "<leader>fr", function() builtin.oldfiles({ only_cwd = true }) end,
+            { desc = "Telescope: Find recent files" })
     end,
 }
