@@ -97,11 +97,6 @@ return {
             },
         })
 
-        -- lspconfig.solargraph.setup({
-        --     capabilities = capabilities,
-        --     on_attach = on_attach,
-        -- })
-
         lspconfig.sqls.setup({
             capabilities = capabilities,
             on_attach = function(client, bufnr)
