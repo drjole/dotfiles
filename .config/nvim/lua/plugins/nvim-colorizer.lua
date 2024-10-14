@@ -6,4 +6,7 @@ return {
             tailwind = true,
         },
     },
+    keys = {
+        { "<leader>cc", "<cmd>ColorizerToggle<cr>", desc = "Toggle colorizer" },
+    },
 }
