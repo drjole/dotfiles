@@ -31,7 +31,6 @@ if command -v ddcutil >/dev/null 2>&1; then
       new_brightness=100
     fi
 
-    notify-send "Setting brightness to $new_brightness using ddcutil"
     ddcutil --display "$display" setvcp 10 "$new_brightness" 2>/dev/null
   done
 else
@@ -43,6 +42,5 @@ else
     new_brightness="$brightness"
   fi
 
-  notify-send "Setting brightness to $new_brightness using xbacklight"
   xbacklight "$new_brightness"
 fi
