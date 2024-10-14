@@ -1,5 +1,48 @@
 #!/bin/bash
 
-brightness=$1
-ddcutil --display 1 setvcp 10 $brightness 2>/dev/null
-ddcutil --display 2 setvcp 10 $brightness 2>/dev/null
+brightness="$1"
+
+if [ -z "$brightness" ]; then
+  echo "Usage: $0 <brightness>"
+  echo "Brightness can be an absolute value (e.g., 50) or a relative adjustment (e.g., +10, -10)"
+  exit 1
+fi
+
+if command -v ddcutil >/dev/null 2>&1; then
+  for display in 1 2; do
+    current_brightness=$(ddcutil --display "$display" getvcp 10 | grep -oP 'current value =\s*\K\d+')
+    if [ -z "$current_brightness" ]; then
+      echo "Failed to get current brightness for display $display"
+      continue
+    fi
+
+    if [[ "$brightness" = "inc" ]]; then
+      new_brightness=$((current_brightness + 50))
+    elif [[ "$brightness" = "dec" ]]; then
+      new_brightness=$((current_brightness - 50))
+    else
+      new_brightness="$brightness"
+    fi
+
+    # Ensure brightness is within 0-100
+    if [ "$new_brightness" -lt 0 ]; then
+      new_brightness=0
+    elif [ "$new_brightness" -gt 100 ]; then
+      new_brightness=100
+    fi
+
+    notify-send "Setting brightness to $new_brightness using ddcutil"
+    ddcutil --display "$display" setvcp 10 "$new_brightness" 2>/dev/null
+  done
+else
+  if [[ "$brightness" == "inc" ]]; then
+    new_brightness="+10"
+  elif [[ "$brightness" == "dec" ]]; then
+    new_brightness="-10"
+  else
+    new_brightness="$brightness"
+  fi
+
+  notify-send "Setting brightness to $new_brightness using xbacklight"
+  xbacklight "$new_brightness"
+fi

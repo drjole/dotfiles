@@ -44,8 +44,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Backlight control
-bindsym XF86MonBrightnessUp exec xbacklight +10
-bindsym XF86MonBrightnessDown exec xbacklight -10
+bindsym XF86MonBrightnessUp exec brightness inc
+bindsym XF86MonBrightnessDown exec brightness dec
 
 # Audio control
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -189,17 +189,17 @@ assign [class="^PrismLauncher$"] → $ws9
 assign [class="^Spotify$"] → $ws10
 
 # assign workspaces to specific screens
-# right
-workspace $ws1 output DP-0
-workspace $ws2 output DP-0
-workspace $ws3 output DP-0
-workspace $ws7 output DP-0
-workspace $ws9 output DP-0
 # left
-workspace $ws4 output DP-2
-workspace $ws5 output DP-2
-workspace $ws6 output DP-2
-workspace $ws10 output DP-2
+workspace $ws1 output DP-2
+workspace $ws2 output DP-2
+workspace $ws3 output DP-2
+workspace $ws7 output DP-2
+workspace $ws9 output DP-2
+# right
+workspace $ws4 output DP-0
+workspace $ws5 output DP-0
+workspace $ws6 output DP-0
+workspace $ws10 output DP-0
 
 # autostart
 exec --no-startup-id $HOME/.config/i3/scripts/wallpaper.sh
