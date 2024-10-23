@@ -18,9 +18,9 @@ return {
                     extra_args = { "--max-width", "120", "--tab-spaces", "4", "--experimental-tailwind" },
                 }),
                 null_ls.builtins.formatting.prettier.with({
-                    filetypes = vim.tbl_extend("force", null_ls.builtins.formatting.prettier.filetypes, {
-                        "gohtmltmpl",
+                    filetypes = vim.list_extend(null_ls.builtins.formatting.prettier.filetypes, {
                         "toml",
+                        "gohtmltmpl",
                     }),
                 }),
                 null_ls.builtins.formatting.shfmt.with({

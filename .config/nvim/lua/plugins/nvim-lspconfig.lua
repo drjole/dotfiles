@@ -117,7 +117,7 @@ return {
         lspconfig.tailwindcss.setup({
             capabilities = capabilities,
             on_attach = on_attach,
-            filetypes = vim.tbl_extend("force", tailwindcss_default_config.filetypes, {
+            filetypes = vim.list_extend(tailwindcss_default_config.filetypes, {
                 "rust",
             }),
             settings = {
