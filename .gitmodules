@@ -10,6 +10,9 @@
 [submodule ".local/share/catppuccin-lazygit"]
 	path = .local/share/catppuccin-lazygit
 	url = https://github.com/catppuccin/lazygit.git
-[submodule ".local/share/zsh-syntax-highlighting"]
-	path = .local/share/zsh-syntax-highlighting
+[submodule ".local/share/catppuccin-zsh-syntax-highlighting"]
+	path = .local/share/catppuccin-zsh-syntax-highlighting
 	url = https://github.com/catppuccin/zsh-syntax-highlighting.git
+[submodule ".local/share/catppuccin-tmux"]
+	path = .local/share/catppuccin-tmux
+	url = https://github.com/catppuccin/tmux.git

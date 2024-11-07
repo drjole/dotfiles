@@ -13,9 +13,6 @@ pre_lock() {
   # Disable notifications on lock screen
   dunstctl set-paused true
 
-  # Turn off the screen after 1 minute
-  xset s 60 60
-
   return
 }
 
@@ -23,9 +20,6 @@ pre_lock() {
 post_lock() {
   # Re-enable notifications
   dunstctl set-paused false
-
-  # Disable screen saving again
-  xset s off
 
   return
 }

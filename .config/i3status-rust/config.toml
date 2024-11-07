@@ -18,12 +18,6 @@ separator_fg = "auto"
 
 [[block]]
 block = "disk_space"
-if_command = "hostname | grep -q 'jolepc'"
-format = " / $icon $available "
-
-[[block]]
-block = "disk_space"
-if_command = "hostname | grep -q 'jolelaptop'"
 format = " / $icon $available "
 
 [[block]]

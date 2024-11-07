@@ -10,13 +10,18 @@ export MANPATH="$MANPATH:/usr/local/texlive/2023/texmf-dist/doc/man"
 export INFOPATH="$INFOPATH:/usr/local/texlive/2023/texmf-dist/doc/info"
 
 # https://github.com/catppuccin/lazygit
-export LG_CONFIG_FILE="$HOME/.local/share/catppuccin-lazygit/themes-mergable/mocha/lavender.yml" lazygit
+export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml,$HOME/.local/share/catppuccin-lazygit/themes-mergable/mocha/lavender.yml"
 
 # https://github.com/catppuccin/fzf
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a \
+--multi"
+
+# https://github.com/catppuccin/bat
+export BAT_THEME="Catppuccin Mocha"
 
 # https://wiki.archlinux.org/title/Node.js#Allow_user-wide_installations
 export npm_config_prefix="$HOME/.local"
