@@ -72,6 +72,9 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Define some applications to be floating
+for_window [class="^Wfica$"] floating enable
+
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
