@@ -1,8 +1,15 @@
 return {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
+    version = false,
     dependencies = {
         "nvim-lua/plenary.nvim",
+        {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = "make",
+            config = function()
+                require("telescope").load_extension("fzf")
+            end,
+        },
     },
     keys = {
         { "<leader>ff", function() require("telescope.builtin").find_files() end,                  desc = "Telescope: Find files" },
@@ -13,14 +20,11 @@ return {
     opts = {
         pickers = {
             find_files = {
-                find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+                hidden = true,
             },
             live_grep = {
-                additional_args = { "--hidden", "--glob", "!**/.git/*" },
+                additional_args = { "--hidden" },
             },
         },
     },
-    config = function()
-        require("telescope").load_extension("fzf")
-    end,
 }
