@@ -1,9 +1,11 @@
 return {
     "nvimtools/none-ls.nvim",
-    config = function()
+    event = "VeryLazy",
+    opts = function()
         local null_ls = require("null-ls")
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-        null_ls.setup({
+
+        return {
             sources = {
                 -- Linters
                 null_ls.builtins.diagnostics.sqlfluff.with({
@@ -42,6 +44,6 @@ return {
                     })
                 end
             end,
-        })
+        }
     end,
 }

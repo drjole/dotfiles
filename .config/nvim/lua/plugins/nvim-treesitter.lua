@@ -1,11 +1,17 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+    main = "nvim-treesitter.configs",
     build = ":TSUpdate",
     dependencies = {
-        "nvim-treesitter/nvim-treesitter-context",
+        {
+            "nvim-treesitter/nvim-treesitter-context",
+            opts = {
+                mode = "cursor",
+                max_lines = 3,
+            },
+        },
         "nvim-treesitter/nvim-treesitter-textobjects",
     },
-    main = "nvim-treesitter.configs",
     opts = {
         ensure_installed = {
             "bash",

@@ -10,8 +10,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "tex" },
     callback = function()
-        vim.cmd.setlocal({ "spell", "spelllang=en_us" })
-        vim.cmd.setlocal({ "wrap" })
+        vim.cmd([[setlocal spell spellang=en_us]])
+        vim.cmd([[setlocal wrap]])
     end,
 })
 
@@ -20,6 +20,6 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "ruby" },
     callback = function()
-        vim.cmd.setlocal({ "indentkeys-=." })
+        vim.cmd([[setlocal indentkeys-=.]])
     end,
 })
