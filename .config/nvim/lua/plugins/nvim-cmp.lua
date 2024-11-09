@@ -6,6 +6,11 @@ return {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
+        {
+            "L3MON4D3/LuaSnip",
+            build = "make install_jsregexp",
+        },
+        "saadparwaiz1/cmp_luasnip",
     },
     event = { "InsertEnter", "CmdlineEnter" },
     config = function()
@@ -13,6 +18,11 @@ return {
         local defaults = require("cmp.config.default")()
 
         cmp.setup({
+            snippet = {
+                expand = function(args)
+                    require("luasnip").lsp_expand(args.body)
+                end,
+            },
             window = {
                 completion = cmp.config.window.bordered(),
                 documentation = cmp.config.window.bordered(),
@@ -29,6 +39,7 @@ return {
             sources = cmp.config.sources({
                 { name = "lazydev" },
                 { name = "nvim_lsp", max_item_count = 20 },
+                { name = "luasnip" },
                 { name = "path" },
             }, {
                 { name = "buffer" },

@@ -1,12 +1,22 @@
 return {
     "neovim/nvim-lspconfig",
+    dependencies = {
+        {
+            "b0o/schemastore.nvim",
+            version = false,
+        },
+    },
     event = "VeryLazy",
     config = function()
         -- Setup
         local lspconfig = require("lspconfig")
 
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+        local capabilities = vim.tbl_deep_extend(
+            "force",
+            {},
+            vim.lsp.protocol.make_client_capabilities(),
+            require("cmp_nvim_lsp").default_capabilities()
+        )
 
         -- Custom on_attach callback that includes an autocommand to format on save
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -41,6 +51,17 @@ return {
             capabilities = capabilities,
             on_attach = on_attach,
         })
+
+        lspconfig.jsonls.setup {
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = {
+                json = {
+                    schemas = require("schemastore").json.schemas(),
+                    validate = { enable = true },
+                },
+            },
+        }
 
         lspconfig.lua_ls.setup({
             capabilities = capabilities,
@@ -153,8 +174,10 @@ return {
             settings = {
                 yaml = {
                     schemaStore = {
-                        enable = true,
+                        enable = false,
+                        url = "",
                     },
+                    schemas = require("schemastore").yaml.schemas(),
                 },
             },
         })
