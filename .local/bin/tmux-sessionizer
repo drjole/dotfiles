@@ -26,8 +26,9 @@ fi
 if [[ $selected == "$HOME/code"* ]]; then
   session_name=$(echo $selected | sed -e "s|$HOME/code/||")
 else
-  session_name=$(basename $selected | tr . _)
+  session_name=$(basename $selected)
 fi
+session_name=$(echo $session_name | tr . _)
 
 # (Create and) attach/switch to the session
 if [[ -z $TMUX ]]; then
