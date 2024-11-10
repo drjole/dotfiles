@@ -93,7 +93,7 @@ alias cat=bat
 alias -g -- -help='-help 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 export MANROFFOPT="-c"
-export MANPAGER="sh -c 'col -bx | bat --language=man -style=plain'"
+export MANPAGER="sh -c 'col -bx | bat --language=man --style=plain'"
 
 # Aliases
 alias ls=exa
