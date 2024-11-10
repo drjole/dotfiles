@@ -24,11 +24,13 @@ return {
     },
     opts = {
         default_file_explorer = true,
+        skip_confirm_for_simple_edits = true,
         win_options = {
             winbar = "%!v:lua.get_oil_winbar()",
         },
         view_options = {
             show_hidden = true,
+            natural_order = true,
         },
     },
 }
