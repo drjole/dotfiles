@@ -18,10 +18,12 @@ return {
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },
+    lazy = false,
     keys = {
         { "<leader>n", "<cmd>Oil<cr>", desc = "Open oil" },
     },
     opts = {
+        default_file_explorer = true,
         win_options = {
             winbar = "%!v:lua.get_oil_winbar()",
         },
