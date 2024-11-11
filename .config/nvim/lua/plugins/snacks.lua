@@ -10,10 +10,20 @@ return {
         { "<leader>gl", function() Snacks.lazygit.log() end,      desc = "Lazygit Log (cwd)" },
     },
     opts = {
-        bigfile = { enabled = false },
-        notifier = { enabled = false },
-        quickfile = { enabled = false },
-        statuscolumn = { enabled = false },
-        words = { enabled = false },
+        bigfile = {
+            enabled = false,
+        },
+        notifier = {
+            enabled = false,
+        },
+        quickfile = {
+            enabled = false,
+        },
+        statuscolumn = {
+            enabled = false,
+        },
+        words = {
+            enabled = false,
+        },
     },
 }
