@@ -33,6 +33,7 @@ if command -v ddcutil >/dev/null 2>&1; then
 
     ddcutil --display "$display" setvcp 10 "$new_brightness" 2>/dev/null
   done
+  notify-send "Set brightness to $new_brightness"
 else
   if [[ "$brightness" == "inc" ]]; then
     new_brightness="+10"
