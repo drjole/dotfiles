@@ -95,6 +95,9 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat --language=man --style=plain'"
 
+# fzf
+source <(fzf --zsh)
+
 # Aliases
 alias ls=exa
 

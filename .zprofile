@@ -12,7 +12,7 @@ export INFOPATH="$INFOPATH:/usr/local/texlive/2023/texmf-dist/doc/info"
 # https://github.com/catppuccin/lazygit
 export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml,$HOME/.local/share/catppuccin-lazygit/themes-mergable/mocha/lavender.yml"
 
-# https://github.com/catppuccin/fzf
+# https://github.com/catppuccin/fzf and more
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
