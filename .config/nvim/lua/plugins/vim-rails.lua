@@ -1,5 +1,6 @@
 return {
     "tpope/vim-rails",
+    lazy = false,
     keys = {
         { "<leader>rc", "<cmd>Econtroller<cr>", desc = "rails.vim: Go to controller" },
         { "<leader>rh", "<cmd>Ehelper<cr>",     desc = "rails.vim: Go to helper" },
