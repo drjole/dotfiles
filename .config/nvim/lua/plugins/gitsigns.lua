@@ -1,6 +1,5 @@
 return {
     "lewis6991/gitsigns.nvim",
-    event = "VeryLazy",
     keys = {
         { "]h",          "<cmd>Gitsigns next_hunk<cr>",           desc = "Gitsigns: Next hunk" },
         { "[h",          "<cmd>Gitsigns prev_hunk<cr>",           desc = "Gitsigns: Previous hunk" },
@@ -12,5 +11,6 @@ return {
         { "<leader>gsq", "<cmd>Gitsigns setqflist<cr>",           desc = "Gitsigns: Set quickfix list" },
         { "<leader>gsd", "<cmd>Gitsigns diffthis<cr>",            desc = "Gitsigns: Diff this" },
     },
+    event = "VeryLazy",
     opts = {},
 }

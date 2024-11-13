@@ -4,7 +4,6 @@ return {
         "nvim-tree/nvim-web-devicons",
         "echasnovski/mini.icons",
     },
-    event = "VeryLazy",
     keys = {
         {
             "<leader>?",
@@ -14,5 +13,6 @@ return {
             desc = "Buffer Local Keymaps (which-key)",
         },
     },
+    event = "VeryLazy",
     opts = {},
 }
