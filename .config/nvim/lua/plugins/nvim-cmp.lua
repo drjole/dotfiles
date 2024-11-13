@@ -9,6 +9,10 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         {
+            "roobert/tailwindcss-colorizer-cmp.nvim",
+            opts = {
+                color_square_width = 2,
+            },
         },
     },
     event = { "InsertEnter", "CmdlineEnter" },
@@ -37,13 +41,17 @@ return {
             }),
             sources = cmp.config.sources({
                 { name = "lazydev" },
-                { name = "nvim_lsp", max_item_count = 20 },
+                { name = "nvim_lsp" },
                 { name = "luasnip" },
                 { name = "path" },
             }, {
                 { name = "buffer" },
             }),
             sorting = defaults.sorting,
+            formatting = {
+                format = require("tailwindcss-colorizer-cmp").formatter,
+            },
+
         })
 
         cmp.setup.cmdline({ "/", "?" }, {
