@@ -17,7 +17,6 @@ return {
             "bash",
             "bibtex",
             "c",
-            "comment",
             "cpp",
             "css",
             "dockerfile",
