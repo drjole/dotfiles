@@ -19,6 +19,8 @@ return {
                 "--column",
                 -- HACK: Can we set the `--hidden` flag without copying the other default flags?
                 "--hidden",
+                "--glob",
+                "!**/.git/*",
             },
         },
     },
