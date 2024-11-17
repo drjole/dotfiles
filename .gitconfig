@@ -10,19 +10,3 @@
 [maintenance]
     repo = ~/.dotfiles
 	repo = ~/code/reditus/intern
-
-# git-delta
-[include]
-	path = ~/.dotfiles/.local/share/catppuccin-delta/catppuccin.gitconfig
-[core]
-    pager = delta
-[interactive]
-    diffFilter = delta --color-only
-[delta]
-    side-by-side = true
-    features = catppuccin-mocha
-    navigate = true
-[merge]
-    conflictstyle = zdiff3
-[diff]
-    colorMoved = default
