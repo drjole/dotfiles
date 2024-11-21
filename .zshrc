@@ -113,9 +113,6 @@ tmux-sessionizer-widget() {
 zle -N tmux-sessionizer-widget
 bindkey ^f tmux-sessionizer-widget
 
-# rbenv
-eval "$(rbenv init -)"
-
 # Prompt
 eval "$(starship init zsh)"
 
