@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=3dslicer
+Comment=A free, open source and multi-platform software package widely used for medical, biomedical, and related imaging research
+Exec=Slicer
+Icon=3dslicer
+Terminal=false
+StartupNotify=false
+Categories=Graphics;MedicalSoftware;Science;;

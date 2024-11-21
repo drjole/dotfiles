@@ -11,4 +11,8 @@ path=(~/.cargo/bin $path)
 # Go
 path=(~/go/bin $path)
 
+# 3D Slicer
+path=(~/.local/share/3dslicer $path)
+path=(~/.local/share/3dslicer/bin $path)
+
 export PATH
