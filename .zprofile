@@ -29,6 +29,9 @@ export npm_config_prefix="$HOME/.local"
 # https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jdtls
 export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/java/lombok.jar"
 
+# https://github.com/tweag/topiary
+export TOPIARY_LANGUAGE_DIR="$HOME/code/topiary/topiary-queries/queries"
+
 # rbenv
 eval "$(rbenv init - --no-rehash zsh)"
 
