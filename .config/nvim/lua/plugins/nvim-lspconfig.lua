@@ -215,6 +215,9 @@ return {
                 opts = { desc = "LSP: Signature help", buffer = event.buf }
                 vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help, opts)
 
+                opts = { desc = "LSP: Signature help", buffer = event.buf }
+                vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+
                 opts = { desc = "LSP: Add workspace folder", buffer = event.buf }
                 vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
 
