@@ -13,7 +13,7 @@ return {
             method = methods.internal.FORMATTING,
             filetypes = { "eruby" },
             generator_opts = {
-                command = "tailwindcss-class-sorter-erb",
+                command = { "npx", "tailwindcss-class-sorter-erb" },
                 to_stdin = true,
             },
             factory = helpers.formatter_factory,
