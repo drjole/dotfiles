@@ -3,7 +3,22 @@ return {
     event = "VeryLazy",
     opts = function()
         local null_ls = require("null-ls")
+        local helpers = require("null-ls.helpers")
+        local methods = require("null-ls.methods")
+
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+        local tailwindcss_class_sorter_erb = helpers.make_builtin({
+            name = "tailwindcss-class-sorter-erb",
+            method = methods.internal.FORMATTING,
+            filetypes = { "eruby" },
+            generator_opts = {
+                command = "tailwindcss-class-sorter-erb",
+                to_stdin = true,
+            },
+            factory = helpers.formatter_factory,
+        })
+        null_ls.register(tailwindcss_class_sorter_erb)
 
         return {
             sources = {
