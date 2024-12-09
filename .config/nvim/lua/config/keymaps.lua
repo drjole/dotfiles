@@ -16,6 +16,3 @@ vim.keymap.set("v", "<M-k>", ":m '<-2<cr>gv=gv", { desc = "Move selection up" })
 
 -- tmux-sessionizer
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux new-window tmux-sessionizer<cr>", { desc = "Open tmux-sessionizer" })
-
--- Lazy
-vim.keymap.set("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
