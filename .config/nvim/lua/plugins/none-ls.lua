@@ -18,7 +18,6 @@ return {
             },
             factory = helpers.formatter_factory,
         })
-        null_ls.register(tailwindcss_class_sorter_erb)
 
         return {
             sources = {
@@ -27,6 +26,7 @@ return {
                     extra_args = { "--dialect", "postgres" },
                 }),
                 -- Formatters
+                tailwindcss_class_sorter_erb,
                 null_ls.builtins.formatting.erb_format.with({
                     command = { "bundle", "exec", "erb-format" },
                     extra_args = { "--print-width", "120" },
@@ -54,7 +54,7 @@ return {
                         group = augroup,
                         buffer = bufnr,
                         callback = function()
-                            vim.lsp.buf.format({ async = false })
+                            vim.lsp.buf.format({ bufnr = bufnr, async = false, timeout_ms = 3000 })
                         end,
                     })
                 end

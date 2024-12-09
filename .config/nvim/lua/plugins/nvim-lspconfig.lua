@@ -25,7 +25,7 @@ return {
                 group = augroup,
                 buffer = bufnr,
                 callback = function()
-                    vim.lsp.buf.format({ bufnr = bufnr, async = false })
+                    vim.lsp.buf.format({ bufnr = bufnr, async = false, timeout_ms = 3000 })
                 end,
             })
         end
@@ -243,7 +243,7 @@ return {
 
                 opts = { desc = "LSP: Format", buffer = event.buf }
                 vim.keymap.set("n", "<leader>f", function()
-                    vim.lsp.buf.format({ async = false })
+                    vim.lsp.buf.format({ bufnr = event.buf, async = false, timeout_ms = 3000 })
                 end, opts)
 
                 opts = { desc = "LSP: Document symbols", buffer = event.buf }
