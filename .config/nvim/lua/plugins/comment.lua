@@ -1,5 +1,3 @@
 return {
-    "numToStr/Comment.nvim",
-    event = "VeryLazy",
-    opts = {},
+  "numToStr/Comment.nvim",
 }
