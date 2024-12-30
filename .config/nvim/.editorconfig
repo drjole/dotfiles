@@ -1,10 +1,4 @@
-[*.json]
-indent_size = 2
-indent_style = space
-
-[*lua]
+[*.lua]
 call_arg_parentheses = keep
-indent_size = 2
-indent_style = space
 quote_style = double
 trailing_table_separator = smart
