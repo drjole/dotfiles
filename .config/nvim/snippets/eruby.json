@@ -1,18 +1,18 @@
 {
-    "erb": {
-        "prefix": "erb",
-        "body": [
-            "<%= ${1} %>"
-        ]
-    },
-    "erbif": {
-        "prefix": "erbif",
-        "body": [
-            "<% if ${1} %>",
-            "\t${2}",
-            "<% else %>",
-            "\t${3}",
-            "<% end %>"
-        ]
-    }
+  "erb": {
+    "prefix": "erb",
+    "body": [
+      "<%= ${1} %>"
+    ]
+  },
+  "erbif": {
+    "prefix": "erbif",
+    "body": [
+      "<% if ${1} %>",
+      "\t${2}",
+      "<% else %>",
+      "\t${3}",
+      "<% end %>"
+    ]
+  }
 }

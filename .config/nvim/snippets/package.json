@@ -1,11 +1,11 @@
 {
-    "name": "personal-snippets",
-    "contributes": {
-        "snippets": [
-            {
-                "language": "eruby",
-                "path": "./eruby.json"
-            }
-        ]
-    }
+  "name": "personal-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "eruby",
+        "path": "./eruby.json"
+      }
+    ]
+  }
 }
