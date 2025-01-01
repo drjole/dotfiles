@@ -22,6 +22,11 @@ return {
       clangd = {},
       dockerls = {},
       gopls = {},
+      html = {
+        filetypes = vim.list_extend(require("lspconfig.configs.html").default_config.filetypes, {
+          "eruby",
+        }),
+      },
       jdtls = {},
       jsonls = {
         settings = {
@@ -51,7 +56,6 @@ return {
       },
       pylsp = {},
       ruby_lsp = {
-        filetypes = { "ruby", "eruby" },
         init_options = {
           formatter = "standard",
           linters = {
