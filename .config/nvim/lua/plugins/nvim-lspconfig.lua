@@ -115,6 +115,7 @@ return {
               url = "",
             },
             schemas = require("schemastore").yaml.schemas(),
+            validate = true,
           },
         },
       },
@@ -138,7 +139,7 @@ return {
           vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = args.buf,
             callback = function()
-              vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+              vim.lsp.buf.format({ bufnr = args.buf, id = client.id, formatting_options = { insertSpaces = true } })
             end,
           })
         end
