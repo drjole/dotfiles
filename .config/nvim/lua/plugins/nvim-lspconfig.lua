@@ -26,6 +26,9 @@ return {
         filetypes = vim.list_extend(require("lspconfig.configs.html").default_config.filetypes, {
           "eruby",
         }),
+        init_options = {
+          provideFormatter = false,
+        },
       },
       jdtls = {},
       jsonls = {
@@ -84,7 +87,6 @@ return {
         },
       },
       sqls = {},
-      stimulus_ls = {},
       tailwindcss = {
         filetypes = vim.list_extend(require("lspconfig.configs.tailwindcss").default_config.filetypes, {
           "rust",
@@ -131,10 +133,10 @@ return {
 
     vim.api.nvim_create_autocmd("LspAttach", {
       callback = function(args)
-        vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions)
-        vim.keymap.set("n", "g0", require("telescope.builtin").lsp_document_symbols)
-        vim.keymap.set("n", "gri", require("telescope.builtin").lsp_implementations)
-        vim.keymap.set("n", "grr", require("telescope.builtin").lsp_references)
+        vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, { buffer = args.buf })
+        vim.keymap.set("n", "g0", require("telescope.builtin").lsp_document_symbols, { buffer = args.buf })
+        vim.keymap.set("n", "gri", require("telescope.builtin").lsp_implementations, { buffer = args.buf })
+        vim.keymap.set("n", "grr", require("telescope.builtin").lsp_references, { buffer = args.buf })
 
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if not client then return end

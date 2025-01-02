@@ -3,7 +3,8 @@ return {
   opts = {
     formatters = {
       erb_format = {
-        prepend_args = { "--print-width", "120" },
+        command = "bundle",
+        prepend_args = { "exec", "erb-format", "--print-width", "120" },
         condition = function(_, ctx)
           local filetype = vim.bo[ctx.buf].filetype
           return filetype == "eruby" or filetype == "eruby.html"
