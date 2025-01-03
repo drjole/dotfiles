@@ -14,6 +14,10 @@ return {
         command = "npx",
         args = { "tailwindcss-class-sorter-erb" },
         condition = function(_, ctx)
+          if vim.fn.system("npm list tailwindcss-class-sorter-erb | grep tailwindcss-class-sorter-erb") ~= 0 then
+            return false
+          end
+
           local filetype = vim.bo[ctx.buf].filetype
           return filetype == "eruby" or filetype == "eruby.html"
         end,
