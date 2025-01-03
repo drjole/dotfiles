@@ -5,6 +5,12 @@
             "<%= ${1} %>"
         ]
     },
+    "erbend": {
+        "prefix": "erbend",
+        "body": [
+            "<% end %>"
+        ]
+    },
     "erbif": {
         "prefix": "erbif",
         "body": [
