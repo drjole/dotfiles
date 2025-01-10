@@ -1,9 +1,10 @@
 return {
   "stevearc/conform.nvim",
   opts = {
+    log_level = vim.log.levels.DEBUG,
     formatters_by_ft = {
       css = { "prettier" },
-      eruby = { "tailwindcss_class_sorter_erb", "erb_format" },
+      eruby = { "erb_format", "erb_format_with_tailwindcss" },
       html = { "prettier" },
       javascript = { "prettier" },
       json = { "prettier" },
@@ -17,17 +18,30 @@ return {
     formatters = {
       erb_format = {
         command = "bundle",
-        prepend_args = { "exec", "erb-format", "--print-width", "120" },
+        args = { "exec", "erb-formatter", "--stdin", "--print-width", "120" },
         condition = function(_, ctx)
           local filetype = vim.bo[ctx.buf].filetype
-          return filetype == "eruby" or filetype == "eruby.html"
+          if filetype ~= "eruby" and filetype ~= "eruby.html" then
+            return false
+          end
+          if vim.system({ "bundle", "info", "tailwindcss-rails" }):wait().code == 0 then
+            return false
+          end
+          return true
         end,
       },
-      tailwindcss_class_sorter_erb = {
-        command = "node_modules/.bin/tailwindcss-class-sorter-erb",
+      erb_format_with_tailwindcss = {
+        command = "bundle",
+        args = { "exec", "erb-formatter", "--stdin", "--print-width", "120", "--tailwind-output-path", "app/assets/builds/tailwind.css" },
         condition = function(_, ctx)
           local filetype = vim.bo[ctx.buf].filetype
-          return filetype == "eruby" or filetype == "eruby.html"
+          if filetype ~= "eruby" and filetype ~= "eruby.html" then
+            return false
+          end
+          if vim.system({ "bundle", "info", "tailwindcss-rails" }):wait().code ~= 0 then
+            return false
+          end
+          return true
         end,
       },
       topiary = {
