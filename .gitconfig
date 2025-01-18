@@ -4,10 +4,11 @@
 	name = Jonas Weber
 	email = jonas@jole.dev
 [pull]
-    rebase = false
+	rebase = false
 [rerere]
 	enabled = true
 [maintenance]
-    repo = ~/.dotfiles
-	repo = ~/code/reditus/intern
+	repo = /home/jole/.dotfiles
+	repo = /home/jole/code/arch
 	repo = /home/jole/code/rcwebsight
+	repo = /home/jole/code/reditus/intern
