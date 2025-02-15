@@ -74,13 +74,6 @@ return {
               command = "clippy",
               -- extraArgs = { "--", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-W", "clippy::unwrap_used", "-W", "clippy::expect_used" },
             },
-            procMacro = {
-              ignored = {
-                leptos_macro = {
-                  "server",
-                },
-              },
-            },
           },
         },
       },
@@ -94,10 +87,12 @@ return {
             require("lspconfig.configs.tailwindcss").default_config.settings.tailwindCSS, {
               includeLanguages = {
                 rust = "html",
+                templ = "html",
               },
             }),
         },
       },
+      templ = {},
       texlab = {
         settings = {
           texlab = {

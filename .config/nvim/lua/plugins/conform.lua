@@ -11,6 +11,7 @@ return {
       markdown = { "prettier" },
       query = { "topiary" },
       scss = { "prettier" },
+      templ = { "prettier" },
       toml = { "topiary" },
       typescript = { "prettier" },
       yaml = { "prettier" },
@@ -20,15 +21,17 @@ return {
         command = "bundle",
         prepend_args = { "exec", "erb-format", "--print-width", "120" },
         condition = function(_, ctx)
-          local filetype = vim.bo[ctx.buf].filetype
-          return filetype == "eruby" or filetype == "eruby.html"
+          local filename = vim.fn.expand("%:t")
+          local ending = ".html.erb"
+          return string.sub(filename, - #ending) == ending
         end,
       },
       tailwindcss_class_sorter_erb = {
         command = "node_modules/.bin/tailwindcss-class-sorter-erb",
         condition = function(_, ctx)
-          local filetype = vim.bo[ctx.buf].filetype
-          return filetype == "eruby" or filetype == "eruby.html"
+          local filename = vim.fn.expand("%:t")
+          local ending = ".html.erb"
+          return string.sub(filename, - #ending) == ending
         end,
       },
       topiary = {
