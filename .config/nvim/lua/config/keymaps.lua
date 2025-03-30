@@ -25,3 +25,11 @@ vim.keymap.set("n", "<C-M-k>", "<cmd>cprev<cr>zz")
 
 -- tmux-sessionizer
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux new-window tmux-sessionizer<cr>")
+
+-- Diagnostics
+vim.keymap.set("n", "]d", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end)
+vim.keymap.set("n", "[d", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end)

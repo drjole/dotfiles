@@ -58,9 +58,9 @@ return {
       pylsp = {},
       ruby_lsp = {
         init_options = {
-          formatter = "standard",
+          formatter = "rubocop",
           linters = {
-            "standard",
+            "rubocop",
           },
         },
       },
