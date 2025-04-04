@@ -16,6 +16,7 @@ return {
     { "<leader>fg", function() require("telescope.builtin").live_grep() end },
     { "<leader>fh", function() require("telescope.builtin").help_tags() end },
     { "<leader>fr", function() require("telescope.builtin").oldfiles({ only_cwd = true }) end },
+    { "z=",         function() require("telescope.builtin").spell_suggest() end },
   },
   opts = {
     extensions = {
