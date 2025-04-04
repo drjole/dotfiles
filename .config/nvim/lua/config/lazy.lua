@@ -18,6 +18,7 @@ require("config.options")
 require("config.autocommands")
 require("config.keymaps")
 require("config.filetypes")
+require("config.diagnostic")
 
 require("lazy").setup({
   change_detection = {
