@@ -55,6 +55,7 @@ return {
           },
         },
       },
+      marksman = {},
       pylsp = {},
       ruby_lsp = {
         init_options = {
@@ -128,7 +129,7 @@ return {
     vim.api.nvim_create_autocmd("LspAttach", {
       callback = function(args)
         vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, { buffer = args.buf })
-        vim.keymap.set("n", "g0", require("telescope.builtin").lsp_document_symbols, { buffer = args.buf })
+        vim.keymap.set("n", "gO", require("telescope.builtin").lsp_document_symbols, { buffer = args.buf })
         vim.keymap.set("n", "gri", require("telescope.builtin").lsp_implementations, { buffer = args.buf })
         vim.keymap.set("n", "grr", require("telescope.builtin").lsp_references, { buffer = args.buf })
 
