@@ -48,7 +48,6 @@ return {
       "gomod",
       "gosum",
       "html",
-      -- "latex",
       "java",
       "javascript",
       "json",
@@ -67,8 +66,12 @@ return {
     },
     highlight = {
       enable = true,
-      additional_vim_regex_highlighting = true,
+      additional_vim_regex_highlighting = false,
       disable = function(lang, buf)
+        if lang == "latex" then
+          return true
+        end
+
         -- Disable highlighting for large files
         local max_filesize = 100 * 1024 -- 100 KB
         local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
