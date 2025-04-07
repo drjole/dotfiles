@@ -3,7 +3,10 @@ export TERMINAL=alacritty
 export EDITOR=nvim
 export VISUAL=nvim
 
-export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_STYLE_OVERRIDE=kvantum
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_ENABLE_HIGHDPI_SCALING=0
+export QT_SCALE_FACTOR=1.2
 
 # TexLive
 export MANPATH="$MANPATH:/usr/local/texlive/2023/texmf-dist/doc/man"
