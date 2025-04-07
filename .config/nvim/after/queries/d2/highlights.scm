@@ -1,118 +1,55 @@
-([
-  (comment)
-  (block_comment)
-] @spell @comment)
+(
+  [
+    (comment)
+    (block_comment)
+  ] @spell @comment
+)
 
 [
   (label)
   (label_codeblock)
-  (label_constraint)
+  (label_array)
 ] @string
 
-((label) @keyword
-  (#any-of? @keyword
-    "null"
-    "Null"
-    "NULL"
-  )
+(
+  (label) @keyword
+  (#any-of? @keyword "null" "Null" "NULL")
 )
 
-((label) @string.special
-  (#any-of? @string.special
-    "top-left"
-    "top-center"
-    "top-right"
-    "center-left"
-    "center-right"
-    "bottom-left"
-    "bottom-center"
-    "bottom-right"
-    "outside-top-left"
-    "outside-top-center"
-    "outside-top-right"
-    "outside-left-center"
-    "outside-right-center"
-    "outside-bottom-left"
-    "outside-bottom-center"
-    "outside-bottom-right"
-  )
+(
+  (label) @string.special
+  (#any-of? @string.special "top-left" "top-center" "top-right" "center-left" "center-right" "bottom-left" "bottom-center" "bottom-right" "outside-top-left" "outside-top-center" "outside-top-right" "outside-left-center" "outside-right-center" "outside-bottom-left" "outside-bottom-center" "outside-bottom-right")
 )
 
-((label_constraint) @constant
-  (#any-of? @constant
-    "primary_key"
-    "PK"
-    "foreign_key"
-    "FK"
-    "unique"
-    "UNQ"
-    "NULL"
-    "NOT NULL"
-  )
+(
+  (label_array) @constant
+  (#any-of? @constant "primary_key" "PK" "foreign_key" "FK" "unique" "UNQ" "NULL" "NOT NULL")
 )
 
 (escape) @string.escape
 
 (identifier) @function
-((identifier) @function.builtin
-  (#any-of? @function.builtin
-    "3d"
-    "animated"
-    "bold"
-    "border-radius"
-    "class"
-    "classes"
-    "constraint"
-    "d2-config"
-    "direction"
-    "double-border"
-    "fill"
-    "fill-pattern"
-    "filled"
-    "font"
-    "font-color"
-    "font-size"
-    "height"
-    "italic"
-    "label"
-    "layers"
-    "link"
-    "multiple"
-    "near"
-    "opacity"
-    "scenarios"
-    "shadow"
-    "shape"
-    "source-arrowhead"
-    "steps"
-    "stroke"
-    "stroke-dash"
-    "stroke-width"
-    "style"
-    "target-arrowhead"
-    "text-transform"
-    "tooltip"
-    "underline"
-    "vars"
-    "width"
-  )
+(
+  (identifier) @function.builtin
+  (#any-of? @function.builtin "3d" "animated" "bold" "border-radius" "class" "classes" "constraint" "d2-config" "direction" "double-border" "fill" "fill-pattern" "filled" "font" "font-color" "font-size" "height" "italic" "label" "layers" "link" "multiple" "near" "opacity" "scenarios" "shadow" "shape" "source-arrowhead" "steps" "stroke" "stroke-dash" "stroke-width" "style" "target-arrowhead" "text-transform" "tooltip" "underline" "vars" "width")
 )
 
-((identifier) @keyword
+(
+  (identifier) @keyword
   (#eq? @keyword "_")
 )
 
 [
- "$"
- "...$"
- "@"
- "...@"
+  "$"
+  "...$"
+  "@"
+  "...@"
 ] @keyword
 
 [
- (glob_filter)
- (inverse_glob_filter)
- (visibility_mark)
+  (glob_filter)
+  (inverse_glob_filter)
+  (visibility_mark)
 ] @keyword.modifier
 
 (import) @module
@@ -132,7 +69,8 @@
 ] @string.special
 
 (identifier
-  (glob) @string.special.symbol)
+  (glob) @string.special.symbol
+)
 
 (connection) @operator
 (connection_identifier) @property
