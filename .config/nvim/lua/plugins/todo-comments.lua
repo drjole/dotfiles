@@ -1,12 +1,12 @@
 return {
   "folke/todo-comments.nvim",
   dependencies = {
-    "nvim-telescope/telescope.nvim",
+    "ibhagwan/fzf-lua",
   },
   keys = {
     { "]t",         function() require("todo-comments").jump_next() end },
     { "[t",         function() require("todo-comments").jump_prev() end },
-    { "<leader>ft", "<cmd>TodoTelescope<cr>" },
+    { "<leader>ft", "<cmd>TodoFzfLua<cr>" },
   },
   opts = {
     search = {

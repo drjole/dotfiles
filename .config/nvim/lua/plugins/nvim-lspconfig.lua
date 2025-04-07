@@ -1,7 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "nvim-telescope/telescope.nvim",
+    "ibhagwan/fzf-lua",
     "b0o/schemastore.nvim",
     "saghen/blink.cmp",
     {
@@ -128,10 +128,11 @@ return {
 
     vim.api.nvim_create_autocmd("LspAttach", {
       callback = function(args)
-        vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, { buffer = args.buf })
-        vim.keymap.set("n", "gO", require("telescope.builtin").lsp_document_symbols, { buffer = args.buf })
-        vim.keymap.set("n", "gri", require("telescope.builtin").lsp_implementations, { buffer = args.buf })
-        vim.keymap.set("n", "grr", require("telescope.builtin").lsp_references, { buffer = args.buf })
+        vim.keymap.set("n", "gd", require("fzf-lua").lsp_definitions, { buffer = args.buf })
+        vim.keymap.set("n", "gO", require("fzf-lua").lsp_document_symbols, { buffer = args.buf })
+        vim.keymap.set("n", "gri", require("fzf-lua").lsp_implementations, { buffer = args.buf })
+        vim.keymap.set("n", "grr", require("fzf-lua").lsp_references, { buffer = args.buf })
+        vim.keymap.set("n", "gra", require("fzf-lua").lsp_code_actions, { buffer = args.buf })
 
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if not client then return end
