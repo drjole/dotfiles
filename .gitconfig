@@ -1,14 +1,36 @@
+[branch]
+    sort = -committerdate
+[column]
+    ui = auto
+[commit]
+    verbose = true
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicprefix = true
+    renames = true
+[fetch]
+    prune = true
+    pruneTags = true
 [init]
-	defaultBranch = main
-[user]
-	name = Jonas Weber
-	email = jonas@jole.dev
-[pull]
-	rebase = false
-[rerere]
-	enabled = true
+    defaultbranch = main
 [maintenance]
-	repo = /home/jole/.dotfiles
-	repo = /home/jole/code/arch
-	repo = /home/jole/code/rcwebsight
-	repo = /home/jole/code/reditus/intern
+    repo = /home/jole/.dotfiles
+    repo = /home/jole/code/arch
+    repo = /home/jole/code/master-thesis
+    repo = /home/jole/code/rcwebsight
+    repo = /home/jole/code/reditus/intern
+[pull]
+    rebase = false
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+[rerere]
+    enabled = true
+    autoupdate = true
+[tag]
+    sort = version:refname
+[user]
+    name = Jonas Weber
+    email = jonas@jole.dev
