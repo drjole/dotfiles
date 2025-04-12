@@ -7,6 +7,5 @@ return {
     { "<leader>rv", "<cmd>Eview<cr>" },
   },
   lazy = false,
-  config = function()
-  end,
+  config = function() end,
 }

@@ -1,17 +1,13 @@
 return {
   "github/copilot.vim",
-  config = function()
-    vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
-      expr = true,
-      replace_keycodes = false,
-    })
-
+  keys = {
+    { "<C-j>", 'copilot#Accept("\\<CR>")', mode = "i", expr = true, replace_keycodes = false },
+  },
+  lazy = false,
+  init = function()
     vim.g.copilot_no_tab_map = true
-    vim.g.copilot_workspace_folders = {
-      "~/code/reditus/intern",
-      "~/code/rcwebsight",
-    }
-
+  end,
+  config = function()
     vim.cmd([[Copilot disable]])
   end,
 }

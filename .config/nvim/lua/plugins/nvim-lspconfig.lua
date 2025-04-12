@@ -121,9 +121,9 @@ return {
       },
     }
 
-    local capabilities = require("blink.cmp").get_lsp_capabilities()
     for server, config in pairs(servers) do
-      require("lspconfig")[server].setup(vim.tbl_extend("force", { capabilities = capabilities }, config))
+      config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+      require("lspconfig")[server].setup(config)
     end
 
     vim.api.nvim_create_autocmd("LspAttach", {

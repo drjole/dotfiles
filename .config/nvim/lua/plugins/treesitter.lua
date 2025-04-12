@@ -80,9 +80,9 @@ return {
         end
       end,
     },
-    -- indent = {
-    --   enable = true,
-    -- },
+    indent = {
+      enable = true,
+    },
     incremental_selection = {
       enable = true,
     },
