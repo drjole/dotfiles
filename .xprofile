@@ -21,7 +21,7 @@ picom --no-frame-pacing &
 numlockx &
 
 # Set the keyboard layout
-setxkbmap -option compose:rwin de us
+# setxkbmap -option compose:rwin de us
 
 # Turn off the bell
 # https://wiki.archlinux.org/title/PC_speaker#Xorg
