@@ -190,11 +190,9 @@ assign [class="^Zotero$"] → $ws4
 assign [class="^Signal$"] → $ws5
 assign [class="^discord$"] → $ws6
 assign [class="^steam$"] → $ws7
-assign [class="^Slicer$"] → $ws7
 assign [class="^Wfica$"] → $ws8
 assign [class="^steam_app_.*$"] → $ws9
 assign [class="^PrismLauncher$"] → $ws9
-assign [class="^.*cisco.*$"] → $ws9
 assign [class="^Spotify$"] → $ws10
 
 # assign workspaces to specific screens
