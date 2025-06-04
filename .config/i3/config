@@ -37,6 +37,10 @@ bindsym $mod+o exec screen-lock
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# Connect/disconnect JOLEPODS
+set $toggle_jolepods "if bluetoothctl info 80:95:3A:C3:60:2E | grep -q 'Connected: no'; then bluetoothctl connect 80:95:3A:C3:60:2E; else bluetoothctl disconnect 80:95:3A:C3:60:2E; fi"
+bindsym $mod+z exec --no-startup-id $toggle_jolepods
+
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
