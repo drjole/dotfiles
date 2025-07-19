@@ -1,0 +1,75 @@
+@import "../../.local/share/catppuccin-waybar/themes/mocha.css";
+
+* {
+	font-family: JetBrains Mono Nerd Font;
+	font-size: 12px;
+	min-height: 0;
+}
+
+#waybar {
+	background: transparent;
+	color: @text;
+}
+
+#workspaces {
+	border-radius: 1rem;
+	margin: 8px 8px 0 8px;
+	background-color: @surface0;
+}
+
+#workspaces button {
+	border-radius: 1rem;
+	color: @overlay0;
+}
+
+#workspaces button.active {
+	border-radius: 1rem;
+	color: @lavender;
+	font-weight: bold;
+}
+
+#workspaces button.urgent {
+	border-radius: 1rem;
+	background-color: @red;
+	color: @surface0;
+}
+
+#battery,
+#backlight,
+#pulseaudio,
+#clock,
+#bluetooth,
+#tray {
+	background-color: @surface0;
+	border-radius: 1rem;
+	margin: 8px 8px 0 8px;
+	padding: 8px 16px;
+}
+
+#battery {
+	color: @green;
+}
+
+#battery.charging {
+	color: @yellow;
+}
+
+#battery.warning:not(.charging) {
+	color: @red;
+}
+
+#backlight {
+	color: @teal;
+}
+
+#pulseaudio {
+	color: @sky;
+}
+
+#clock {
+	color: @sapphire;
+}
+
+#bluetooth {
+	color: @blue;
+}

@@ -1,5 +1,0 @@
-lowercaseKeywords: false
-connections:
-  - alias: postgresql
-    driver: postgresql
-    dataSourceName: "postgres://postgres:password@localhost/split?sslmode=disable"

@@ -1,151 +1,161 @@
 return {
-  "neovim/nvim-lspconfig",
-  dependencies = {
-    "ibhagwan/fzf-lua",
-    "b0o/schemastore.nvim",
-    "saghen/blink.cmp",
-    {
-      "folke/lazydev.nvim",
-      ft = "lua",
-      opts = {
-        library = {
-          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-        },
-      },
+    "neovim/nvim-lspconfig",
+    dependencies = {
+        "ibhagwan/fzf-lua",
+        "b0o/schemastore.nvim",
     },
-  },
-  config = function()
-    local servers = {
-      bashls = {},
-      clangd = {},
-      dockerls = {},
-      gopls = {},
-      html = {
-        filetypes = vim.list_extend(require("lspconfig.configs.html").default_config.filetypes, {
-          "eruby",
-        }),
-        init_options = {
-          provideFormatter = false,
-        },
-      },
-      jdtls = {},
-      jsonls = {
-        settings = {
-          json = {
-            schemas = require("schemastore").json.schemas(),
-            validate = { enable = true },
-          },
-        },
-      },
-      lua_ls = {
-        settings = {
-          Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-            format = {
-              enable = true,
-              defaultConfig = {
-                call_arg_parentheses = "remove",
-                indent_style = "space",
-                indent_size = "2",
-                quote_style = "double",
-                trailing_table_separator = "smart",
-              },
+    init = function()
+        local servers = {
+            bashls = {},
+            clangd = {},
+            cssls = {
+                provideFormatter = false,
             },
-          },
-        },
-      },
-      marksman = {},
-      pylsp = {},
-      ruby_lsp = {
-        init_options = {
-          formatter = "rubocop",
-          linters = {
-            "rubocop",
-          },
-        },
-      },
-      rust_analyzer = {
-        settings = {
-          ["rust-analyzer"] = {
-            cargo = {
-              features = "all",
+            dockerls = {},
+            gopls = {},
+            html = {
+                filetypes = vim.list_extend(require("lspconfig.configs.html").default_config.filetypes, {
+                    "eruby",
+                }),
+                init_options = {
+                    provideFormatter = false,
+                },
             },
-            check = {
-              command = "clippy",
-              -- extraArgs = { "--", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-W", "clippy::unwrap_used", "-W", "clippy::expect_used" },
+            jdtls = {},
+            jsonls = {
+                init_options = {
+                    provideFormatter = false,
+                },
+                settings = {
+                    json = {
+                        schemas = require("schemastore").json.schemas(),
+                        validate = {
+                            enable = true,
+                        },
+                    },
+                },
             },
-          },
-        },
-      },
-      sqls = {},
-      tailwindcss = {
-        filetypes = vim.list_extend(require("lspconfig.configs.tailwindcss").default_config.filetypes, {
-          "rust",
-        }),
-        settings = {
-          tailwindCSS = vim.tbl_extend("force",
-            require("lspconfig.configs.tailwindcss").default_config.settings.tailwindCSS, {
-              includeLanguages = {
-                rust = "html",
-                templ = "html",
-              },
-            }),
-        },
-      },
-      templ = {},
-      texlab = {
-        settings = {
-          texlab = {
-            latexindent = {
-              modifyLineBreaks = true,
+            lua_ls = {
+                settings = {
+                    Lua = {
+                        format = {
+                            defaultConfig = {
+                                call_arg_parentheses = "keep",
+                                quote_style = "double",
+                                trailing_table_separator = "smart",
+                            },
+                        },
+                    },
+                },
             },
-          },
-        },
-      },
-      ts_ls = {},
-      yamlls = {
-        settings = {
-          yaml = {
-            format = {
-              enable = true,
+            pylsp = {},
+            ruby_lsp = {
+                init_options = {
+                    formatter = "rubocop",
+                    linters = {
+                        "rubocop",
+                    },
+                },
             },
-            schemaStore = {
-              enable = false,
-              url = "",
+            rust_analyzer = {
+                settings = {
+                    ["rust-analyzer"] = {
+                        cargo = {
+                            features = "all",
+                        },
+                        check = {
+                            command = "clippy",
+                            -- extraArgs = { "--", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-W", "clippy::unwrap_used", "-W", "clippy::expect_used" },
+                        },
+                    },
+                },
             },
-            schemas = require("schemastore").yaml.schemas(),
-            validate = true,
-          },
-        },
-      },
-    }
+            sqls = {},
+            tailwindcss = {
+                settings = {
+                    tailwindCSS = {
+                        experimental = {
+                            -- For `class:` attributes in .erb files
+                            classRegex = {
+                                [=["([^"]*)"]=],
+                                [=['([^']*)']=],
+                            },
+                        },
+                    },
+                },
+                root_dir = function(_, on_dir)
+                    on_dir(vim.fn.getcwd())
+                end,
+            },
+            templ = {},
+            texlab = {
+                settings = {
+                    texlab = {
+                        latexindent = {
+                            modifyLineBreaks = true,
+                        },
+                    },
+                },
+            },
+            ts_ls = {},
+            yamlls = {
+                settings = {
+                    yaml = {
+                        format = {
+                            enable = true,
+                        },
+                        schemaStore = {
+                            enable = false,
+                            url = "",
+                        },
+                        schemas = require("schemastore").yaml.schemas(),
+                        validate = true,
+                    },
+                },
+            },
+        }
 
-    for server, config in pairs(servers) do
-      config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-      require("lspconfig")[server].setup(config)
-    end
-
-    vim.api.nvim_create_autocmd("LspAttach", {
-      callback = function(args)
-        vim.keymap.set("n", "gd", require("fzf-lua").lsp_definitions, { buffer = args.buf })
-        vim.keymap.set("n", "gO", require("fzf-lua").lsp_document_symbols, { buffer = args.buf })
-        vim.keymap.set("n", "gri", require("fzf-lua").lsp_implementations, { buffer = args.buf })
-        vim.keymap.set("n", "grr", require("fzf-lua").lsp_references, { buffer = args.buf })
-        vim.keymap.set("n", "gra", require("fzf-lua").lsp_code_actions, { buffer = args.buf })
-
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if not client then return end
-
-        if client:supports_method("textDocument/formatting") then
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = args.buf,
-            callback = function()
-              vim.lsp.buf.format({ bufnr = args.buf, id = client.id, formatting_options = { insertSpaces = true } })
-            end,
-          })
+        for server, config in pairs(servers) do
+            vim.lsp.config(server, config)
+            vim.lsp.enable(server)
         end
-      end,
-    })
-  end,
+
+        vim.api.nvim_create_autocmd("LspAttach", {
+            group = vim.api.nvim_create_augroup("my.lsp", {}),
+            callback = function(args)
+                local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+
+                if client:supports_method("textDocument/codeAction") then
+                    vim.keymap.set("n", "gra", require("fzf-lua").lsp_code_actions)
+                end
+                if client:supports_method("textDocument/references") then
+                    vim.keymap.set("n", "grr", require("fzf-lua").lsp_references)
+                end
+                if client:supports_method("textDocument/implementation") then
+                    vim.keymap.set("n", "gri", require("fzf-lua").lsp_implementations)
+                end
+                if client:supports_method("textDocument/documentSymbol") then
+                    vim.keymap.set("n", "gO", require("fzf-lua").lsp_document_symbols)
+                end
+                if client:supports_method("textDocument/inlayHint") then
+                    -- vim.lsp.inlay_hint.enable()
+                    vim.keymap.set("n", "<leader>ih",
+                        function()
+                            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                        end)
+                end
+
+                if not client:supports_method("textDocument/willSaveWaitUntil")
+                    and client:supports_method("textDocument/formatting") then
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        group = vim.api.nvim_create_augroup("my.lsp", { clear = false }),
+                        buffer = args.buf,
+                        callback = function()
+                            vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+                        end,
+                    })
+                end
+            end,
+        })
+    end,
 }

@@ -6,19 +6,31 @@
 	url = https://github.com/catppuccin/bat.git
 [submodule ".local/share/catppuccin-lazygit"]
 	path = .local/share/catppuccin-lazygit
-	url = https://github.com/catppuccin/lazygit.git
+	url = https://github.com/catppuccin/lazygit
 [submodule ".local/share/catppuccin-zsh-syntax-highlighting"]
 	path = .local/share/catppuccin-zsh-syntax-highlighting
 	url = https://github.com/catppuccin/zsh-syntax-highlighting.git
+[submodule ".local/share/catppuccin-hyprland"]
+	path = .local/share/catppuccin-hyprland
+	url = https://github.com/catppuccin/hyprland
+[submodule ".local/share/catppuccin-hyprlock"]
+	path = .local/share/catppuccin-hyprlock
+	url = https://github.com/catppuccin/hyprlock
+[submodule ".local/share/catppuccin-waybar"]
+	path = .local/share/catppuccin-waybar
+	url = https://github.com/catppuccin/waybar
+[submodule ".local/share/tmux-sensible"]
+	path = .local/share/tmux-sensible
+	url = https://github.com/tmux-plugins/tmux-sensible
 [submodule ".local/share/catppuccin-tmux"]
 	path = .local/share/catppuccin-tmux
-	url = https://github.com/catppuccin/tmux.git
-[submodule ".config/tmux/plugins/tmux-sensible"]
-	path = .config/tmux/plugins/tmux-sensible
-	url = https://github.com/tmux-plugins/tmux-sensible
-[submodule ".config/tmux/plugins/vim-tmux-navigator"]
-	path = .config/tmux/plugins/vim-tmux-navigator
-	url = https://github.com/christoomey/vim-tmux-navigator
-[submodule ".config/tmux/plugins/catppuccin-tmux"]
-	path = .config/tmux/plugins/catppuccin-tmux
 	url = https://github.com/catppuccin/tmux
+[submodule ".local/share/catppuccin-fzf"]
+	path = .local/share/catppuccin-fzf
+	url = https://github.com/catppuccin/fzf
+[submodule ".local/share/catppuccin-dunst"]
+	path = .local/share/catppuccin-dunst
+	url = https://github.com/catppuccin/dunst
+[submodule ".local/share/catppuccin-kvantum"]
+	path = .local/share/catppuccin-kvantum
+	url = https://github.com/catppuccin/Kvantum

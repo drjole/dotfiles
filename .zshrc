@@ -85,8 +85,11 @@ key[Control-Right]="${terminfo[kRIT5]}"
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Syntax highlighting
-source "$HOME/.local/share/catppuccin-zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh"
+# source "$HOME/.local/share/catppuccin-zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# mise
+eval "$(mise activate zsh)"
 
 # bat
 alias cat=bat

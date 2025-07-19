@@ -1,6 +1,0 @@
-configuration{
-    modi: "drun,power-menu:rofi-power-menu --no-symbols";
-    show-icons: true;
-}
-
-@theme "catppuccin-mocha"

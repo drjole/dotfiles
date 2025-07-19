@@ -1,29 +1,26 @@
 return {
-  "folke/snacks.nvim",
-  priority = 1000,
-  keys = {
-    { "<leader>bd", function() Snacks.bufdelete() end },
-    { "<leader>gg", function() Snacks.lazygit() end },
-    { "<leader>gb", function() Snacks.git.blame_line() end },
-    { "<leader>gB", function() Snacks.gitbrowse() end },
-    { "<leader>gf", function() Snacks.lazygit.log_file() end },
-    { "<leader>gl", function() Snacks.lazygit.log() end },
-  },
-  opts = {
-    bigfile = {
-      enabled = false,
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    keys = {
+        { "<leader>gg", function() Snacks.lazygit() end },
     },
-    notifier = {
-      enabled = false,
+    ---@type snacks.Config
+    opts = {
+        input = {},
+        lazygit = {},
+        words = {},
     },
-    quickfile = {
-      enabled = false,
-    },
-    statuscolumn = {
-      enabled = false,
-    },
-    words = {
-      enabled = false,
-    },
-  },
+    init = function()
+        -- LSP Rename via Oil
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "OilActionsPost",
+            callback = function(event)
+                if event.data.actions.type == "move" then
+                    require("snacks")
+                    Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+                end
+            end,
+        })
+    end,
 }

@@ -8,6 +8,15 @@ if [ -z "$brightness" ]; then
   exit 1
 fi
 
+progress=0
+notification_id=$RANDOM
+
+function notify () {
+    notify-send --replace-id=$notification_id --expire-time=2000 --hint=int:value:$2 "Set brightness to $1%"
+}
+
+notify "$brightness" 0
+
 if command -v ddcutil >/dev/null 2>&1; then
   for display in 1 2; do
     current_brightness=$(ddcutil --display "$display" getvcp 10 | grep -oP 'current value =\s*\K\d+')
@@ -32,9 +41,10 @@ if command -v ddcutil >/dev/null 2>&1; then
     fi
 
     ddcutil --display "$display" setvcp 10 "$new_brightness" 2>/dev/null
+    progress=$((progress + 50))
+    notify "$new_brightness" "$progress"
   done
-  notify-send "Set brightness to $new_brightness"
-else
+elif command -v xbacklight >/dev/null; then
   if [[ "$brightness" == "inc" ]]; then
     new_brightness="+10"
   elif [[ "$brightness" == "dec" ]]; then
