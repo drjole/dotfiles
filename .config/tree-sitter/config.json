@@ -1,0 +1,63 @@
+{
+    "parser-directories": [
+        "/home/jole/code"
+    ],
+    "theme": {
+        "type": 23,
+        "attribute": {
+            "color": 124,
+            "italic": true
+        },
+        "variable.builtin": {
+            "bold": true,
+            "color": 252
+        },
+        "variable.parameter": {
+            "color": 252,
+            "underline": true
+        },
+        "punctuation.special": 239,
+        "keyword": 56,
+        "tag": 18,
+        "type.builtin": {
+            "color": 23,
+            "bold": true
+        },
+        "variable": 252,
+        "comment": {
+            "color": 245,
+            "italic": true
+        },
+        "embedded": null,
+        "constant.builtin": {
+            "color": 94,
+            "bold": true
+        },
+        "constant": 94,
+        "function": 26,
+        "property.builtin": {
+            "color": 124,
+            "bold": true
+        },
+        "punctuation": 239,
+        "number": {
+            "color": 94,
+            "bold": true
+        },
+        "function.builtin": {
+            "color": 26,
+            "bold": true
+        },
+        "string": 28,
+        "operator": {
+            "color": 239,
+            "bold": true
+        },
+        "property": 124,
+        "punctuation.bracket": 239,
+        "string.special": 30,
+        "module": 136,
+        "punctuation.delimiter": 239,
+        "constructor": 136
+    }
+}

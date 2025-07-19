@@ -29,6 +29,9 @@ export npm_config_prefix="$HOME/.local"
 # https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jdtls
 export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/java/lombok.jar"
 
+# TODO: Revert this eventually
+export NVIM_APPNAME=nvim_clean
+
 # rbenv
 eval "$(rbenv init - --no-rehash zsh)"
 
