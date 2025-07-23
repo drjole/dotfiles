@@ -81,11 +81,14 @@ key[Control-Right]="${terminfo[kRIT5]}"
 [[ -n "${key[Control-Left]}"  ]] && bindkey -- "${key[Control-Left]}"  backward-word
 [[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
 
+# Don't eat space before pipe when autocompleting
+# https://superuser.com/questions/613685/how-stop-zsh-from-eating-space-before-pipe-symbol
+ZLE_REMOVE_SUFFIX_CHARS=$' \t\n;&'
+
 # Autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Syntax highlighting
-# source "$HOME/.local/share/catppuccin-zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # mise
@@ -104,13 +107,8 @@ source <(fzf --zsh)
 # Aliases
 alias ls=exa
 
-# Vim key bindings
-bindkey -v
-
-# Other key bindings
-
 # tmux-sessionizer
-tmux-sessionizer-widget() { 
+tmux-sessionizer-widget() {
     tmux-sessionizer
 }
 zle -N tmux-sessionizer-widget

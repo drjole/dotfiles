@@ -1,51 +1,51 @@
 {
-	"layer": "top",
-	"position": "top",
-	"modules-left": ["hyprland/workspaces"],
-	"modules-right": ["battery", "backlight", "pulseaudio", "clock", "bluetooth", "tray"],
-	"hyprland/workspaces": {
-		"sort-by-number": true,
-		"format": "{name}"
-	},
-	"battery": {
-		"states": {
-			"warning": 30,
-			"critical": 15
-		},
-		"format": "{icon}",
-		"format-charging": "",
-		"format-plugged": "",
-		"format-alt": "{icon}",
-		"format-icons": ["", "",  "", "", "", "", "", "", "", "", "", ""]
-	},
-	"backlight": {
-		"device": "intel_backlight",
-		"format": "{icon}",
-		"format-icons": ["", "", "", "", "", "", "", "", ""]
-	},
-	"pulseaudio": {
-		"scroll-step": 5,
-		"format": "{icon} {volume}%",
-		"format-muted": "",
-		"format-icons": {
-			"default": ["", "", " "]
-		},
-		"tooltip": false,
-		"on-click": "pavucontrol"
-	},
-	"clock": {
-		"timezone": "Europe/Berlin",
-		"format": "{:%d.%m.%Y %H:%M}",
-		"tooltip": false
-	},
-	"bluetooth": {
-		"on-click": "blueman-manager",
-		"on-click-right": "bluetoothctl power $(bluetoothctl show | grep \"Powered\" | awk '{print $2}' | sed 's/yes/off/;s/no/on/')",
-		"format-connected": " {device_alias}",
-		"format-connected-battery": " {device_alias} {device_battery_percentage}%"
-	},
-	"tray": {
-		"icon-size": 16,
-		"spacing": 16
-	}
+    "layer": "top",
+    "position": "top",
+    "modules-left": ["hyprland/workspaces"],
+    "modules-right": ["battery", "backlight", "pulseaudio", "clock", "bluetooth", "tray"],
+    "hyprland/workspaces": {
+        "sort-by-number": true,
+        "format": "{name}"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}",
+        "format-charging": "",
+        "format-plugged": "",
+        "format-alt": "{icon}",
+        "format-icons": ["", "",  "", "", "", "", "", "", "", "", "", ""]
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "pulseaudio": {
+        "scroll-step": 5,
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": ["", "", " "]
+        },
+        "tooltip": false,
+        "on-click": "pavucontrol"
+    },
+    "clock": {
+        "timezone": "Europe/Berlin",
+        "format": "{:%d.%m.%Y %H:%M}",
+        "tooltip": false
+    },
+    "bluetooth": {
+        "on-click": "blueman-manager",
+        "on-click-right": "bluetoothctl power $(bluetoothctl show | grep \"Powered\" | awk '{print $2}' | sed 's/yes/off/;s/no/on/')",
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%"
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 16
+    }
 }

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 brightness="$1"
 
 if [ -z "$brightness" ]; then

@@ -1,15 +1,12 @@
 [submodule ".local/share/catppuccin-alacritty"]
 	path = .local/share/catppuccin-alacritty
-	url = https://github.com/catppuccin/alacritty.git
+	url = https://github.com/catppuccin/alacritty
 [submodule ".local/share/catppuccin-bat"]
 	path = .local/share/catppuccin-bat
-	url = https://github.com/catppuccin/bat.git
+	url = https://github.com/catppuccin/bat
 [submodule ".local/share/catppuccin-lazygit"]
 	path = .local/share/catppuccin-lazygit
 	url = https://github.com/catppuccin/lazygit
-[submodule ".local/share/catppuccin-zsh-syntax-highlighting"]
-	path = .local/share/catppuccin-zsh-syntax-highlighting
-	url = https://github.com/catppuccin/zsh-syntax-highlighting.git
 [submodule ".local/share/catppuccin-hyprland"]
 	path = .local/share/catppuccin-hyprland
 	url = https://github.com/catppuccin/hyprland
