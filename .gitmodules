@@ -31,3 +31,6 @@
 [submodule ".local/share/catppuccin-kvantum"]
 	path = .local/share/catppuccin-kvantum
 	url = https://github.com/catppuccin/Kvantum
+[submodule ".local/share/catppuccin-rofi"]
+	path = .local/share/catppuccin-rofi
+	url = https://github.com/catppuccin/rofi

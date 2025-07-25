@@ -1,0 +1,111 @@
+@import "catppuccin-mocha"
+
+configuration {
+    font: "JetBrains Mono Nerd Font 14";
+    show-icons: true;
+}
+
+* {
+    selected-active-foreground: @background;
+    lightfg: @text;
+    separatorcolor: transparent;
+    urgent-foreground: @red;
+    alternate-urgent-background: @lightbg;
+    lightbg: @mantle;
+    background-color: transparent;
+    border-color: @foreground;
+    normal-background: @background;
+    selected-urgent-background: @red;
+    alternate-active-background: @lightbg;
+    spacing: 2;
+    alternate-normal-foreground: @foreground;
+    urgent-background: @background;
+    selected-normal-foreground: @lightbg;
+    active-foreground: @blue;
+    background: @base;
+    selected-active-background: @blue;
+    active-background: @background;
+    selected-normal-background: @lightfg;
+    alternate-normal-background: @lightbg;
+    foreground: @text;
+    selected-urgent-foreground: @background;
+    normal-foreground: @foreground;
+    alternate-urgent-foreground: @red;
+    alternate-active-foreground: @blue;
+}
+
+element {
+    border-radius: 8px;
+    color: @overlay0;
+    padding: 8px;
+    spacing: 16px;
+}
+element normal.normal {
+    color: @overlay0;
+    background-color: @crust;
+}
+element normal.urgent {}
+element normal.active {}
+element selected.normal {
+    color: @lavender;
+    background-color: @surface0;
+}
+element selected.urgent {}
+element selected.active {}
+element alternate.normal {
+    color: @overlay0;
+    background-color: @crust;
+}
+element alternate.urgent {}
+element alternate.active {}
+element-text {
+    vertical-align: 0.5;
+}
+element-icon {
+    size: 40px;
+}
+window {
+    width: 32%;
+    background-color: @crust;
+    border: 2px solid;
+    border-color: @lavender;
+    border-radius: 16px;
+}
+mainbox {
+    margin: 8px;
+    border-radius: 16px;
+}
+message {}
+textbox {}
+listview {
+    lines: 8;
+    margin: 0 8px 16px 8px;
+    background-color: @crust;
+}
+scrollbar {
+    margin: 0 8px 0 0;
+    handle-rounded-corners: true;
+}
+sidebar {}
+button {}
+button selected {}
+num-filtered-rows {}
+num-rows {}
+textbox-num-sep {}
+inputbar {
+    margin: 8px 8px 16px 8px;
+    background-color: @mantle;
+    color: @subtext1;
+    border-radius: 8px;
+    padding: 8px;
+    border: 1px solid;
+    border-color: @subtext1;
+    children: [ "entry", "prompt" ];
+}
+case-indicator {}
+entry {
+    placeholder-color: Gray;
+    placeholder: "Search";
+}
+prompt {}
+textbox-prompt-colon {}

@@ -15,3 +15,7 @@ export ELECTRON_OZONE_PLATFORM_HINT=wayland
 
 # Configure VDPAU hardware video acceleration
 export VDPAU_DRIVER=radeonsi
+
+if uwsm check may-start; then
+    exec uwsm start hyprland-uwsm.desktop
+fi

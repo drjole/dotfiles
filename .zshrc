@@ -24,6 +24,7 @@ zstyle :compinstall filename '$HOME/.zshrc'
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*:ssh:*' hosts
 # Also autocomplete hidden files
 setopt globdots
 

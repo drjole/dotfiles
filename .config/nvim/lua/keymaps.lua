@@ -19,9 +19,5 @@ vim.keymap.set("i", "<m-k>", "<esc><cmd>m .-2<cr>==gi")
 vim.keymap.set("v", "<m-j>", ":m '>+1<cr>gv=gv")
 vim.keymap.set("v", "<m-k>", ":m '<-2<cr>gv=gv")
 
--- Navigate quickfix
-vim.keymap.set("n", "<c-m-j>", "<cmd>cnext<cr>zz")
-vim.keymap.set("n", "<c-m-k>", "<cmd>cprev<cr>zz")
-
 -- tmux-sessionizer
 vim.keymap.set("n", "<c-f>", "<cmd>silent !tmux new-window tmux-sessionizer<cr>")
