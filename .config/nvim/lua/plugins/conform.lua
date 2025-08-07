@@ -12,7 +12,11 @@ return {
     opts = {
         formatters_by_ft = {
             css = { "prettier" },
-            -- eruby = { "tailwindcss_class_sorter_erb", "erb_format", "erb_lint" },
+            eruby = {
+                "tailwindcss_class_sorter_erb",
+                "erb_format",
+                "erb_lint",
+            },
             html = { "prettier" },
             javascript = { "prettier" },
             json = { "prettier" },
