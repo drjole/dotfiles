@@ -8,19 +8,8 @@ return {
         local servers = {
             bashls = {},
             clangd = {},
-            cssls = {
-                provideFormatter = false,
-            },
             dockerls = {},
             gopls = {},
-            html = {
-                filetypes = vim.list_extend(require("lspconfig.configs.html").default_config.filetypes, {
-                    "eruby",
-                }),
-                init_options = {
-                    provideFormatter = false,
-                },
-            },
             jdtls = {},
             jsonls = {
                 init_options = {
