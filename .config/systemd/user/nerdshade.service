@@ -7,7 +7,7 @@ ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/nerdshade -debug -loop -tempDay 6000 -tempNight 3000 -latitude 50.941 -longitude 6.958
+ExecStart=/usr/bin/nerdshade -loop -tempDay 6000 -tempNight 3000 -latitude 50.941 -longitude 6.958
 Slice=session.slice
 Restart=on-failure
 
