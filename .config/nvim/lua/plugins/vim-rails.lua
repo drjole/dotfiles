@@ -7,5 +7,13 @@ return {
         { "<leader>rm", "<cmd>Emodel<cr>" },
         { "<leader>rv", "<cmd>Eview<cr>" },
     },
-    config = false,
+    config = function()
+        -- NOTE: Don't use the eruby.yaml filetype as it breaks treesitter highlighting
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "eruby.yaml",
+            callback = function()
+                vim.bo.filetype = "yaml"
+            end,
+        })
+    end,
 }
