@@ -1,18 +1,20 @@
-local mini_plugins = {
-    icons = {},
-    statusline = {},
-    surround = {},
-    trailspace = {},
-}
-
-local spec = {}
-for name, opts in pairs(mini_plugins) do
-    table.insert(spec, {
-        "echasnovski/mini." .. name,
+return {
+    {
+        "echasnovski/mini.surround",
         version = false,
         lazy = false,
-        opts = opts,
-    })
-end
-
-return spec
+        opts = {},
+    },
+    {
+        "echasnovski/mini.statusline",
+        version = false,
+        lazy = false,
+        opts = {},
+    },
+    {
+        "echasnovski/mini.trailspace",
+        version = false,
+        lazy = false,
+        opts = {},
+    },
+}

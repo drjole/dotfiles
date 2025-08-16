@@ -21,3 +21,6 @@ vim.keymap.set("v", "<m-k>", ":m '<-2<cr>gv=gv")
 
 -- tmux-sessionizer
 vim.keymap.set("n", "<c-f>", "<cmd>silent !tmux new-window tmux-sessionizer<cr>")
+
+-- Format using 'formatexpr'
+vim.keymap.set("n", "<leader>f", "mpgggqG`p")

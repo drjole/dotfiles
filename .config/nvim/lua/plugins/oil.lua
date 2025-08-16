@@ -12,12 +12,11 @@ end
 return {
     "stevearc/oil.nvim",
     dependencies = {
-        "echasnovski/mini.icons",
+        { "echasnovski/mini.icons", opts = {} },
     },
     lazy = false,
     keys = {
-        { "-",     "<cmd>Oil<cr>" },
-        { "<a-h>", function() require("oil").toggle_hidden() end },
+        { "-", "<cmd>Oil<CR>" },
     },
     opts = {
         skip_confirm_for_simple_edits = true,
