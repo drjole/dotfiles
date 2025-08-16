@@ -34,3 +34,6 @@
 [submodule ".local/share/catppuccin-rofi"]
 	path = .local/share/catppuccin-rofi
 	url = https://github.com/catppuccin/rofi
+[submodule ".local/share/catppuccin-plymouth"]
+	path = .local/share/catppuccin-plymouth
+	url = https://github.com/catppuccin/plymouth
