@@ -25,6 +25,6 @@ case "$1" in
         systemctl suspend
         ;;
     *Logout*)
-        loginctl terminate-user "$USER"
+        uwsm stop
         ;;
 esac
