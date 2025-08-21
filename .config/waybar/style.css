@@ -1,37 +1,44 @@
 @import "../../.local/share/catppuccin-waybar/themes/mocha.css";
 
 * {
-	font-family: JetBrains Mono Nerd Font;
-	font-size: 12px;
-	min-height: 0;
+    font-family: JetBrains Mono Nerd Font;
+    font-size: 12px;
+    min-height: 0;
 }
 
 #waybar {
-	background: transparent;
-	color: @text;
+    background: transparent;
+    color: @text;
 }
 
 #workspaces {
-	border-radius: 1rem;
-	margin: 8px 8px 0 8px;
-	background-color: @surface0;
+    border-radius: 1rem;
+    margin: 8px 8px 0 8px;
+    background-color: @surface0;
 }
 
 #workspaces button {
-	border-radius: 1rem;
-	color: @overlay0;
+    border: unset;
+    border-radius: 1rem;
+    color: @overlay0;
 }
 
 #workspaces button.active {
-	border-radius: 1rem;
-	color: @lavender;
-	font-weight: bold;
+    color: @lavender;
+    font-weight: bold;
 }
 
 #workspaces button.urgent {
-	border-radius: 1rem;
-	background-color: @red;
-	color: @surface0;
+    background-color: @red;
+    color: @surface0;
+}
+
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: inherit;
+    background-color: @overlay2;
+    color: @crust;
 }
 
 #battery,
@@ -40,36 +47,36 @@
 #clock,
 #bluetooth,
 #tray {
-	background-color: @surface0;
-	border-radius: 1rem;
-	margin: 8px 8px 0 8px;
-	padding: 8px 16px;
+    background-color: @surface0;
+    border-radius: 1rem;
+    margin: 8px 8px 0 8px;
+    padding: 8px 16px;
 }
 
 #battery {
-	color: @green;
+    color: @green;
 }
 
 #battery.charging {
-	color: @yellow;
+    color: @yellow;
 }
 
 #battery.warning:not(.charging) {
-	color: @red;
+    color: @red;
 }
 
 #backlight {
-	color: @teal;
+    color: @teal;
 }
 
 #pulseaudio {
-	color: @sky;
+    color: @sky;
 }
 
 #clock {
-	color: @sapphire;
+    color: @sapphire;
 }
 
 #bluetooth {
-	color: @blue;
+    color: @blue;
 }

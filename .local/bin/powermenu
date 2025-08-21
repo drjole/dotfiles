@@ -7,10 +7,10 @@ case "$1" in
         echo -en "\0no-custom\x1ftrue\n"
 
         echo -en "Shutdown\0icon\x1fsystem-shutdown\n"
-        echo -en "Reboot\0icon\x1fview-refresh\n"
-        echo -en "BIOS\0icon\x1fpreferences-system\n"
-        echo -en "Suspend\0icon\x1fmedia-playback-pause\n"
-        echo -en "Logout\0icon\x1fsystem-log-out\n"
+        echo -en "Reboot\0icon\x1fsystem-reboot\n"
+        echo -en "Relaunch\0icon\x1femblem-synchronizing\n"
+        echo -en "Suspend\0icon\x1fmedia-playback-pause-symbolic\n"
+        echo -en "BIOS\0icon\x1fsystem-settings\n"
         ;;
     *Shutdown*)
         systemctl poweroff
@@ -18,13 +18,13 @@ case "$1" in
     *Reboot*)
         systemctl reboot
         ;;
-    *BIOS*)
-        systemctl reboot --firmware-setup
+    *Relaunch*)
+        loginctl terminate-user ""
         ;;
     *Suspend*)
         systemctl suspend
         ;;
-    *Logout*)
-        uwsm stop
+    *BIOS*)
+        systemctl reboot --firmware-setup
         ;;
 esac

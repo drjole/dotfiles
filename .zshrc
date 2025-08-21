@@ -1,5 +1,8 @@
-# If not running interactively, don't do anything
+# I not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
+# PATH
+PATH="$HOME/.local/bin:$PATH"
 
 # History
 HISTFILE=~/.zsh_history
@@ -92,9 +95,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# mise
-eval "$(mise activate zsh)"
-
 # bat
 alias cat=bat
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
@@ -110,15 +110,26 @@ alias ls='eza -lh --group-directories-first --icons=auto'
 
 # tmux-sessionizer
 tmux-sessionizer-widget() {
-    tmux-sessionizer
+    tmux-sessionizer <>$TTY
 }
 zle -N tmux-sessionizer-widget
 bindkey ^f tmux-sessionizer-widget
 
+# mise
+eval "$(mise activate zsh)"
+
 # Prompt
 eval "$(starship init zsh)"
 
-# Always start tmux if we are not in tmux
-if [ "$TMUX" = "" ]; then
-    tmux-sessionizer ~
-fi
+# Envs
+export EDITOR="nvim"
+export SUDO_EDITOR="$EDITOR"
+
+# https://github.com/catppuccin/fzf
+source $HOME/.local/share/catppuccin-fzf/themes/catppuccin-fzf-mocha.sh
+
+# https://github.com/catppuccin/lazygit
+export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml,$HOME/.local/share/catppuccin-lazygit/themes-mergable/mocha/lavender.yml"
+
+# https://github.com/catppuccin/bat
+export BAT_THEME="Catppuccin Mocha"

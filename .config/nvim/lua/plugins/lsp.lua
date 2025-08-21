@@ -34,6 +34,10 @@ return {
             },
         })
 
+        vim.lsp.config("herb_ls", {
+            filetypes = { "html", "eruby" },
+        })
+
         vim.lsp.config("ruby_lsp", {
             init_options = {
                 formatter = "rubocop",
