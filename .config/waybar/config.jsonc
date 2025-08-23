@@ -35,6 +35,7 @@
     },
     "pulseaudio": {
         "scroll-step": 5,
+        "smooth-scrolling-threshold": 5,
         "format": "{icon} {volume}%",
         "format-muted": "",
         "format-icons": {
