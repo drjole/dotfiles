@@ -2,6 +2,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     main = "nvim-treesitter.configs",
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter-context",
+    },
     opts = {
         ensure_installed = {
             "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline",
