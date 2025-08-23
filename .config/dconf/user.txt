@@ -42,7 +42,7 @@ sort-directories-first=true
 [org/gtk/settings/file-chooser]
 date-format='regular'
 location-mode='path-bar'
-show-hidden=false
+show-hidden=true
 show-size-column=true
 show-type-column=true
 sidebar-width=167
@@ -52,3 +52,6 @@ sort-order='ascending'
 type-format='category'
 window-position=(0, 0)
 window-size=(1231, 902)
+
+[org/blueman/plugins/recentconns]
+recent-connections=[{'adapter': '38:D5:7A:0E:3F:16', 'address': '80:95:3A:C3:60:2E', 'alias': 'JOLEPODS - Find My', 'icon': 'audio-headphones', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1755981697.270536'}]
