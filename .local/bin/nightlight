@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DAY_TEMPERATURE=6500
+DAY_TEMPERATURE=6000
 NIGHT_TEMPERATURE=3500
 
 # Ensure hyprsunset is running
