@@ -66,6 +66,11 @@ return {
             callback = function(args)
                 local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
+                if client:supports_method("textDocument/definition") then
+                    vim.keymap.set("n", "gd", function()
+                        vim.lsp.buf.definition({ bufnr = args.buf, id = client.id })
+                    end)
+                end
                 if client:supports_method("textDocument/formatting") then
                     vim.keymap.set("n", "<leader>f", function()
                         vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
