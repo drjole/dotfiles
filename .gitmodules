@@ -1,39 +1,39 @@
-[submodule ".local/share/catppuccin-alacritty"]
+[submodule "catppuccin-alacritty"]
 	path = shared/.local/share/catppuccin-alacritty
 	url = https://github.com/catppuccin/alacritty
-[submodule ".local/share/catppuccin-bat"]
+[submodule "catppuccin-bat"]
 	path = shared/.local/share/catppuccin-bat
 	url = https://github.com/catppuccin/bat
-[submodule ".local/share/catppuccin-lazygit"]
-	path = shared/.local/share/catppuccin-lazygit
-	url = https://github.com/catppuccin/lazygit
-[submodule ".local/share/catppuccin-hyprland"]
-	path = shared/.local/share/catppuccin-hyprland
-	url = https://github.com/catppuccin/hyprland
-[submodule ".local/share/catppuccin-hyprlock"]
-	path = shared/.local/share/catppuccin-hyprlock
-	url = https://github.com/catppuccin/hyprlock
-[submodule ".local/share/catppuccin-waybar"]
-	path = shared/.local/share/catppuccin-waybar
-	url = https://github.com/catppuccin/waybar
-[submodule ".local/share/tmux-sensible"]
-	path = shared/.local/share/tmux-sensible
-	url = https://github.com/tmux-plugins/tmux-sensible
-[submodule ".local/share/catppuccin-tmux"]
-	path = shared/.local/share/catppuccin-tmux
-	url = https://github.com/catppuccin/tmux
-[submodule ".local/share/catppuccin-fzf"]
-	path = shared/.local/share/catppuccin-fzf
-	url = https://github.com/catppuccin/fzf
-[submodule ".local/share/catppuccin-dunst"]
+[submodule "catppuccin-dunst"]
 	path = shared/.local/share/catppuccin-dunst
 	url = https://github.com/catppuccin/dunst
-[submodule ".local/share/catppuccin-kvantum"]
+[submodule "catppuccin-fzf"]
+	path = shared/.local/share/catppuccin-fzf
+	url = https://github.com/catppuccin/fzf
+[submodule "catppuccin-hyprland"]
+	path = shared/.local/share/catppuccin-hyprland
+	url = https://github.com/catppuccin/hyprland
+[submodule "catppuccin-hyprlock"]
+	path = shared/.local/share/catppuccin-hyprlock
+	url = https://github.com/catppuccin/hyprlock
+[submodule "catppuccin-kvantum"]
 	path = shared/.local/share/catppuccin-kvantum
 	url = https://github.com/catppuccin/Kvantum
-[submodule ".local/share/catppuccin-rofi"]
-	path = shared/.local/share/catppuccin-rofi
-	url = https://github.com/catppuccin/rofi
-[submodule ".local/share/catppuccin-plymouth"]
+[submodule "catppuccin-lazygit"]
+	path = shared/.local/share/catppuccin-lazygit
+	url = https://github.com/catppuccin/lazygit
+[submodule "catppuccin-plymouth"]
 	path = shared/.local/share/catppuccin-plymouth
 	url = https://github.com/catppuccin/plymouth
+[submodule "catppuccin-rofi"]
+	path = shared/.local/share/catppuccin-rofi
+	url = https://github.com/catppuccin/rofi
+[submodule "catppuccin-tmux"]
+	path = shared/.local/share/catppuccin-tmux
+	url = https://github.com/catppuccin/tmux
+[submodule "catppuccin-waybar"]
+	path = shared/.local/share/catppuccin-waybar
+	url = https://github.com/catppuccin/waybar
+[submodule "tmux-sensible"]
+	path = shared/.local/share/tmux-sensible
+	url = https://github.com/tmux-plugins/tmux-sensible
