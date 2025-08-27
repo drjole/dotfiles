@@ -30,18 +30,10 @@ else
 fi
 session_name=$(echo $session_name | tr . _)
 
-tmux_running=$(pgrep tmux)
-
 # (Create and) attach/switch to the session
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $session_name -c $selected
-    exit 0
-fi
-
 if ! tmux has-session -t=$session_name 2> /dev/null; then
-    tmux new-session -ds $session_name -c $selected
+    tmux new-session -ds $session_name -n $session_name -c $selected -e TMUX_SESSIONIZER_ROOT_DIRECTORY=$selected
 fi
-
 if [[ -n $TMUX ]]; then
     tmux switch-client -t $session_name
 else
