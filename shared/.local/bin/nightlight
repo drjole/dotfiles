@@ -1,8 +1,5 @@
 #!/bin/bash
 
-DAY_TEMPERATURE=6000
-NIGHT_TEMPERATURE=3500
-
 # Ensure hyprsunset is running
 if ! pgrep -x hyprsunset; then
   setsid uwsm app -- hyprsunset &
@@ -12,10 +9,14 @@ fi
 # Query the current temperature
 CURRENT_TEMP=$(hyprctl hyprsunset temperature 2>/dev/null | grep -oE '[0-9]+')
 
-if [[ "$CURRENT_TEMP" == "$DAY_TEMPERATURE" ]]; then
-  hyprctl hyprsunset temperature $NIGHT_TEMPERATURE
-  notify-send "Nightlight screen temperature"
+if [ "$CURRENT_TEMP" -ge 4000 ]; then
+    CURRENT_TEMP=3000
+elif [ "$CURRENT_TEMP" -ge 3000 ]; then
+    CURRENT_TEMP=2000
+elif [ "$CURRENT_TEMP" -ge 2000 ]; then
+    CURRENT_TEMP=1000
 else
-  hyprctl hyprsunset temperature $DAY_TEMPERATURE
-  notify-send "Daylight screen temperature"
+    CURRENT_TEMP=6000
 fi
+
+hyprctl hyprsunset temperature "$CURRENT_TEMP"
