@@ -9,9 +9,6 @@
     colorMoved = plain
     mnemonicprefix = true
     renames = true
-[fetch]
-    prune = true
-    pruneTags = true
 [init]
     defaultbranch = main
 [maintenance]
