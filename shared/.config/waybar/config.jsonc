@@ -3,13 +3,22 @@
     "layer": "top",
     "position": "top",
     "modules-left": ["hyprland/workspaces"],
-    "modules-right": ["battery", "backlight", "pulseaudio", "clock", "bluetooth", "tray"],
+    "modules-right": ["cpu", "temperature", "battery", "backlight", "pulseaudio", "clock", "bluetooth", "tray"],
     "hyprland/workspaces": {
         "sort-by-number": true,
         "format": "{name}"
     },
+    "cpu": {
+        "interval": 1,
+        "format": "  {avg_frequency:1.1f}GHz"
+    },
+    "temperature": {
+        "interval": 1,
+        "hwmon-path": "/sys/devices/platform/nct6775.656/hwmon/hwmon6/temp13_input",
+        "format": " {temperatureC}°C"
+    },
     "battery": {
-        "format": "{icon} {capacity}%",
+        "format": "{icon}  {capacity}%",
         "format-plugged":     "",
         "format-icons": {
             "charging": [
@@ -29,14 +38,14 @@
     },
     "backlight": {
         "device": "intel_backlight",
-        "format": "{icon} {percent}%",
+        "format": "{icon}  {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
         "tooltip": false
     },
     "pulseaudio": {
         "scroll-step": 5,
         "smooth-scrolling-threshold": 5,
-        "format": "{icon} {volume}%",
+        "format": "{icon}  {volume}%",
         "format-muted": "",
         "format-icons": {
             "default": ["", "", " "]

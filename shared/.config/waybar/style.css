@@ -25,22 +25,23 @@
 
 #workspaces button.active {
     color: @lavender;
-    font-weight: bold;
 }
 
 #workspaces button.urgent {
-    background-color: @red;
-    color: @surface0;
+    /* background-color: @red; */
+    /* color: @surface0; */
 }
 
 #workspaces button:hover {
     box-shadow: inherit;
     text-shadow: inherit;
     background: inherit;
-    background-color: @overlay2;
-    color: @crust;
+    background-color: @surface1;
+    /* color: @crust; */
 }
 
+#cpu,
+#temperature,
 #battery,
 #backlight,
 #pulseaudio,
