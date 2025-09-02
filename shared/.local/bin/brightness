@@ -56,8 +56,6 @@ ddcutil_set_target() {
 
 progress=0
 
-notify "Setting brightness …" 0
-
 if command -v brightnessctl >/dev/null 2>&1; then
     current_percent=$(brightnessctl_current_percent)
 
@@ -80,6 +78,8 @@ if command -v brightnessctl >/dev/null 2>&1; then
     progress=100
     notify "Setting brightness to ${target}%" "$progress"
 else
+    notify "Setting brightness …" 0
+
     for display in 1 2; do
         current=$(ddcutil_current "$display")
         if [ -z "$current" ]; then

@@ -37,7 +37,9 @@
         }
     },
     "backlight": {
-        "device": "intel_backlight",
+        "on-scroll-up": "brightness brighter",
+        "on-scroll-down": "brightness darker",
+        "smooth-scrolling-threshold": 5,
         "format": "{icon}  {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
         "tooltip": false
