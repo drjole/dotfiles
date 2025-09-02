@@ -1,47 +1,108 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 set -e
 
-brightness="$1"
+arg="${1:?Usage: $0 <value|brighter|darker>}"
 
-if [ -z "$brightness" ]; then
-  echo "Usage: $0 <brightness>"
-  echo "Brightness can be an absolute value (e.g., 50) or a relative adjustment (e.g., +10, -10)"
-  exit 1
-fi
+lock_dir="${XDG_RUNTIME_DIR:-/tmp}"
+lock_file="${lock_dir}/brightness.lock"
 
-progress=0
-notification_id=$RANDOM
-
-function notify () {
-    notify-send --replace-id=$notification_id --expire-time=2000 --hint=int:value:$2 "Set brightness to $1%"
+exec 200>"$lock_file"
+flock -n 200 || {
+    flock 200
 }
 
-notify "$brightness" 0
+runtime_dir="${XDG_RUNTIME_DIR:-/tmp}"
+id_file="${runtime_dir}/brightness-notify.id"
 
-for display in 1 2; do
-current_brightness=$(ddcutil --display "$display" getvcp 10 | grep -oP 'current value =\s*\K\d+')
-  if [ -z "$current_brightness" ]; then
-    echo "Failed to get current brightness for display $display"
-    continue
-  fi
+if [[ -f "$id_file" ]]; then
+    notification_id=$(<"$id_file")
+else
+    notification_id=$(( RANDOM % 2147483647 ))
+    echo "$notification_id" >"$id_file"
+fi
 
-  if [[ "$brightness" = "inc" ]]; then
-    new_brightness=$((current_brightness + 50))
-  elif [[ "$brightness" = "dec" ]]; then
-    new_brightness=$((current_brightness - 50))
-  else
-    new_brightness="$brightness"
-  fi
+notify() {
+    local text=$1 prog=${2:-0}
+    notify-send \
+        --replace-id="$notification_id" \
+        --expire-time=2000 \
+        --hint=int:value:"$prog" \
+        "$text"
+}
 
-  # Ensure brightness is within 0-100
-  if [ "$new_brightness" -lt 0 ]; then
-    new_brightness=0
-  elif [ "$new_brightness" -gt 100 ]; then
-    new_brightness=100
-  fi
+brightnessctl_current_percent() {
+    local current maximum
+    current=$(brightnessctl get)
+    maximum=$(brightnessctl maximum)
+    (( maximum == 0 )) && return
+    printf '%d' $(( (current * 100 + maximum/2) / maximum ))
+}
+brightnessctl_set_percent() {
+    local percent=$1
+    (( percent < 0 )) && percent=0
+    (( percent > 100 )) && percent=100
+    brightnessctl set "${percent}%"
+}
 
-  ddcutil --display "$display" setvcp 10 "$new_brightness" 2>/dev/null
-  progress=$((progress + 50))
-  notify "$new_brightness" "$progress"
-done
+ddcutil_current() {
+    local display=$1
+    ddcutil --display "$display" getvcp 10 |
+        grep -oP 'current value\s*=\s*\K\d+'
+}
+ddcutil_set_target() {
+    local display=$1 target=$2
+    ddcutil --display "$display" setvcp 10 "$target" 2>/dev/null
+}
+
+progress=0
+
+notify "Setting brightness …" 0
+
+if command -v brightnessctl >/dev/null 2>&1; then
+    current_percent=$(brightnessctl_current_percent)
+
+    case "$arg" in
+        brighter)   target=$(( current_percent + 10 )) ;;
+        darker)     target=$(( current_percent - 10 )) ;;
+        *)          target=$arg ;;
+    esac
+
+    (( target < 0 )) && target=0
+    (( target > 100 )) && target=100
+
+    if (( target == current_percent )); then
+        progress=100
+        notify "Setting brightness to ${target}%" "$progress"
+        exit 0
+    fi
+
+    brightnessctl_set_percent "$target"
+    progress=100
+    notify "Setting brightness to ${target}%" "$progress"
+else
+    for display in 1 2; do
+        current=$(ddcutil_current "$display")
+        if [ -z "$current" ]; then
+            continue
+        fi
+
+        case "$arg" in
+            brighter)   target=$(( current + 50 )) ;;
+            darker)     target=$(( current - 50 )) ;;
+            *)          target=$arg ;;
+        esac
+
+        (( target < 0 )) && target=0
+        (( target > 100 )) && target=100
+
+        if (( target == current )); then
+            progress=$(( progress + 50 ))
+            notify "Setting brightness to ${target}%" "$progress"
+            continue
+        fi
+
+        ddcutil_set_target "$display" "$target"
+        progress=$(( progress + 50 ))
+        notify "Setting brightness to ${target}%" "$progress"
+    done
+fi
