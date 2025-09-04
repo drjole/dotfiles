@@ -2,4 +2,7 @@
 
 set -e
 
+if pgrep -x "rofi" >/dev/null; then
+    pkill rofi
+fi
 rofi -modes drun,powermenu:~/.local/bin/powermenu -show drun -run-command "uwsm app -- {cmd}"
