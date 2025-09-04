@@ -40,6 +40,7 @@ return {
         vim.lsp.enable("herb_ls")
 
         vim.lsp.config("ruby_lsp", {
+            cmd = { os.getenv("HOME") .. "/.local/share/mise/shims/ruby-lsp" },
             init_options = {
                 formatter = "rubocop",
                 linters = {
