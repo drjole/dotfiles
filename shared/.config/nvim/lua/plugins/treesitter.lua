@@ -3,7 +3,12 @@ return {
     build = ":TSUpdate",
     main = "nvim-treesitter.configs",
     dependencies = {
-        "nvim-treesitter/nvim-treesitter-context",
+        {
+            "nvim-treesitter/nvim-treesitter-context",
+            opts = {
+                multiline_threshold = 5,
+            },
+        },
     },
     opts = {
         ensure_installed = {
