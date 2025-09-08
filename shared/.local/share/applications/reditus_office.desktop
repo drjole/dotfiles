@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=reditus Office
+Comment=reditus Office
+Exec=chromium --new-window --ozone-platform=wayland --app=https://officetest.reditus.de/@/reditus-campus --name="reditus Office" --class="reditus Office"
+Terminal=false
+Type=Application
+Icon=/home/jole/.local/share/applications/icons/reditus_office.png
+StartupNotify=true
