@@ -47,6 +47,7 @@
 #pulseaudio,
 #clock,
 #bluetooth,
+#network,
 #tray {
     background-color: @surface0;
     border-radius: 1rem;
