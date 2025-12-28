@@ -1,6 +1,6 @@
 [org/blueman/general]
 plugin-list=['!ShowConnected', '!StatusIcon']
-window-properties=[944, 1019, 0, 0]
+window-properties=[1264, 1379, 0, 0]
 
 [org/gnome/desktop/interface]
 color-scheme='prefer-dark'
@@ -21,13 +21,13 @@ event-sounds=true
 input-feedback-sounds=false
 
 [org/gnome/nautilus/icon-view]
-default-zoom-level='medium'
+default-zoom-level='large'
 
 [org/gnome/nautilus/list-view]
 default-zoom-level='small'
 
 [org/gnome/nautilus/preferences]
-default-folder-viewer='icon-view'
+default-folder-viewer='list-view'
 migrated-gtk-settings=true
 search-filter-time-type='last_modified'
 
@@ -36,13 +36,13 @@ initial-size=(890, 550)
 maximized=true
 
 [org/gtk/gtk4/settings/file-chooser]
-show-hidden=true
+show-hidden=false
 sort-directories-first=true
 
 [org/gtk/settings/file-chooser]
 date-format='regular'
 location-mode='path-bar'
-show-hidden=true
+show-hidden=false
 show-size-column=true
 show-type-column=true
 sidebar-width=167
@@ -51,7 +51,20 @@ sort-directories-first=false
 sort-order='ascending'
 type-format='category'
 window-position=(0, 0)
-window-size=(1231, 902)
+window-size=(1140, 758)
 
 [org/blueman/plugins/recentconns]
-recent-connections=[{'adapter': '38:D5:7A:0E:3F:16', 'address': '80:95:3A:C3:60:2E', 'alias': 'JOLEPODS - Find My', 'icon': 'audio-headphones', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1755981697.270536'}]
+recent-connections=[{'adapter': '38:D5:7A:0E:3F:16', 'address': '80:95:3A:C3:60:2E', 'alias': 'JOLEPODS - Find My', 'icon': 'audio-headphones', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1755981697.270536'}, {'adapter': 'A8:6E:84:D9:AD:72', 'address': '80:95:3A:C3:60:2E', 'alias': 'JOLEPODS - Find My', 'icon': 'audio-headphones', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1761241308.5232253', 'device': '/org/bluez/hci0/dev_80_95_3A_C3_60_2E'}, {'adapter': 'A8:6E:84:D9:AD:72', 'address': '6C:93:08:60:F5:07', 'alias': 'Keychron K8 Pro', 'icon': 'input-keyboard', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1766697276.860952', 'device': '/org/bluez/hci0/dev_6C_93_08_60_F5_07'}]
+
+[org/gtk/settings/color-chooser]
+selected-color=(true, 0.0, 0.0, 0.0, 1.0)
+custom-colors=[(0.93725490196078431, 0.16470588235294117, 0.93725490196078431, 1.0), (0.49019607843137253, 0.49019607843137253, 0.66666666666666663, 1.0), (0.74901960784313726, 0.29019607843137257, 0.29019607843137257, 1.0), (0.52941176470588236, 0.050980392156862744, 0.52941176470588236, 1.0), (0.47666666666666668, 0.13187777777777776, 0.13187777777777776, 1.0), (1.0, 0.0, 0.0, 1.0), (0.99607843137254903, 0.99607843137254903, 0.96078431372549022, 1.0), (0.65098039215686276, 0.65098039215686276, 0.9882352941176471, 1.0)]
+
+[org/blueman/plugins/autoconnect]
+services=@a(ss) []
+
+[org/gnome/Solanum]
+fullscreen-break=true
+lap-length=uint32 1
+short-break-length=uint32 1
+long-break-length=uint32 1
