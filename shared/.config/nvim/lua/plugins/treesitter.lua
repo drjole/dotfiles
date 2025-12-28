@@ -16,7 +16,10 @@ return {
             "ruby", "embedded_template", "html", "css", "javascript", "dockerfile", "yaml",
         },
         highlight = {
-            enable = true
+            enable = true,
+            disable = {
+                "csv",
+            },
         },
         sync_install = false,
         auto_install = true,
