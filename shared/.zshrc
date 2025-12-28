@@ -3,6 +3,7 @@
 
 # PATH
 PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/go/bin:$PATH"
 
 # History
 HISTFILE=~/.zsh_history
