@@ -57,8 +57,9 @@
     },
     "clock": {
         "timezone": "Europe/Berlin",
-        "format": "{:%d.%m.%Y %H:%M}",
-        "tooltip": false
+        "format": "{:%d.%m.%Y %H:%M:%S}",
+        "tooltip": false,
+        "interval": 1,
     },
     "bluetooth": {
         "on-click": "blueman-manager",
