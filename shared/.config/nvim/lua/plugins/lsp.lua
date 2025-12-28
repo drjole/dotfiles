@@ -9,10 +9,12 @@ return {
         ensure_installed = {
             "docker_compose_language_service",
             "dockerls",
+            "gopls",
             -- "herb_ls",
             "lua_ls",
             "ruby_lsp",
             "tailwindcss",
+            "templ",
             "ts_ls",
         },
     },
