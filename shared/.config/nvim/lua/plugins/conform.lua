@@ -5,7 +5,6 @@ return {
             css = { "prettier" },
             javascript = { "prettier" },
             json = { "prettier" },
-            markdown = { "mdformat", "prettier" },
             templ = { "prettier", lsp_format = "last" },
             typescript = { "prettier" },
         },
@@ -13,10 +12,5 @@ return {
             lsp_format = "fallback",
         },
         format_on_save = {},
-        formatters = {
-            mdformat = {
-                append_args = {"--wrap", "120"}
-            },
-        },
     },
 }

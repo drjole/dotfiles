@@ -44,6 +44,11 @@ return {
         vim.lsp.config("ruby_lsp", {
             cmd = { os.getenv("HOME") .. "/.local/share/mise/shims/ruby-lsp" },
             init_options = {
+                addonSettings = {
+                    ["Ruby LSP Rails"] = {
+                        enablePendingMigrationsPrompt = false,
+                    },
+                },
                 formatter = "rubocop",
                 linters = {
                     "rubocop",
