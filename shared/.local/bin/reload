@@ -3,6 +3,6 @@
 set -e
 
 hyprctl reload
-pkill -x waybar || true
-setsid uwsm app -- waybar >/dev/null 2>&1 &
+pkill -9 -x waybar || true
+setsid uwsm-app -- waybar >/dev/null 2>&1 &
 notify-send "Successfully reloaded Hyprland"

@@ -23,15 +23,15 @@ local colors = require("mocha")
 -- Or execute your favorite apps at launch like this:
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("uwsm app -- systemctl --user start hyprpolkitagent")
-    hl.exec_cmd("uwsm app -- hypridle")
-    hl.exec_cmd("uwsm app -- hyprpaper")
-    hl.exec_cmd("uwsm app -- hyprsunset")
-    hl.exec_cmd("uwsm app -- waybar")
+    hl.exec_cmd("uwsm-app -- systemctl --user start hyprpolkitagent")
+    hl.exec_cmd("uwsm-app -- hypridle")
+    hl.exec_cmd("uwsm-app -- hyprpaper")
+    hl.exec_cmd("uwsm-app -- hyprsunset")
+    hl.exec_cmd("uwsm-app -- waybar")
 
-    hl.exec_cmd("uwsm app -- alacritty")
-    hl.exec_cmd("uwsm app -- firefox")
-    hl.exec_cmd("uwsm app -- nextcloud")
+    hl.exec_cmd("uwsm-app -- alacritty")
+    hl.exec_cmd("uwsm-app -- firefox")
+    hl.exec_cmd("uwsm-app -- nextcloud")
 end)
 
 -------------------------------
@@ -252,17 +252,16 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("reload"))
-
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("reload"))
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("menu"))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("toggle_idle"))
-hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("uwsm app -- hyprlock"))
+hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("uwsm-app -- hyprlock"))
 
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("exec, uwsm app -- alacritty"))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("uwsm app -- firefox"))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("uwsm app -- nautilus --new-window"))
-hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("uwsm app -- jolepods"))
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("uwsm app -- nightlight"))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("menu"))
+
+hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("uwsm-app -- alacritty"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("uwsm-app -- firefox"))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("uwsm-app -- nautilus --new-window"))
+hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("uwsm-app -- jolepods"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("uwsm-app -- nightlight"))
 
 hl.bind("Print", hl.dsp.exec_cmd([[grim -o "$(hyprctl monitors -j | jq -r '.[] | select(.focused).name')" - | wl-copy]]))
 hl.bind("CTRL + Print", hl.dsp.exec_cmd("slurp | grim -g - - | wl-copy"))
